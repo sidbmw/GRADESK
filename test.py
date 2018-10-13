@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bugin/env python
 import sys
 if sys.version_info[0] >= 3:
     import PySimpleGUI as sg
