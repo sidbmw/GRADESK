@@ -1,7 +1,7 @@
 DROP TABLE eom_class;
 DROP TABLE eom_students;
 DROP TABLE eom_marks;
-DROP SEQUENCE seq_person;
+DROP SEQUENCE eom_students_s;
 
 CREATE TABLE eom_class (
     class        VARCHAR2(10) NOT NULL,
@@ -78,25 +78,96 @@ VALUES ('ICS4U-02', '2019', '2');
 
 
     
-CREATE SEQUENCE seq_person
+CREATE SEQUENCE eom_students_s
 MINVALUE 1
 START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
-INSERT INTO eom_students (student_id, class, first_name, last_name)
-VALUES (seq_person.nextval, 'ICS4U-01', 'Mike','Dong');
-        
-INSERT INTO eom_students (student_id, class, first_name, last_name)
-VALUES (seq_person.nextval, 'ICS4U-01', 'Siddharth','Natamai');
-        
-INSERT INTO eom_students (student_id, class, first_name, last_name)
-VALUES (seq_person.nextval, 'ICS4U-02', 'Wade','Huang');
+--Insert Students
 
+--Insert Student Mike
+INSERT INTO eom_students (student_id, class, first_name, last_name)
+VALUES (eom_students_s.nextval, 'ICS4U-01', 'Mike','Dong');
 
+--Insert Marks for Mike
+--Test 1
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'A1', '4++','', 'N', 'N');
 
 INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
-VALUES ('1', 'blue', 'T1', 'A1', '4++','', 'N', 'N');
+VALUES (eom_students_s.currval, 'blue', 'T1', 'B2', '4/4+','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'C3', '3+/4-','', 'N', 'N');
+
+--Test 2
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'A3', '3+','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'B4', '4/4+','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'C1', '3+/4-','', 'N', 'N');
+
+
+        
+--Insert Student Siddharth
+INSERT INTO eom_students (student_id, class, first_name, last_name)
+VALUES (eom_students_s.nextval, 'ICS4U-01', 'Siddharth','Natamai');
+
+--Insert Marks for Siddharth
+--Test1
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'A1', '1+','Was sick. Retest offered.', 'Y', 'Y');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'A1', '4++','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'B2', '2-','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'C3', '3','', 'N', 'N');
+
+
+--Test 2
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'A3', '4++','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'B4', '3--','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'C1', 'R','', 'N', 'N');
+
+--Insert Student Wade
+INSERT INTO eom_students (student_id, class, first_name, last_name)
+VALUES (eom_students_s.nextval, 'ICS4U-02', 'Wade','Huang');
+
+
+--Insert Marks Wade
+--Test1
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'A1', '3+','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'B2', '4++','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T1', 'C3', '3+/4-','', 'N', 'N');
+
+
+--Test 2
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'A3', '4++','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'B4', '3--','', 'N', 'N');
+
+INSERT INTO eom_marks (student_id, colour, task, expectation, mark, comments, anomaly, deleted_flag)
+VALUES (eom_students_s.currval, 'blue', 'T2', 'B1', '4++','', 'N', 'N');
 
 
 
@@ -105,4 +176,4 @@ VALUES ('1', 'blue', 'T1', 'A1', '4++','', 'N', 'N');
 
 
 
-SELECT * FROM eom_class;
+
