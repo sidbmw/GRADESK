@@ -33,7 +33,6 @@ class Ball:
         if self.x < 0:
             self.starter = 'left'
 
-
         self.y = -2.5
 
     def checkwin(self):

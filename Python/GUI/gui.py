@@ -1,13 +1,8 @@
 import PySimpleGUI as sg
 
 layout = [[sg.Text('                      Class selection', size=(30, 1), font=("Helvetica", 25), text_color='black')],
-
-
-
-
    [sg.Text('Class list', size=(15,1), font= ("Helvetica", 15), text_color = 'black')],
-   layout = [[sg.Slider(range=(None,None), default_value=None, size=(20,15), orientation='v', font=('Helvetica', 12))]] ############
-
+   [sg.Slider(range=(None,None), default_value=None, size=(5,15), orientation='v', font=('Helvetica', 12))], #######################
    [sg.InputText()],
    [sg.Checkbox('My first checkbox!'), sg.Checkbox('My second checkbox!', default=True)],
    [sg.Radio('My first Radio!     ', "RADIO1", default=True), sg.Radio('My second Radio!', "RADIO1"), sg.Radio('    Eh lmao a third radio', "Radio1")],
