@@ -1,15 +1,15 @@
 # Author: Siddharth Natamai
-# Date: November 3, 2018
+# Date: November 5, 2018
 
 # !/usr/bin/env python
 
 import PySimpleGUI as sg
 
 layout = [[sg.Text('GRADESK', size=(30, 1), justification='center', font=("Helvetica", 25))],
-          [sg.Text('Username', justification='center', font=("Helvetica", 20))],
-          [sg.Input((), justification='center')],
-          [sg.Text('Password')],
-          [sg.Input()],
+          [sg.Text('Username', size=(30, 1), pad=((150, 5), 3), justification='center')],
+          [sg.Input(pad=((150, 5), 3))],
+          [sg.Text('Password', size=(30, 1), pad=((150, 5), 3), justification='center')],
+          [sg.Input(pad=((150, 5), 3))],
           [sg.Button('Read', bind_return_key=True), sg.Exit()]]
 
 window = sg.Window('Enter Login Credentials', default_element_size=(40, 1)).Layout(layout)
