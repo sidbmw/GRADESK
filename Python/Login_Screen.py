@@ -5,11 +5,11 @@
 
 import PySimpleGUI as sg
 
-layout = [[sg.Text('GRADESK', size=(30, 1), justification='center', font=("Helvetica", 25))],
-          [sg.Text('Username', size=(30, 1), pad=((150, 5), 3), justification='center')],
-          [sg.Input(pad=((150, 5), 3))],
-          [sg.Text('Password', size=(30, 1), pad=((150, 5), 3), justification='center')],
-          [sg.Input(pad=((150, 5), 3))],
+layout = [[sg.Text('GRADESK', size=(30, 1), pad=((5, 5), 3), justification='center', font=("Helvetica", 25))],
+          [sg.Text('Username', size=(30, 1), pad=((154, 150), 3), justification='center', )],
+          [sg.Input(pad=((150, 150), 3))],
+          [sg.Text('Password', size=(30, 1), pad=((154, 150), 3), justification='center', )],
+          [sg.Input(pad=((150, 150), 3))],
           [sg.Button('Read', bind_return_key=True), sg.Exit()]]
 
 window = sg.Window('Enter Login Credentials', default_element_size=(40, 1)).Layout(layout)
