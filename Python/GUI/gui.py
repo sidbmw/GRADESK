@@ -1,24 +1,27 @@
 import PySimpleGUI as sg
 
-layout = [[sg.Text('                      Class selection', size=(30, 1), font=("Helvetica", 25), text_color='black')],
-   [sg.Text('Class list', size=(15,1), font= ("Helvetica", 15), text_color = 'black')],
-   [sg.Slider(range=(None,None), default_value=None, size=(5,15), orientation='v', font=('Helvetica', 12))], #######################
-   [sg.InputText()],
-   [sg.Checkbox('My first checkbox!'), sg.Checkbox('My second checkbox!', default=True)],
-   [sg.Radio('My first Radio!     ', "RADIO1", default=True), sg.Radio('My second Radio!', "RADIO1"), sg.Radio('    Eh lmao a third radio', "Radio1")],
-   [sg.Multiline(default_text='This is the default Text shoulsd you decide not to type anything',)],
-[sg.InputCombo(['Combobox 1', 'Combobox 2'], size=(20, 3)),
- sg.Slider(range=(1, 100), orientation='h', size=(35, 20), default_value=85)],
-[sg.Listbox(values=['Listbox 1', 'Listbox 2', 'Listbox 3'], size=(30, 6)),
- sg.Slider(range=(1, 100), orientation='v', size=(10, 20), default_value=25),
- sg.Slider(range=(1, 100), orientation='v', size=(10, 20), default_value=75),
- sg.Slider(range=(1, 100), orientation='v', size=(10, 20), default_value=10)],
-[sg.Text('_'  * 100, size=(70, 1))],
-[sg.Text('Choose Source and Destination Folders', size=(35, 1))],
-[sg.Text('Source Folder', size=(15, 1), auto_size_text=False, justification='right'), sg.InputText('Source'),
- sg.FolderBrowse()],
-[sg.Text('Destination Folder', size=(15, 1), auto_size_text=False, justification='right'), sg.InputText('Dest'),
- sg.FolderBrowse()],
-[sg.Submit(), sg.Cancel(), sg.Button('Customized', button_color=('white', 'green'))]]
+classes = ['ICS3U.01', 'ICS4U.01', 'MPM2C.01', 'class 4' , 'class 5' , 'class 6', 'class 7', 'class last']
+column=[]
+for x in classes:
+    column.append([sg.Text(x + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))])
+
+
+            #[sg.Text(classes[0] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+            #[sg.Text(classes[1] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+            #[sg.Text(classes[2] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+            #[sg.Text(classes[3] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+            #[sg.Text(classes[4] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+            #[sg.Text(classes[5] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+            #[sg.Text(classes[6] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+            #[sg.Text(classes[7] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],
+    if x == 'class 7':
+        break
+
+column.append([sg.Text(classes[len(classes) -1] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))])
+
+
+layout = [[sg.Text('  Class selection', size=(17, 1), font=("Helvetica", 25), text_color='black', justification = 'center')],
+    [sg.Column(column,scrollable=True, size=(300,200) )]]
+
 
 event, values  = sg.Window('Everything bagel', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
