@@ -1,67 +1,77 @@
 #!/usr/bin/env python
 import sys
-
 if sys.version_info[0] >= 3:
     import PySimpleGUI as sg
 else:
     import PySimpleGUI27 as sg
+import os
+from sys import exit as exit
+
+# Simple Image Browser based on PySimpleGUI
+
+# Get the folder containing the images from the user
+folder = sg.PopupGetFolder('Image folder to open')
+if folder is None:
+    sg.PopupCancel('Cancelling')
+    exit(0)
+
+# get list of PNG files in folder
+png_files = [folder + '\\' + f for f in os.listdir(folder) if '.png' in f]
+filenames_only = [f for f in os.listdir(folder) if '.png' in f]
+
+if len(png_files) == 0:
+    sg.Popup('No PNG images in folder')
+    exit(0)
 
 
-def Everything():
-    sg.ChangeLookAndFeel('TanBlue')
+# define menu layout
+menu = [['File', ['Open Folder', 'Exit']], ['Help', ['About',]]]
 
-    column1 = [
-        [sg.Text('Column 1', background_color=sg.DEFAULT_BACKGROUND_COLOR, justification='center', size=(10, 1))],
-        [sg.Spin(values=('Spin Box 1', '2', '3'), initial_value='Spin Box 1', key='spin1')],
-        [sg.Spin(values=('Spin Box 1', '2', '3'), initial_value='Spin Box 2', key='spin2')],
-        [sg.Spin(values=('Spin Box 1', '2', '3'), initial_value='Spin Box 3', key='spin3')]]
+# define layout, show and read the window
+col = [[sg.Text(png_files[0], size=(80, 3), key='filename')],
+          [sg.Image(filename=png_files[0], key='image')],
+          [sg.Button('Next', size=(8,2)), sg.Button('Prev', size=(8,2)),
+           sg.Text('File 1 of {}'.format(len(png_files)), size=(15,1), key='filenum')]]
 
-    layout = [
-        [sg.Text('All graphic widgets in one form!', size=(30, 1), font=("Helvetica", 25))],
-        [sg.Text('Here is some text.... and a place to enter text')],
-        [sg.InputText('This is my text', key='in1', do_not_clear=True)],
-        [sg.Checkbox('Checkbox', key='cb1'), sg.Checkbox('My second checkbox!', key='cb2', default=True)],
-        [sg.Radio('My first Radio!     ', "RADIO1", key='rad1', default=True),
-         sg.Radio('My second Radio!', "RADIO1", key='rad2')],
-        [sg.Multiline(default_text='This is the default Text should you decide not to type anything', size=(35, 3),
-                      key='multi1', do_not_clear=True),
-         sg.Multiline(default_text='A second multi-line', size=(35, 3), key='multi2', do_not_clear=True)],
-        [sg.InputCombo(('Combobox 1', 'Combobox 2'), key='combo', size=(20, 1)),
-         sg.Slider(range=(1, 100), orientation='h', size=(34, 20), key='slide1', default_value=85)],
-        [sg.InputOptionMenu(('Menu Option 1', 'Menu Option 2', 'Menu Option 3'), key='optionmenu')],
-        [sg.Listbox(values=('Listbox 1', 'Listbox 2', 'Listbox 3'), size=(30, 3), key='listbox'),
-         sg.Slider(range=(1, 100), orientation='v', size=(5, 20), default_value=25, key='slide2', ),
-         sg.Slider(range=(1, 100), orientation='v', size=(5, 20), default_value=75, key='slide3', ),
-         sg.Slider(range=(1, 100), orientation='v', size=(5, 20), default_value=10, key='slide4'),
-         sg.Column(column1, background_color='gray34')],
-        [sg.Text('_' * 80)],
-        [sg.Text('Choose A Folder', size=(35, 1))],
-        [sg.Text('Your Folder', size=(15, 1), auto_size_text=False, justification='right'),
-         sg.InputText('Default Folder', key='folder', do_not_clear=True), sg.FolderBrowse()],
-        [sg.ReadButton('Exit'),
-         sg.Text(' ' * 40), sg.ReadButton('SaveSettings'), sg.ReadButton('LoadSettings')]
-    ]
+col_files = [[sg.Listbox(values=filenames_only, size=(60,30), key='listbox')],
+             [sg.Button('Read')]]
+layout = [[sg.Menu(menu)], [sg.Column(col_files), sg.Column(col)]]
+window = sg.Window('Image Browser', return_keyboard_events=True, location=(0,0), use_default_focus=False ).Layout(layout)
 
-    window = sg.Window('Form Fill Demonstration', default_element_size=(40, 1), grab_anywhere=False)
-    # button, values = window.LayoutAndRead(layout, non_blocking=True)
-    window.Layout(layout)
+# loop reading the user input and displaying image, filename
+i=0
+while True:
 
-    while True:
-        event, values = window.Read()
+    event, values = window.Read()
+    # --------------------- Button & Keyboard ---------------------
+    if event is None:
+        break
+    elif event in ('Next', 'MouseWheel:Down', 'Down:40', 'Next:34') and i < len(png_files)-1:
+        i += 1
+    elif event in ('Prev', 'MouseWheel:Up', 'Up:38', 'Prior:33') and i > 0:
+        i -= 1
+    elif event == 'Exit':
+        exit(69)
 
-        if event is 'SaveSettings':
-            filename = sg.PopupGetFile('Save Settings', save_as=True, no_window=True)
-            window.SaveToDisk(filename)
-            # save(values)
-        elif event is 'LoadSettings':
-            filename = sg.PopupGetFile('Load Settings', no_window=True)
-            window.LoadFromDisk(filename)
-            # load(form)
-        elif event in ['Exit', None]:
-            break
+    filename = folder + '/' + values['listbox'][0] if event == 'Read' else png_files[i]
 
-    # window.CloseNonBlocking()
+    # ----------------- Menu choices -----------------
+    if event == 'Open Folder':
+        newfolder = sg.PopupGetFolder('New folder', no_window=True)
+        if newfolder is None:
+            continue
+        folder = newfolder
+        png_files = [folder + '/' + f for f in os.listdir(folder) if '.png' in f]
+        filenames_only = [f for f in os.listdir(folder) if '.png' in f]
+        window.FindElement('listbox').Update(values=filenames_only)
+        window.Refresh()
+        i = 0
+    elif event == 'About':
+        sg.Popup('Demo PNG Viewer Program', 'Please give PySimpleGUI a try!')
 
-
-if __name__ == '__main__':
-    Everything()
+    # update window with new image
+    window.FindElement('image').Update(filename=filename)
+    # update window with filename
+    window.FindElement('filename').Update(filename)
+    # update page display
+    window.FindElement('filenum').Update('File {} of {}'.format(i+1, len(png_files)))
