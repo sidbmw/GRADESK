@@ -4,74 +4,38 @@ if sys.version_info[0] >= 3:
     import PySimpleGUI as sg
 else:
     import PySimpleGUI27 as sg
-import os
-from sys import exit as exit
 
-# Simple Image Browser based on PySimpleGUI
+"""
+Turn off padding in order to get a really tight looking layout.
+"""
 
-# Get the folder containing the images from the user
-folder = sg.PopupGetFolder('Image folder to open')
-if folder is None:
-    sg.PopupCancel('Cancelling')
-    exit(0)
+sg.ChangeLookAndFeel('Dark')
+sg.SetOptions(element_padding=(0, 0))
 
-# get list of PNG files in folder
-png_files = [folder + '\\' + f for f in os.listdir(folder) if '.png' in f]
-filenames_only = [f for f in os.listdir(folder) if '.png' in f]
+layout = [[sg.T('User:', pad=((3, 0), 0)), sg.OptionMenu(values=('User 1', 'User 2'), size=(20, 1)),
+           sg.T('0', size=(8, 1))],
+          [sg.T('Customer:', pad=((3, 0), 0)), sg.OptionMenu(values=('Customer 1', 'Customer 2'), size=(20, 1)),
+           sg.T('1', size=(8, 1))],
+          [sg.T('Notes:', pad=((3, 0), 0)), sg.In(size=(44, 1), background_color='white', text_color='black')],
+          [sg.ReadButton('Start', button_color=('white', 'black')),
+           sg.ReadButton('Stop', button_color=('gray50', 'black')),
+           sg.ReadButton('Reset', button_color=('white', '#9B0023')),
+           sg.ReadButton('Submit', button_color=('gray60', 'springgreen4')),
+           sg.Button('Exit', button_color=('white', '#00406B'))]]
 
-if len(png_files) == 0:
-    sg.Popup('No PNG images in folder')
-    exit(0)
+window = sg.Window("Borderless Window",
+                   default_element_size=(12, 1),
+                   text_justification='r',
+                   auto_size_text=False,
+                   auto_size_buttons=False,
+                   no_titlebar=True,
+                   grab_anywhere=True,
+                   default_button_element_size=(12, 1))
 
+window.Layout(layout)
 
-# define menu layout
-menu = [['File', ['Open Folder', 'Exit']], ['Help', ['About',]]]
-
-# define layout, show and read the window
-col = [[sg.Text(png_files[0], size=(80, 3), key='filename')],
-          [sg.Image(filename=png_files[0], key='image')],
-          [sg.Button('Next', size=(8,2)), sg.Button('Prev', size=(8,2)),
-           sg.Text('File 1 of {}'.format(len(png_files)), size=(15,1), key='filenum')]]
-
-col_files = [[sg.Listbox(values=filenames_only, size=(60,30), key='listbox')],
-             [sg.Button('Read')]]
-layout = [[sg.Menu(menu)], [sg.Column(col_files), sg.Column(col)]]
-window = sg.Window('Image Browser', return_keyboard_events=True, location=(0,0), use_default_focus=False ).Layout(layout)
-
-# loop reading the user input and displaying image, filename
-i=0
 while True:
-
     event, values = window.Read()
-    # --------------------- Button & Keyboard ---------------------
-    if event is None:
+    if event is None or event == 'Exit':
         break
-    elif event in ('Next', 'MouseWheel:Down', 'Down:40', 'Next:34') and i < len(png_files)-1:
-        i += 1
-    elif event in ('Prev', 'MouseWheel:Up', 'Up:38', 'Prior:33') and i > 0:
-        i -= 1
-    elif event == 'Exit':
-        exit(69)
 
-    filename = folder + '/' + values['listbox'][0] if event == 'Read' else png_files[i]
-
-    # ----------------- Menu choices -----------------
-    if event == 'Open Folder':
-        newfolder = sg.PopupGetFolder('New folder', no_window=True)
-        if newfolder is None:
-            continue
-        folder = newfolder
-        png_files = [folder + '/' + f for f in os.listdir(folder) if '.png' in f]
-        filenames_only = [f for f in os.listdir(folder) if '.png' in f]
-        window.FindElement('listbox').Update(values=filenames_only)
-        window.Refresh()
-        i = 0
-    elif event == 'About':
-        sg.Popup('Demo PNG Viewer Program', 'Please give PySimpleGUI a try!')
-
-    # update window with new image
-    window.FindElement('image').Update(filename=filename)
-    # update window with filename
-    window.FindElement('filename').Update(filename)
-    # update page display
-    window.FindElement('filenum').Update('File {} of {}'.format(i+1, len(png_files)))
