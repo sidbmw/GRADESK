@@ -5,6 +5,8 @@
 
 
 import PySimpleGUI as sg
+import cx_Oracle
+
 
 layout = [[sg.Text('GRADESK', size=(30, 1), justification='center', font=("Helvetica", 25))],
           [sg.Text('        Username', size=(30, 1), pad=((154, 150), 3), justification='center')],
@@ -19,8 +21,11 @@ while True:
     event, values = window.Read()
     if event is None or event == 'Exit':
         break
-    if (values[0] == 'test') & (values[1] == 'test'):
+    if (values[0] == 'EOM') & (values[1] == 'EOM'):
         print('Login SUCCESSFUL')
+        con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+        print(con.version)
+        con.close()
     else:
         print('Login FAILED!!')
         print(values)
