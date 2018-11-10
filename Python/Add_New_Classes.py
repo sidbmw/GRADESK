@@ -11,12 +11,12 @@ import PySimpleGUI as sg
 sg.ChangeLookAndFeel('DarkBlue')
 
 layout = [[sg.Text('Add New Classes', size=(30, 2), justification='center', font=("Helvetica", 25))],
-          [sg.Text('Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
-          [sg.Input((), size=(20, 2), pad=((205, 150), 10))],
-          [sg.Text('Period Number', size=(50, 1), justification='center', font=("Helvetica", 15))],
-          [sg.Input((), size=(20, 2), pad=((205, 150), 10))],
+          [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
+          [sg.Input((), size=(20, 2), pad=((215, 150), 10))],
+          [sg.Text('   Period Number', size=(50, 1), justification='center', font=("Helvetica", 15))],
+          [sg.Input((), size=(20, 2), pad=((215, 150), 10))],
           [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
-          [sg.DropDown((2016, 2017, 2018, 2019), size=(20, 2), pad=((205, 150), 10))],
+          [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10))],
           [sg.ReadButton('Course Code', key='add_new_courses_button', size=(20, 2), pad=((205, 150), 10))]
           ]
 
