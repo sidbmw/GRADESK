@@ -1,26 +1,32 @@
 import PySimpleGUI as sg
 
-classes = [['ICS3U.01', 'ICS4U.01', 'MPM2C.01', 'class 4' , 'class 5' , 'class 6', 'class 7', 'class last'], ['1', '2', '3', '4', '1', '2', '3', '4'], ['2017', '2017',
-'2017', '2017', '2018', '2018', '2018', '2018']] #PEP violation when a line is more than 40 characters
-#period = ['1', '2', '3', '4', '1', '2', '3', '4']
-#year = ['2017', '2017', '2017', '2017', '2018', '2018', '2018', '2018']
-column=[]
+sg.SetOptions (background_color = 'LightBlue',
+            element_background_color = 'LightBlue',
+            text_element_background_color = 'LightBlue',
+               font = ('Arial', 10, 'bold'),
+               text_color = 'Blue',
+               input_text_color ='Blue',
+               button_color = ('White', 'Blue')
+               )
+#name inputs (key) uses dictionary- easy to see updating of results
+#value[input] first input value te c...
+layout = [ [sg.Text('Enter a Temperature in Celcius')],
+    [sg.Text('Celcius', size =(8,1)), sg.InputText(size = (15,1),key = '_input_')],
+    [sg.Text('Result', size =(8,1)), sg.InputText(size = (15,1),key = '_result_')],
+    [sg.ReadButton('Submit', bind_return_key = True)]]
 
-#if len(classes) != len(period):
-#sys.exit()
+window = sg.FlexForm('Temp Converter').Layout(layout)
 
-for x in range(len(classes)): # x is a string and not a integer that represent the xth item in the array, x is literally 'ICS3U' then 'ICS4U' then...
-    column.append([sg.Text(classes[0][x] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],)
-    column.append([sg.Text('Period: ' + classes[1][x])],)
+while True:
+    button, value = window.Read()
+    if button is not None:
+        #catch program errors for text or blank entry:
+        try:
+            fahrenheit = round(9/5*float(value['_input_']) +32, 1)
+            #put result in text box
+            window.FindElement('_result_').Update(fahrenheit)
+        except ValueError:
+            sg.Popup('Error','Please try again')
 
-    if x == 'class 7': # don't go length of array -1 because x is a string not a integer
+    else:
         break
-
-column.append([sg.Text(classes[len(classes[0]) -1] + "     ", size=(20, 1), justification = 'right'), sg.Button('select', button_color =( 'black', 'orange'))],)
-column.append([sg.Text('Period: ' + period[len(classes[1]) -1])])
-
-layout = [[sg.Text('  Class selection', size=(17, 1), font=("Helvetica", 25), text_color='black', justification = 'center')],
-    [sg.Column(column,scrollable=True, size=(300,200) )]]
-
-
-event, values  = sg.Window('Class selection', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()

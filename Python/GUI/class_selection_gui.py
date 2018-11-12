@@ -8,7 +8,7 @@ column=[]
 #if len(classes) != len(period):
 #sys.exit()
 
-for x in range(len(classes)): # x is a string and not a integer that represent the xth item in the array, x is literally 'ICS3U' then 'ICS4U' then...
+for x in range(len(classes)-1): # x is a string and not a integer that represent the xth item in the array, x is literally 'ICS3U' then 'ICS4U' then...
     column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification = 'right'), sg.Button('access', button_color =( 'black', 'orange')), sg.Radio('select', "RADIO1")],)
     column.append([sg.Text('Period: ' + period[x]), sg.Text('Year: ' + year[x])],)
 
@@ -20,4 +20,10 @@ layout = [[sg.Text('  Class selection', size=(17, 1), font=("Helvetica", 25), te
     [sg.Button('Add Class', button_color = ('white', 'black'), font=("Helvetica", 15)), sg.Button('Edit Class', button_color = ('white', 'black'), font=("Helvetica", 15)), sg.Button('Delete Class', button_color = ('white', 'black'), font
     =("Helvetica", 15))]]
 
-event, values  = sg.Window('Class selection', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
+#event, values  = sg.Window('Class selection', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
+window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
+
+while True:
+    event, values = window.Read()
+    if event is None:
+        break
