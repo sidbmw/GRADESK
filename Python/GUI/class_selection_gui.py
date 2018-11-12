@@ -12,9 +12,6 @@ for x in range(len(classes)): # x is a string and not a integer that represent t
     column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification = 'right'), sg.Button('access', button_color =( 'black', 'orange')), sg.Radio('select', "RADIO1")],)
     column.append([sg.Text('Period: ' + period[x]), sg.Text('Year: ' + year[x])],)
 
-    if x == 'class 7': # don't go length of array -1 because x is a string not a integer
-        break
-
 column.append([sg.Text(classes[len(classes) -1] + "     ", size=(20, 1), justification = 'right'), sg.Button('access', button_color =( 'black', 'orange')), sg.Radio('select', "RADIO1", default=True)],)
 column.append([sg.Text('Period: ' + period[len(classes) -1]), sg.Text('Year: ' + year[x])])
 
