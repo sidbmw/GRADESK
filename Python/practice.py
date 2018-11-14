@@ -1,53 +1,27 @@
 import PySimpleGUI as sg
 
-sg.SetOptions (background_color = 'LightBlue',
-            element_background_color = 'LightBlue',
-            text_element_background_color = 'LightBlue',
-               font = ('Arial', 10, 'bold'),
-               text_color = 'Blue',
-               input_text_color ='Blue',
-               button_color = ('White', 'Blue')
-               )
-#name inputs (key) uses dictionary- easy to see updating of results
-#value[input] first input value te c...
-layout = [ [sg.Text('Enter a Temperature in Celcius')],
-    [sg.Text('Celcius', size =(8,1)), sg.InputText(size = (15,1),key = '_input_')],
-    [sg.Text('Result', size =(8,1)), sg.InputText(size = (15,1),key = '_result_')],
-    [sg.ReadButton('Submit', bind_return_key = True)]]
+gui_rows = [[sg.Text('Robotics Remote Control')],
+            [sg.T(' '  * 10), sg.RealtimeButton('Forward')],
+            [sg.RealtimeButton('Left'), sg.T(' '  * 15), sg.RealtimeButton('Right')],
+            [sg.T(' '  * 10), sg.RealtimeButton('Reverse')],
+            [sg.T('')],
+            [sg.Quit(button_color=('black', 'orange'))]
+            ]
 
-window = sg.FlexForm('Temp Converter').Layout(layout)
+window = sg.Window('Robotics Remote Control', auto_size_text=True).Layout(gui_rows)
 
-
-
-
-
-while True:
-    event, value = window.Read()
-    if button is not None:
-        #catch program errors for text or blank entry:
-        try:
-            fahrenheit = round(9/5*float(value['_input_']) +32, 1)
-            #put result in text box
-            window.FindElement('_result_').Update(fahrenheit)
-        except ValueError:
-            sg.Popup('Error','Please try again')
-
-    else:
+#
+# Some place later in your code...
+# You need to perform a Read or Refresh call on your window every now and then or
+# else it will apprear as if the program has locked up.
+#
+# your program's main loop
+while (True):
+    # This is the code that reads and updates your window
+    event, values = window.Read(timeout=0)
+    if event is not None:
+        print(event)
+    if event == 'Quit'  or values is None:
         break
-# import PySimpleGUI as sg
-#
-#
-#
-#
-#
-# layout = [[sg.ReadButton('Submit', bind_return_key = True)]]
-#
-# # event, values  = sg.Window('Mark ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
-# window = sg.FlexForm('Temp Converte ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
-#
-# while True:
-#     event, values = window.Read()
-#     if button is None:
-#         sg.Popup('Error','Please try again')
-#     else:
-#         break
+
+window.Close()  # Don't forget to close your window!
