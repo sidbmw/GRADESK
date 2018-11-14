@@ -17,7 +17,7 @@ for x in range(numberOf):
     column.append([sg.Text('Mark            ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1))],)
     column.append([sg.Text('                  ', justification = 'right'), sg.Checkbox(' ')],)
     column.append([sg.Text('_'  * 100, size=(23, 1))],)
-    column.append([sg.Button('Add', size=(23,2))],)
+    column.append([sg.ReadButton('Add', size=(23,2), bind_return_key = True)],)
 
 
 layout = [[sg.Text('Mark entry - ' + student_name, size=(21, 1), font=("Helvetica", 15), justification = 'center')],
@@ -26,3 +26,10 @@ layout = [[sg.Text('Mark entry - ' + student_name, size=(21, 1), font=("Helvetic
 [sg.Column(column,scrollable=True, size=(225,150))]]
 
 event, values  = sg.Window('Mark ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
+
+while True:
+    event, values = window.Read()
+    if button is None:
+        sg.Popup('Error','Please try again')
+    else:
+        break

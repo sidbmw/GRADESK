@@ -17,8 +17,12 @@ layout = [ [sg.Text('Enter a Temperature in Celcius')],
 
 window = sg.FlexForm('Temp Converter').Layout(layout)
 
+
+
+
+
 while True:
-    button, value = window.Read()
+    event, value = window.Read()
     if button is not None:
         #catch program errors for text or blank entry:
         try:
@@ -30,3 +34,20 @@ while True:
 
     else:
         break
+# import PySimpleGUI as sg
+#
+#
+#
+#
+#
+# layout = [[sg.ReadButton('Submit', bind_return_key = True)]]
+#
+# # event, values  = sg.Window('Mark ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
+# window = sg.FlexForm('Temp Converte ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
+#
+# while True:
+#     event, values = window.Read()
+#     if button is None:
+#         sg.Popup('Error','Please try again')
+#     else:
+#         break
