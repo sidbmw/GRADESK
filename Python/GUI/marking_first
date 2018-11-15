@@ -1,0 +1,22 @@
+import PySimpleGUI as sg
+
+numberOf = 1
+
+layout = [[sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='black', justification = 'center')],
+        [sg.Text('Name of Assigment      '), sg.InputText('', size = (10,1), justification = 'right')],
+        [sg.Text('Number of expectations'), sg.InputText('', size = (10,1), justification = 'right', key = 'number_key')],
+        [sg.Quit(button_color=('black', 'orange')), sg.Button('Next', key = 'next_key')]]
+
+window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
+
+while True:
+    event, values = window.Read()
+    if event is None:
+        break
+    if event == 'Quit'  or values is None:
+        break
+    if next_key = True:
+        if number_key is not None
+            if number_key
+
+window.Close()
