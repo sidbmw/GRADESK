@@ -16,11 +16,11 @@ layout = [[sg.Text('GRADESK', size=(30, 1), justification='center', font=("Helve
           [sg.Input(pad=((150, 150), 3))],
           [sg.Text('        Password', size=(30, 1), pad=((154, 150), 3), justification='center')],
           [sg.Input(pad=((150, 150), 3), password_char='*')],
-          [sg.Button('Read', bind_return_key=True), sg.Exit()]]
+          [sg.Button('Read', key='Read_Key'), sg.Exit()]]
 
 window = sg.Window('Enter Login Credentials', default_element_size=(40, 1)).Layout(layout)
 
-while True:
+while 'Read_Key':
     event, values = window.Read()
     if event is None or event == 'Exit':
         break
@@ -35,6 +35,6 @@ while True:
     if values[0] != 'EOM':
         print('Login FAILED!!')
         sg.Popup("Login Failed")
-        print(values)
-        print(event, values)
+        print(values[0], values[1])
+        # print(event, values)
 window.Close()
