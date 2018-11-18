@@ -2,11 +2,12 @@
 # Date: November 10, 2018
 
 # !/usr/bin/env python
-
+import cx_Oracle
 
 import PySimpleGUI as sg
 
-# sg.SetOptions(element_padding=(0, 0))
+con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+cur = con.cursor(scrollable=True)
 
 sg.ChangeLookAndFeel('DarkBlue')
 
@@ -27,9 +28,35 @@ while 'add_new_courses_button':
     event, values = window.Read()
     if event is None or event == 'Exit':
         break
-    course_Code = values[0]
-    period_Number = values[1]
-    year = values[2]
-    print(course_Code, period_Number, year)
+    # v_course_code = "AAA"
+    # v_period_num = 5
+    # v_year = 1996
+    #print(v_course_code, v_period_num, v_year)
     break
 window.Close()
+
+# sql = "INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES (%s, %d, %d)"
+# val = ('v_course_Code', 'v_year', 'v_period_Number')
+#
+# cur.execute(sql, val)
+#
+# # cur.prepare('INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES (:CLASS ,:YEAR , :PERIOD_NUM)')
+# # cur.execute({'CLASS': v_course_Code}, {'YEAR': v_year}, {'PERIOD_NUM': v_period_Number})
+#
+#
+# # q = "INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES(:CLASS, :YEAR, :PERIOD_NUM)"
+# #
+# # cur.execute(q, CLASS=v_course_Code, YEAR=v_year, PERIOD_NUM=v_period_Number)
+
+for i in range(1):
+    cur.execute("""
+
+       insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
+
+       values (:v_course_code, :v_year, :v_period_num)""",
+
+                v_course_code=values[0],
+                v_year=values[1],
+                v_period_num=values[2]
+                )
+    con.commit()
