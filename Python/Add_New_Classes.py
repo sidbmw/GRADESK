@@ -17,10 +17,19 @@ layout = [[sg.Text('Add New Classes', size=(30, 2), justification='center', font
           [sg.Input((), size=(20, 2), pad=((215, 150), 10))],
           [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
           [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10))],
-          [sg.ReadButton('Course Code', key='add_new_courses_button', size=(20, 2), pad=((205, 150), 10),
+          [sg.ReadButton('Add Course', key='add_new_courses_button', size=(20, 2), pad=((205, 150), 10),
                          bind_return_key=True)]
           ]
 
 window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
 
-event, values = window.Read()
+while 'add_new_courses_button':
+    event, values = window.Read()
+    if event is None or event == 'Exit':
+        break
+    course_Code = values[0]
+    period_Number = values[1]
+    year = values[2]
+    print(course_Code, period_Number, year)
+    break
+window.Close()
