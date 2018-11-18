@@ -1,4 +1,4 @@
-#https://stackoverflow.com/questions/43565189/get-column-value-by-name-rather-than-position-in-cx-oracle
+# https://stackoverflow.com/questions/43565189/get-column-value-by-name-rather-than-position-in-cx-oracle
 
 from __future__ import print_function
 
@@ -14,8 +14,8 @@ cur.execute("select * from EOM_CLASS WHERE CLASS = 'ICS4U-01' ")
 
 for row in cur:
     # print(row)
-   # print(row[0])
-   # print(row[1])
+    # print(row[0])
+    # print(row[1])
     v_class = row[0]
     print(v_class)
 
