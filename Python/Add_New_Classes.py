@@ -28,10 +28,10 @@ while 'add_new_courses_button':
     event, values = window.Read()
     if event is None or event == 'Exit':
         break
-    # v_course_code = "AAA"
-    # v_period_num = 5
-    # v_year = 1996
-    #print(v_course_code, v_period_num, v_year)
+    v_course_code = values[0]
+    v_period_num = values[1]
+    v_year = values[2]
+    print(v_course_code, v_period_num, v_year)
     break
 window.Close()
 
@@ -48,15 +48,14 @@ window.Close()
 # #
 # # cur.execute(q, CLASS=v_course_Code, YEAR=v_year, PERIOD_NUM=v_period_Number)
 
-for i in range(1):
-    cur.execute("""
+# for i in range(1):
+cur.execute("""
 
-       insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
+     insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
+     values (:v_course_code, :v_year, :v_period_num)""",
 
-       values (:v_course_code, :v_year, :v_period_num)""",
-
-                v_course_code=values[0],
-                v_year=values[1],
-                v_period_num=values[2]
-                )
-    con.commit()
+            v_course_code=values[0],
+            v_year=values[1],
+            v_period_num=values[2]
+            )
+con.commit()
