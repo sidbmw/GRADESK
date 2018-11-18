@@ -1,11 +1,15 @@
 import PySimpleGUI as sg
 
+
+
 numberOf = 1
 
 layout = [[sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='black', justification = 'center')],
+        [sg.Radio('Test             ', 'RADIO1', default=True, text_color = 'red'), sg.Radio('Assignment   ', 'RADIO1', text_color = 'blue')],
+        [sg.Radio('Presentation ', 'RADIO1', text_color = 'green'), sg.Radio('Quiz           ', 'RADIO1', text_color = 'Yellow')],
         [sg.Text('Name of Assigment      '), sg.InputText('', size = (10,1), justification = 'right')],
         [sg.Text('Number of expectations'), sg.InputText('', size = (10,1), justification = 'right', key = 'number_key')],
-        [sg.Quit(button_color=('black', 'orange')), sg.Button('Next', key = 'next_key')]]
+        [sg.Quit(button_color=('black', 'orange')), sg.Button('Next', key = 'next_key')]] #get the next key working
 
 window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
 
@@ -15,8 +19,13 @@ while True:
         break
     if event == 'Quit'  or values is None:
         break
-    if next_key = True:
-        if number_key is not None
-            if number_key
+    if next_key == True: #the next key is not working for somereason
+        numberOf = number_key
+        #if number_key is not None:
+            #if number_key
 
 window.Close()
+
+def initialize():
+    global num
+    num = numberOf
