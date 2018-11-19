@@ -32,7 +32,13 @@ while 'add_new_courses_button':
     v_period_num = values[1]
     v_year = values[2]
     print(v_course_code, v_period_num, v_year)
+
+    cur.execute("select * from EOM_CLASS")
+    for row in cur:
+        if v_course_code == (row[0]):
+            sg.Popup("INVALID")
     break
+
 window.Close()
 
 # sql = "INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES (%s, %d, %d)"
@@ -58,4 +64,5 @@ cur.execute("""
             v_year=values[2],
             v_period_num=values[1]
             )
+
 con.commit()
