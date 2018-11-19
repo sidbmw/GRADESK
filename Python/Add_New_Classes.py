@@ -55,7 +55,7 @@ cur.execute("""
      values (:v_course_code, :v_year, :v_period_num)""",
 
             v_course_code=values[0],
-            v_year=values[1],
-            v_period_num=values[2]
+            v_year=values[2],
+            v_period_num=values[1]
             )
 con.commit()
