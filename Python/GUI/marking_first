@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-
+import mark_gui
 
 nameOfMark = ' '
 numberOfMark = 1
@@ -30,7 +30,7 @@ while True:
 
 window.Close()
 
-def initialize():
-    global num, name
-    num = numberOfMark
-    name = nameOfMark
+# def initialize():
+#     global num, name
+#     num = numberOfMark
+#     name = nameOfMark

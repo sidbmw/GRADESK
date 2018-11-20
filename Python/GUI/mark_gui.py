@@ -1,22 +1,21 @@
 import PySimpleGUI as sg
-#import marking_first
+from marking_first import nameOfMark, numberOfMark
 
+marking_first.initialize()
 student_name = 'Mike Dong'
 mark = [[],
         []]
-
-numberOf = 2
 
 column = []
 
 #column.remove([sg.RealtimeButton('Add')])
 
-for x in range(numberOf):
-    column.append([sg.Text('Expectation  ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1), key = 'expectation_key'  )],)
-    column.append([sg.Text('Mark            ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1), key = 'mark_key')],)
+for x in range(numberOfMark):
+    column.append([sg.Text('Expectation  ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1))],)
+    column.append([sg.Text('Mark            ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1))],)
     column.append([sg.Text('_'  * 100, size=(23, 1))],)
 
-layout = [[sg.Text('Mark entry - ' + student_name, size=(21, 1), font=("Helvetica", 15), justification = 'center')],
+layout = [[sg.Text('Mark entry - ' + student_name + ", " + nameOfMark, size=(21, 1), font=("Helvetica", 15), justification = 'center')],
 [sg.Column(column,scrollable=True, size=(225,100))],
 [sg.Button('Previous Student', key = 'key_prev_stud'), sg.Button('Save', key = 'key_save'), sg.Button('Next Student', key = 'key_next_stud')]]
 
@@ -27,7 +26,6 @@ while (True):
     event, values = window.Read()
     if 'key_add' == True:
          #values[0], is the Test radio, values[1] is the Assignment, and so on one at a time
-
         del column[len(column)-1]
         column.append([sg.Text('Expectation  ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1))],)
         column.append([sg.Text('Mark            ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1))],)
