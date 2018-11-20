@@ -1,36 +1,35 @@
-import sys
 
-if sys.version_info[0] >= 3:
-    import PySimpleGUI as sg
-else:
-    import PySimpleGUI27 as sg
+import PySimpleGUI as sg
+import cx_Oracle
 
+sql = """
 
-column = [
-            [sg.Button('Button 1'), sg.Text('This is panel 2')],
-            [sg.Button('Button 2')],
-            [sg.Button('Button 3')],
-            [sg.Button('Button 4')],
-            [sg.Button('Button 5')],
-            [sg.Button('Button 6')],
-            [sg.Button('Button 7')],
-            [sg.Button('Button 8')],
-            [sg.Button('Button 9')],
-            [sg.Button('Button 10')],
-         ]
+"""
 
-layout = [[sg.Text('This is panel 1')],
-          [sg.Column(column,scrollable=True, size=(300,200) )],]
+layout = [[sg.Text('GRADESK', size=(30, 1), justification='center', font=("Helvetica", 25))],
+          [sg.Text('        Username', size=(30, 1), pad=((154, 150), 3), justification='center')],
+          [sg.Input(pad=((150, 150), 3))],
+          [sg.Text('        Password', size=(30, 1), pad=((154, 150), 3), justification='center')],
+          [sg.Input(pad=((150, 150), 3), password_char='*')],
+          [sg.Button('Read', key='Read_Key'), sg.Exit()]]
 
-window = sg.Window('Window Title').Layout(layout)
+window = sg.Window('Enter Login Credentials', default_element_size=(40, 1)).Layout(layout)
 
-while True:             # Event Loop
+while 'Read_Key':
     event, values = window.Read()
-    print(event, values)
     if event is None or event == 'Exit':
         break
-    if event == 'Show':
-        # change the "output" element to be the value of "input" element
-        window.FindElement('_OUTPUT_').Update(values['_IN_'])
-
+    if (values[0] == 'EOM') & (values[1] == 'EOM'):
+        print('Login SUCCESSFUL')
+        con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+        print("Connected to Database")
+        print(con.version)
+        con.close()
+        sg.Popup("Login Successful, Connected to Database")
+        break
+    if values[0] != 'EOM':
+        print('Login FAILED!!')
+        sg.Popup("Login Failed")
+        print(values[0], values[1])
+        # print(event, values)
 window.Close()
