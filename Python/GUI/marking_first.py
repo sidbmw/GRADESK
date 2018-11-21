@@ -25,6 +25,7 @@ while True:
             nameOfMark = values[4]
             numberOfMark = values[5]
             sg.Popup(numberOfMark)
+            break
         else:
             sg.Popup('invalid input')
 
