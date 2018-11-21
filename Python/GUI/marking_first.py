@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-import mark_gui
+
 
 nameOfMark = ' '
 numberOfMark = 1
@@ -21,16 +21,11 @@ while True:
         break
     if event == 'next_key': #the next key is not working for somereason
         if values[4] and values[5] != None:
+
             nameOfMark = values[4]
             numberOfMark = values[5]
             sg.Popup(numberOfMark)
         else:
-            sg.Popup('REEEEE invalid ')
-
+            sg.Popup('invalid input')
 
 window.Close()
-
-# def initialize():
-#     global num, name
-#     num = numberOfMark
-#     name = nameOfMark
