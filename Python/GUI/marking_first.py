@@ -4,6 +4,8 @@ import PySimpleGUI as sg
 nameOfMark = ' '
 numberOfMark = 1
 
+sg.ChangeLookAndFeel('DarkBlue')
+
 layout = [[sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='black', justification = 'center')],
         [sg.Radio('Test             ', 'RADIO1', default=True, text_color = 'red'), sg.Radio('Assignment   ', 'RADIO1', text_color = 'blue')],
         [sg.Radio('Presentation ', 'RADIO1', text_color = 'green'), sg.Radio('Quiz           ', 'RADIO1', text_color = 'Yellow')],

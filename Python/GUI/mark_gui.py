@@ -2,6 +2,8 @@ import PySimpleGUI as sg
 import marking_first
 import cx_Oracle
 
+#con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+#cur = con.cursor(scrollable=True)
 student_name = 'Mike Dong'
 mark = [[],
         []]
@@ -9,6 +11,7 @@ mark = [[],
 column = []
 
 #column.remove([sg.RealtimeButton('Add')])
+sg.ChangeLookAndFeel('DarkBlue')
 
 for x in range(int(marking_first.numberOfMark)):
     column.append([sg.Text('Expectation  ', text_color = 'black', justification = 'left'), sg.InputText(' ', size= (10, 1))],)
