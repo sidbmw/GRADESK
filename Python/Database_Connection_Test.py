@@ -10,7 +10,7 @@ import collections
 con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
-cur.execute("select * from EOM_CLASS WHERE CLASS = 'ICS4U-01' ")
+cur.execute("select * from EOM_CLASS")
 
 for row in cur:
     # print(row)

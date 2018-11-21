@@ -37,13 +37,13 @@ while 'add_new_courses_button':
     for row in cur:
         if v_course_code == (row[0]):
             sg.Popup("INVALID")
+            break
     break
 
 window.Close()
 
 # sql = "INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES (%s, %d, %d)"
 # val = ('v_course_Code', 'v_year', 'v_period_Number')
-#
 # cur.execute(sql, val)
 #
 # # cur.prepare('INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES (:CLASS ,:YEAR , :PERIOD_NUM)')
