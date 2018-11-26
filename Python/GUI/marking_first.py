@@ -1,13 +1,13 @@
 import PySimpleGUI as sg
 
-
 nameOfMark = ' '
 numberOfMark = 1
+color = ' '
 
 sg.ChangeLookAndFeel('DarkBlue')
 
 layout = [[sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='black', justification = 'center')],
-        [sg.Radio('Test             ', 'RADIO1', default=True, text_color = 'red'), sg.Radio('Assignment   ', 'RADIO1', text_color = 'blue')],
+        [sg.Radio('Test             ', 'RADIO1', default=True, text_color = 'blue'), sg.Radio('Assignment   ', 'RADIO1', text_color = 'red')],
         [sg.Radio('Presentation ', 'RADIO1', text_color = 'green'), sg.Radio('Quiz           ', 'RADIO1', text_color = 'Yellow')],
         [sg.Text('Name of Assigment      '), sg.InputText('', size = (10,1))],
         [sg.Text('Number of expectations'), sg.InputText('', size = (10,1))],
@@ -21,12 +21,23 @@ while True:
         break
     if event == 'Quit':
         break
-    if event == 'next_key': #the next key is not working for somereason
+    if event == 'next_key':  # the next key is not working for some reason
         if values[4] and values[5] != None:
+            if values[0] == True:
+                color = 'blue'
+
+            if values[1] == True:
+                color = 'red'
+
+            if values[2] == True:
+                color = 'green'
+
+            if values[3] == True:
+                color = 'yellow'
 
             nameOfMark = values[4]
             numberOfMark = values[5]
-            sg.Popup(numberOfMark)
+
             break
         else:
             sg.Popup('invalid input')
