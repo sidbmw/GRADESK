@@ -1,4 +1,8 @@
 import PySimpleGUI as sg
+import cx_Oracle
+
+con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+cur = con.cursor(scrollable=True)
 
 nameOfMark = ' '
 numberOfMark = 1
@@ -22,22 +26,25 @@ while True:
     if event == 'Quit':
         break
     if event == 'next_key':  # the next key is not working for some reason
+        cur.execute("select * from EOM_MARKS")
+
+        for row in cur:
+            if values[4] == (row[2]):  # row[0] is row 1 first term, row 2 first term, row 3 first term...
+                sg.Popup("there's already an assignment like this")
+                break
+
         if values[4] and values[5] != None:
             if values[0] == True:
                 color = 'blue'
-
             if values[1] == True:
                 color = 'red'
-
             if values[2] == True:
                 color = 'green'
-
             if values[3] == True:
                 color = 'yellow'
 
             nameOfMark = values[4]
             numberOfMark = values[5]
-
             break
         else:
             sg.Popup('invalid input')

@@ -31,7 +31,7 @@ while 'add_new_courses_button':
 
     cur.execute("select * from EOM_CLASS")
     for row in cur:
-        if v_course_code == (row[0]):
+        if v_course_code == (row[0]): # row[0] is row 1 first term, row 2 first term, row 3 first term...
             sg.Popup("INVALID")
             break
     break
