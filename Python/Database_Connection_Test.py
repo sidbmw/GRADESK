@@ -1,22 +1,56 @@
-# https://stackoverflow.com/questions/43565189/get-column-value-by-name-rather-than-position-in-cx-oracle
+# Author: Siddharth Natamai
+# Date: November 22, 2018
 
-from __future__ import print_function
-
+# !/usr/bin/env python
 import cx_Oracle
-import collections
 
-# import dbconfig
+import PySimpleGUI as sg
 
 con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
-cur.execute("select * from EOM_CLASS")
+sg.ChangeLookAndFeel('DarkBlue')
 
-for row in cur:
-    # print(row)
-    # print(row[0])
-    # print(row[1])
-    v_class = row[0]
-    print(v_class)
+layout = [[sg.Text('Add New Classes', size=(30, 2), justification='center', font=("Helvetica", 25))],
+          [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
+          [sg.Input((), size=(20, 2), pad=((215, 150), 10))],
+          [sg.Text('   Period Number', size=(50, 1), justification='center', font=("Helvetica", 15))],
+          [sg.Input((), size=(20, 2), pad=((215, 150), 10))],
+          [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
+          [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10))],
+          [sg.ReadButton('Add Course', key='add_new_courses_button', size=(20, 2), pad=((205, 150), 10),
+                         bind_return_key=True)]
+          ]
 
-    print("record fetch completed")
+window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
+
+while 'add_new_courses_button':
+    event, values = window.Read()
+    if event is None or event == 'Exit':
+        break
+    v_course_code = values[0]
+    v_period_num = values[1]
+    v_year = values[2]
+    print(v_course_code, v_period_num, v_year)
+
+    cur.execute("select * from EOM_CLASS")
+    for row in cur:
+        if v_course_code == (row[0]):
+            sg.Popup("INVALID")
+            break
+    break
+
+window.Close()
+
+cur.execute("""
+UPDATE EOM_CLASS
+SET YEAR = 1996, PERIOD_NUM = 15,
+WHERE CLASS= 'TMJ4M-01'
+""",
+
+            v_course_code=values[0],
+            v_year=values[2],
+            v_period_num=values[1]
+            )
+
+con.commit()

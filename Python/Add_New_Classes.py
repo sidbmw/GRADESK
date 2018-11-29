@@ -1,5 +1,5 @@
 # Author: Siddharth Natamai
-# Date: November 10, 2018
+# Date: November 22, 2018
 
 # !/usr/bin/env python
 import cx_Oracle
@@ -42,19 +42,6 @@ while 'add_new_courses_button':
 
 window.Close()
 
-# sql = "INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES (%s, %d, %d)"
-# val = ('v_course_Code', 'v_year', 'v_period_Number')
-# cur.execute(sql, val)
-#
-# # cur.prepare('INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES (:CLASS ,:YEAR , :PERIOD_NUM)')
-# # cur.execute({'CLASS': v_course_Code}, {'YEAR': v_year}, {'PERIOD_NUM': v_period_Number})
-#
-#
-# # q = "INSERT INTO EOM_CLASS (CLASS, YEAR, PERIOD_NUM) VALUES(:CLASS, :YEAR, :PERIOD_NUM)"
-# #
-# # cur.execute(q, CLASS=v_course_Code, YEAR=v_year, PERIOD_NUM=v_period_Number)
-
-# for i in range(1):
 cur.execute("""
 
      insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
