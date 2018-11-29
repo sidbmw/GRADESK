@@ -14,7 +14,7 @@ def getName(x):
 
 
 studentID = 1
-No_variable = 'N'
+No_variable = 'No'
 color = marking_first.color
 nameOfMark = marking_first.nameOfMark
 student_name = getName(studentID)
@@ -57,14 +57,15 @@ while (True):
                 sg.Popup('incomplete input')
 
         for x in range(int(marking_first.numberOfMark)):
-            task = mark[0][x]
-            mark = mark[1][x]
+            task_variable= mark[0][x]
+            mark_variable = mark[1][x]
             null_variable = 'this is retarded'
 
             cur.execute("""
 
                 insert into EOM_MARKS (STUDENT_ID, COLOUR, TASK, EXPECTATION, MARK, COMMENTS, ANOMALY, DELETED_FLAG)
-                values (:studentID, :color, :nameOfMark, :task, :mark, :null_variable, :No_variable, :No_variable)""",
+                values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, :No_variable, 
+                :No_variable)""",
 
                         )
 
