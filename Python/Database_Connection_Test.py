@@ -1,5 +1,4 @@
-# Author: Siddharth Natamai
-# Date: November 22, 2018
+
 
 # !/usr/bin/env python
 import cx_Oracle

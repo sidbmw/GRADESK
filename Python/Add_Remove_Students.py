@@ -1,5 +1,3 @@
-# Author: Siddharth Natamai
-# Date: November 12, 2018
 
 # !/usr/bin/env python
 

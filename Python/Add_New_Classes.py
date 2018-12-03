@@ -1,25 +1,16 @@
-# Author: Siddharth Natamai
-# Date: November 22, 2018
-
 # !/usr/bin/env python
 import cx_Oracle
 
-import PySimpleGUI as sg
+import PySimpleGUIQt as sg
 
 con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
 sg.ChangeLookAndFeel('DarkBlue')
 
-layout = [[sg.Text('Add New Classes', size=(30, 2), justification='center', font=("Helvetica", 25))],
-          [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
-          [sg.Input((), size=(20, 2), pad=((215, 150), 10))],
-          [sg.Text('   Period Number', size=(50, 1), justification='center', font=("Helvetica", 15))],
-          [sg.Input((), size=(20, 2), pad=((215, 150), 10))],
-          [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
-          [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10))],
-          [sg.ReadButton('Add Course', key='add_new_courses_button', size=(20, 2), pad=((205, 150), 10),
-                         bind_return_key=True)]
+layout = [[sg.Stretch(), sg.Text('Add New Classes', font=("Helvetica", 25)), sg.Stretch()],
+          [sg.Stretch(), sg.Text('Course Code', font=("Helvetica", 15)), sg.Stretch()],
+          [sg.Stretch(), sg.Input((), size=(20, 2), ), sg.Stretch()],
           ]
 
 window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
