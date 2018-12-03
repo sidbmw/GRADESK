@@ -1,0 +1,1 @@
+# MaMaAE is a extension and improvement over the standardized Mark Manager (MaMa) program used by the Ottawa Carleton District School Board’s teachers. It looks to address the common complaint of the teachers and meld the shortcomings of MaMa, but still maintaining other functionalities of MaMa that are deemed useful by the teachers.
