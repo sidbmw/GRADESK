@@ -37,6 +37,8 @@ window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_si
 
 while True:
     event, values = window.Read()
+    if event == 'key_add_class':
+        import practice
 
     if event is None:
         break
