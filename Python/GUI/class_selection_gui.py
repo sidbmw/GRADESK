@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import template
 import cx_Oracle
 
 con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
@@ -38,7 +39,7 @@ window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_si
 while True:
     event, values = window.Read()
     if event == 'key_add_class':
-        import practice
+        import template
 
     if event is None:
         break
