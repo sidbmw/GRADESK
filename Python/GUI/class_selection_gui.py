@@ -1,12 +1,18 @@
 import PySimpleGUI as sg
+import cx_Oracle
 
-classes = ['ICS3U.01', 'ICS4U.01', 'MPM2C.01', 'class 4', 'class 5', 'class 6', 'class 7', 'class last']
-period = ['1', '2', '3', '4', '1', '2', '3', '4']
-year = ['2017', '2017', '2017', '2017', '2018', '2018', '2018', '2018']
+con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+cur = con.cursor(scrollable=True)
+classes = []
+period = []
+year = []
 column = []
 
-# if len(classes) != len(period):
-# sys.exit()
+cur.execute("select * from EOM_CLASS")
+for row in cur:
+    classes.append(row[0])
+    year.append(str(row[1]))
+    period.append(str(row[2]))
 
 for x in range(len(
         classes) - 1):  # x is a string and not a integer that represent the xth item in the array, x is literally 'ICS3U' then 'ICS4U' then...
