@@ -13,7 +13,8 @@ layout = [[sg.Stretch(), sg.Text('Add New Classes', font=("Helvetica", 25)), sg.
           [sg.Stretch(), sg.Text('Period Number', font=("Helvetica", 15)), sg.Stretch()],
           [sg.Stretch(), sg.Input(size=(20, 2)), sg.Stretch()],
           [sg.Stretch(), sg.Text('Year', font=("Helvetica", 15)), sg.Stretch(), ],
-          [sg.Stretch(), sg.DropDown(('2016', '2017', '2018', '2019'), size=(12, 2), font=("Helvetica", 15)), sg.Stretch(), ],
+          [sg.Stretch(), sg.DropDown(('2016', '2017', '2018', '2019'), size=(12, 2), font=("Helvetica", 15)),
+           sg.Stretch(), ],
           [sg.Stretch(), sg.ReadButton('Add Course', key='add_new_courses_button', size=(20, 2),
                                        bind_return_key=True), sg.Stretch(), ]
           ]
