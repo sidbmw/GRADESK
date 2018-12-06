@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
-import Add_New_Classes
 import cx_Oracle
+import Add_New_Classes
 
 con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
