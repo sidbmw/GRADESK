@@ -4,7 +4,7 @@ import cx_Oracle
 import PySimpleGUI as sg
 
 
-def do_it(x,y,z):
+def do_it(x,y):
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
