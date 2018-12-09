@@ -31,8 +31,8 @@ while 'add_new_courses_button':
     v_year = values[2]
     print(v_course_code, v_period_num, v_year)
 
-    cur.execute("select * from EOM_CLASS")
     for row in cur:
+        cur.execute("select * from EOM_CLASS")
         if v_course_code == (row[0]):
             sg.Popup("INVALID")
             break
