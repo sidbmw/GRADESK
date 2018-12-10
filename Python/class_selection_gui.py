@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import cx_Oracle
-from Add_New_Classes import do_it
+from Add_New_Classes import do_it as add
+from Edit_Classes import do_it as edit
 
 con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
@@ -20,6 +21,7 @@ for x in range(len(
     column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
                    sg.Button('access', button_color=('black', 'orange')), sg.Radio('select', "RADIO1")], )
     column.append([sg.Text('Period: ' + period[x]), sg.Text('Year: ' + year[x])], )
+    column.append([sg.Text(' ')])
 
 column.append([sg.Text(classes[len(classes) - 1] + "     ", size=(20, 1), justification='right'),
                sg.Button('access', button_color=('black', 'orange')), sg.Radio('select', "RADIO1", default=True)], )
@@ -39,8 +41,19 @@ window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_si
 while True:
     event, values = window.Read()
     if event == 'key_add_class':
-        do_it()
+        add()
+
+    if event == 'key_edit_class':                         # THE PROBLEM
+        sg.Popup("edit")
+        for x in range(len(classes)-1):  # 0 to len-1
+            print(values[(2*x)+1])
+
+
+            #if values[(2*x)+1]:
+            #    sg.Popup('edit' + str(x+1))
+            #    edit(classes[x+1], period[x+1], year[x+1])
 
     if event is None:
         break
+
 window.Close()
