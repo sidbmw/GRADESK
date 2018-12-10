@@ -20,7 +20,7 @@ def do_it(x,y,z):
                              bind_return_key=True)]
               ]
 
-    window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
+    window = sg.Window('Edit Courses', default_element_size=(40, 2)).Layout(layout)
 
     while 'edit_courses_button':
         event, values = window.Read()
