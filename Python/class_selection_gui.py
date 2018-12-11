@@ -12,9 +12,11 @@ column = []
 
 cur.execute("select * from EOM_CLASS")
 for row in cur:
-    classes.append(row[0])
-    year.append(str(row[1]))
-    period.append(str(row[2]))
+    word = row[0].split('/')
+
+    classes.append(word[0])
+    year.append(str(word[1]))
+    period.append(str(row[1]))
 
 for x in range(len(
         classes) - 1):  # x is a string and not a integer that represent the xth item in the array, x is literally 'ICS3U' then 'ICS4U' then...

@@ -15,13 +15,9 @@ def do_it(x,y,z):
 
     global old_course_code
     global old_period_number
-    global old_year
 
-    old_course_code = x
-    old_period_number = y
-    old_year = int(z)
-
-
+    old_course_code = x + '/' + str(y)
+    old_period_number = int(z)
 
     layout = [[sg.Text('Edit Classes - ' + x, size=(30, 2), justification='center', font=("Helvetica", 25))],
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
@@ -46,9 +42,14 @@ def do_it(x,y,z):
 
         sql_bit = "UPDATE EOM_CLASS SET CLASS = v_course_code WHERE CLASS = old_course_code"
 
-        print(v_course_code, v_period_num, v_year)
+        cur.execute(sql_bit)
+
+        sql_bit = "UPDATE EOM_CLASS SET CLASS = v_course_code WHERE CLASS = old_period_number"
 
         cur.execute(sql_bit)
+
+
+        print(v_course_code, v_period_num, v_year)
         # for row in cur:
         #     if v_course_code == (row[0]):
         #         sg.Popup("INVALID")
