@@ -47,9 +47,9 @@ while True:
         sg.Popup("edit")
         print(values)
         for x in range(len(classes)-1):  # 0 to len-1
-            if values[x+1]:
-                sg.Popup('edit' + str(x+1))
-                edit(classes[x+1], period[x+1], year[x+1])
+            if values[x]:
+                sg.Popup('edit' + str(x))
+                edit(classes[x], period[x], year[x])
 
     if event is None:
         break

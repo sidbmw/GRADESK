@@ -36,18 +36,20 @@ def do_it(x,y,z):
             if v_course_code == (row[0]):
                 sg.Popup("INVALID")
                 break
+
+        cur.execute("""
+
+                 insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
+                 values (:v_course_code, :v_year, :v_period_num)""",
+
+                    v_course_code=values[0],
+                    v_year=values[2],
+                    v_period_num=values[1]
+                    )
+
+        con.commit()
+
         break
 
     window.Close()
 
-    cur.execute("""
-    
-         insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
-         values (:v_course_code, :v_year, :v_period_num)""",
-
-                v_course_code=values[0],
-                v_year=values[2],
-                v_period_num=values[1]
-                )
-
-    con.commit()
