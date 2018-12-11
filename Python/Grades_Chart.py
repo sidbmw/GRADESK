@@ -8,13 +8,15 @@ cur = con.cursor(scrollable=True)
 
 
 # WIP FOR LISTBOX
-# cur.execute("SELECT FIRST_NAME FROM EOM_STUDENTS")
-# names_fetch = cur.fetchall()
-#
-# for row in names_fetch:
-#     print(row)
+cur.execute("SELECT FIRST_NAME FROM EOM_STUDENTS")
+names_fetch = cur.fetchall()
 
-#names = [   ]
+for row in names_fetch:
+    print(row)
+
+names = [
+#
+]
 
 # layout = [[sg.Text('Listbox with search')],
 #           [sg.Input(do_not_clear=True, size=(20, 1), enable_events=True, key='_INPUT_')],
