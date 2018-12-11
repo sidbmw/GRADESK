@@ -3,11 +3,25 @@
 import cx_Oracle
 import PySimpleGUI as sg
 
+old_course_code = ''
+old_period_number = 0
+old_year = 0
+
 
 def do_it(x,y,z):
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
+
+    global old_course_code
+    global old_period_number
+    global old_year
+
+    old_course_code = x
+    old_period_number = y
+    old_year = int(z)
+
+
 
     layout = [[sg.Text('Edit Classes - ' + x, size=(30, 2), justification='center', font=("Helvetica", 25))],
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
@@ -29,23 +43,26 @@ def do_it(x,y,z):
         v_course_code = values[0]
         v_period_num = values[1]
         v_year = values[2]
+
+        sql_bit = "UPDATE EOM_CLASS SET CLASS = v_course_code WHERE CLASS = old_course_code"
+
         print(v_course_code, v_period_num, v_year)
 
-        cur.execute("select * from EOM_CLASS")
-        for row in cur:
-            if v_course_code == (row[0]):
-                sg.Popup("INVALID")
-                break
-
-        cur.execute("""
-
-                 insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
-                 values (:v_course_code, :v_year, :v_period_num)""",
-
-                    v_course_code=values[0],
-                    v_year=values[2],
-                    v_period_num=values[1]
-                    )
+        cur.execute(sql_bit)
+        # for row in cur:
+        #     if v_course_code == (row[0]):
+        #         sg.Popup("INVALID")
+        #         break
+        #
+        # cur.execute("""
+        #
+        #          insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
+        #          values (:v_course_code, :v_year, :v_period_num)""",
+        #
+        #             v_course_code=values[0],
+        #             v_year=values[2],
+        #             v_period_num=values[1]
+        #             )
 
         con.commit()
 
