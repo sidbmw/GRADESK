@@ -35,32 +35,17 @@ def do_it(x, y, z):
         if event is None or event == 'Exit':
             break
         v_class = values[0] + '/' + values[2]
-        v_period_num = values[1]
+        v_period_num = int(values[1])
 
-        print(old_class)
-        print(old_period_number)
+        print(old_class, old_period_number)
+        print(v_class, v_period_num)
+
+        cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
+                    other_stuff=old_class)
 
         cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :stuff", v_class=values[0] + '/' + values[2],
                     stuff=old_class)
 
-        cur.execute("UPDATE EOM_CLASS SET CLASS = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
-                    other_stuff=old_period_number)
-
-        print(v_class, v_period_num)
-        # for row in cur:
-        #     if v_course_code == (row[0]):
-        #         sg.Popup("INVALID")
-        #         break
-        #
-        # cur.execute("""
-        #
-        #          insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
-        #          values (:v_course_code, :v_year, :v_period_num)""",
-        #
-        #             v_course_code=values[0],
-        #             v_year=values[2],
-        #             v_period_num=values[1]
-        #             )
 
         con.commit()
 
