@@ -1,20 +1,23 @@
 # !/usr/bin/env python
 import cx_Oracle
 
-import PySimpleGUIQt as sg
+import PySimpleGUI as sg
 
 con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
 sg.ChangeLookAndFeel('DarkBlue')
 
-layout = [[sg.Stretch(), sg.Text('Add New Classes', font=("Helvetica", 25)), sg.Stretch()],
-          [sg.Stretch(), sg.Text('Course Code', font=("Helvetica", 15)), sg.Stretch()],
-          [sg.Stretch(), sg.Input(size=(20, 2), ), sg.Stretch()],
-          [sg.Stretch(), sg.Text('Period Number', font=("Helvetica", 15)), sg.Stretch()],
-          [sg.Stretch(), sg.Input(size=(20, 2)), sg.Stretch()],
-          [sg.Stretch(), sg.Text('Year', font=("Helvetica", 15)), sg.Stretch(), ],
-          [sg.Stretch(), sg.DropDown(('2016', '2017', '2018', '2019'), size=(12, 2), font=("Helvetica", 15)), sg.Stretch(), ],
+# cur.execute("SELECT  CLASS FROM EOM_CLASS")
+# fetch_course_code = cur.fetchall()
+# fetched_course_codes = [n[0] for n in fetch_course_code]
+# print(fetched_course_codes)
+
+layout = [[sg.Stretch(), sg.Text('Add/Remove Students', font=("Helvetica", 25)), sg.Stretch()],
+          # [sg.Input(do_not_clear=True, size=(20, 1), enable_events=True, key='_INPUT_')],
+          # [sg.Listbox(fetched_course_codes, size=(20, 4), enable_events=True, key='_LIST_')],
+          
+
           [sg.Stretch(), sg.ReadButton('Add Course', key='add_new_courses_button', size=(20, 2),
                                        bind_return_key=True), sg.Stretch(), ]
           ]
@@ -25,28 +28,13 @@ while 'add_new_courses_button':
     event, values = window.Read()
     if event is None or event == 'Exit':
         break
-    v_course_code = values[0]
-    v_period_num = values[1]
-    v_year = values[2]
-    print(v_course_code, v_period_num, v_year)
-
-    cur.execute("select * from EOM_CLASS")
-    for row in cur:
-        if v_course_code == (row[0]):
-            sg.Popup("INVALID")
-            break
-    break
+    # if values['_INPUT_'] != '':
+    #     search = values['_INPUT_']
+    #     new_values = [x for x in fetched_course_codes if search in x]
+    #     window.Element('_LIST_').Update(new_values)
+    # else:
+    #     window.Element('_LIST_').Update(fetched_course_codes)
+    # if event == '_LIST_' and len(values['_LIST_']):
+    #     sg.Popup('Selected ', values['_LIST_'])
 
 window.Close()
-
-cur.execute("""
-
-     insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
-     values (:v_course_code, :v_year, :v_period_num)""",
-
-            v_course_code=values[0],
-            v_year=values[2],
-            v_period_num=values[1]
-            )
-
-con.commit()
