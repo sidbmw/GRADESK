@@ -46,7 +46,6 @@ def do_it(x, y, z):
         cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :stuff", v_class=values[0] + '/' + values[2],
                     stuff=old_class)
 
-
         con.commit()
 
         break

@@ -5,6 +5,7 @@ from Edit_Classes import do_it as edit
 
 con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
+reopen = False
 classes = []
 period = []
 year = []
@@ -45,13 +46,19 @@ while True:
     if event == 'key_add_class':
         add()
 
-    if event == 'key_edit_class':                         # THE PROBLEM
-        sg.Popup("edit")
-        print(values)
-        for x in range(len(classes)-1):  # 0 to len-1
+    if event == 'key_edit_class':
+        for x in range(len(classes)):
             if values[x]:
-                sg.Popup('edit' + str(x))
                 edit(classes[x], period[x], year[x])
+
+    if event == 'key_delete_class':
+        reopen = True
+        for x in range(len(classes)):
+            if values[x]:
+                cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :stuff", stuff=str(classes[x] + '/' + year[x]))
+
+        con.commit()
+        break
 
     if event is None:
         break
