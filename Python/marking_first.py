@@ -4,12 +4,13 @@ import cx_Oracle
 nameOfMark = ' '
 numberOfMark = 1
 color = ' '
-
+quit_option = False
 
 def do_it():
     global nameOfMark
     global numberOfMark
     global color
+    global quit_option
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
@@ -32,10 +33,10 @@ def do_it():
         break_variable = True
 
         if event is None:
-            #quit_option = True
+            quit_option = True
             break
         if event == 'Quit':
-            #quit_option = True
+            quit_option = True
             break
         if event == 'next_key':  # the next key is not working for some reason
             cur.execute("select * from EOM_MARKS")
