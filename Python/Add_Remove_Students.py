@@ -13,10 +13,19 @@ sg.ChangeLookAndFeel('DarkBlue')
 # fetched_course_codes = [n[0] for n in fetch_course_code]
 # print(fetched_course_codes)
 
+number_Of_Students = sg.PopupGetText("Number of Students")
+
+scrollable_column = [[sg.InputText(), sg.Button(button_text=" X ")]]
+
+for x in range(int(number_Of_Students) - 1):
+    scrollable_column = scrollable_column + [[sg.InputText(), sg.Button(button_text=" X ")]]
+    print(number_Of_Students)
+
 layout = [[sg.Stretch(), sg.Text('Add/Remove Students', font=("Helvetica", 25)), sg.Stretch()],
+          [sg.Stretch(), sg.Text('Course code needs to be fetched into here')],
+          [sg.Column(scrollable_column, scrollable=True, size=(350, 200))],
           # [sg.Input(do_not_clear=True, size=(20, 1), enable_events=True, key='_INPUT_')],
           # [sg.Listbox(fetched_course_codes, size=(20, 4), enable_events=True, key='_LIST_')],
-          
 
           [sg.Stretch(), sg.ReadButton('Add Course', key='add_new_courses_button', size=(20, 2),
                                        bind_return_key=True), sg.Stretch(), ]
@@ -36,5 +45,12 @@ while 'add_new_courses_button':
     #     window.Element('_LIST_').Update(fetched_course_codes)
     # if event == '_LIST_' and len(values['_LIST_']):
     #     sg.Popup('Selected ', values['_LIST_'])
+    if event == 'key_add_students':
+        reopen = True
+        for x in range(len(classes)):
+            if values[x]:
+                cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :stuff", stuff=str(classes[x] + '/' + year[x]))
 
+        con.commit()
+        break
 window.Close()

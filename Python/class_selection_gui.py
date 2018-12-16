@@ -35,8 +35,7 @@ layout = [
     [sg.Column(column, scrollable=True, size=(350, 200))],
     [sg.Button('Add Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_add_class'),
      sg.Button('Edit Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_edit_class'),
-     sg.Button('Delete Class', button_color=('white', 'black'), font
-     =("Helvetica", 15), key='key_delete_class')]]
+     sg.Button('Delete Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_delete_class')]]
 
 # event, values  = sg.Window('Class selection', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
 window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
