@@ -6,15 +6,9 @@ import sys
 con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
-# WIP FOR LISTBOX
+
 cur.execute("SELECT FIRST_NAME FROM EOM_STUDENTS")
 names_fetch = cur.fetchall()
-
-# arr_name = []
-# for row in names_fetch:
-#     arr_name.append(row)
-#
-# print(arr_name)
 
 new_names = [n[0] for n in names_fetch]
 print(new_names)

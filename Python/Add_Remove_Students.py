@@ -47,7 +47,8 @@ while 'key_add_students':
         #     sg.Popup('Selected ', values['_LIST_'])
 
     for x in range(int(student_names)):
-        cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :stuff", stuff=str(student_names[x]))
+        cur.execute(
+            "INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.nextval, 'ICS4U-01/2018', 'Mike', 'Dong')")
 
     con.commit()
     break
