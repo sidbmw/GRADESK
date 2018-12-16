@@ -14,12 +14,13 @@ sg.ChangeLookAndFeel('DarkBlue')
 # print(fetched_course_codes)
 
 number_Of_Students = sg.PopupGetText("Number of Students")
-
 scrollable_column = [[sg.InputText(), sg.Button(button_text=" X ")]]
 
 for x in range(int(number_Of_Students) - 1):
     scrollable_column = scrollable_column + [[sg.InputText(), sg.Button(button_text=" X ")]]
     print(x)
+
+
 layout = [[sg.Stretch(), sg.Text('Add/Remove Students', font=("Helvetica", 25)), sg.Stretch()],
           [sg.Stretch(), sg.Text('Course code needs to be fetched into here')],
           [sg.Column(scrollable_column, scrollable=True, size=(350, 200))],
