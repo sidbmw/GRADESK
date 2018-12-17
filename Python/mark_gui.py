@@ -3,7 +3,6 @@ import marking_first
 import cx_Oracle
 import sys
 
-def
 marking_first.do_it()
 def getName(x):
     cur.execute("select * from EOM_STUDENTS")

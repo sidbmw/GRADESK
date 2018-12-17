@@ -1,44 +1,32 @@
 # !/usr/bin/env python
 import cx_Oracle
 import PySimpleGUI as sg
-import pandas as pd
 import sys
 
-con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+cur = con.cursor(scrollable=True)
+name_ID = [[], []]
+
+marks = [[], []]
 
 
-def table_example():
-    sg.SetOptions(auto_size_buttons=True)
-    filename = sg.PopupGetFile('filename to open', no_window=True, file_types=(("CSV Files", "*.csv"),))
-    # --- populate table with file contents --- #
-    if filename == '':
-        sys.exit(69)
-    data = []
-    header_list = []
-    button = sg.PopupYesNo('Does this file have column names already?')
-    if filename is not None:
-        try:
-            df = pd.read_csv(filename, sep=',', engine='python',
-                             header=None)  # Header=None means you directly pass the columns names to the dataframe
-            data = df.values.tolist()  # read everything else into a list of rows
-            if button == 'Yes':  # Press if you named your columns in the csv
-                header_list = df.iloc[0].tolist()  # Uses the first row (which should be column names) as columns names
-                data = df[
-                       1:].values.tolist()  # Drops the first row in the table (otherwise the header names and the first row will be the same)
-            elif button == 'No':  # Press if you didn't name the columns in the csv
-                header_list = ['column' + str(x) for x in
-                               range(len(data[0]))]  # Creates columns names for each column ('column0', 'column1', etc)
-        except:
-            sg.PopupError('Error reading file')
-            sys.exit(69)
+# def do_it(class): #parameter need to be class code + year
 
-    layout = [[sg.Table(values=data, headings=header_list, display_row_numbers=True,
-                        auto_size_columns=False, num_rows=min(25, len(data)))]]
+# get the students with class, then the student ID with names, then marks with student ID
+# alphabetical fetch from database
+def get_class_students(class_code):
+    cur.execute("select * from EOM_STUDENTS")
+    for row in cur:
+        if str(class_code) == str(row[1]):
+            name_ID[0].append(row[2] + " " + row[3])
+            print(row[2] + " " + row[3])
+            name_ID[1].append(row[0])
+            print(row[0])
+        else:
+            print("lol nope")
 
-    window = sg.Window('Table', grab_anywhere=False)
-    event, values = window.Layout(layout).Read()
-
-    sys.exit(69)
+    print("done")
 
 
-table_example()
+get_class_students("ICS4U-01/2018")
+print(name_ID)

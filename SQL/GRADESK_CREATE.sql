@@ -17,7 +17,7 @@ CREATE UNIQUE INDEX eom_class_U1 ON eom_class (class, year, period_num);
 CREATE TABLE eom_students
 (
   student_id NUMBER       NOT NULL,
-  class      VARCHAR2(10) NOT NULL,
+  class      VARCHAR2(13) NOT NULL,
   first_name VARCHAR2(50) NOT NULL,
   last_name  VARCHAR2(50) NOT NULL
 );
@@ -85,7 +85,7 @@ CREATE SEQUENCE eom_students_s
 
 --Insert Student Mike
 INSERT INTO eom_students (student_id, class, first_name, last_name)
-VALUES (eom_students_s.nextval, 'ICS4U-01', 'Mike', 'Dong');
+VALUES (eom_students_s.nextval, 'ICS4U-01/2018', 'Mike', 'Dong');
 
 --Insert Marks for Mike
 --Test 1
@@ -111,7 +111,7 @@ VALUES (eom_students_s.currval, 'blue', 'T2', 'C1', '3+/4-', '', 'N', 'N');
 
 --Insert Student Siddharth
 INSERT INTO eom_students (student_id, class, first_name, last_name)
-VALUES (eom_students_s.nextval, 'ICS4U-01', 'Siddharth', 'Natamai');
+VALUES (eom_students_s.nextval, 'ICS4U-01/2018', 'Siddharth', 'Natamai');
 
 --Insert Marks for Siddharth
 --Test1
@@ -140,7 +140,7 @@ VALUES (eom_students_s.currval, 'blue', 'T2', 'C1', 'R', '', 'N', 'N');
 
 --Insert Student Wade
 INSERT INTO eom_students (student_id, class, first_name, last_name)
-VALUES (eom_students_s.nextval, 'ICS4U-02', 'Wade', 'Huang');
+VALUES (eom_students_s.nextval, 'ICS4U-02/2018', 'Wade', 'Huang');
 
 
 --Insert Marks Wade
