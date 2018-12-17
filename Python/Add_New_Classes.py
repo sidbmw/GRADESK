@@ -40,7 +40,7 @@ def do_it():
     window.Close()
 
     cur.execute("""
-    
+
          insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
          values (:v_course_code, :v_year, :v_period_num)""",
 
