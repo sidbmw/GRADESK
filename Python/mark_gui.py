@@ -44,18 +44,15 @@ if marking_first.quit_option ==False:
         student_name = getName(studentID)
         layout = [[sg.Text('Mark entry - ' + student_name, size=(25, 1),
                            font=("Helvetica", 15), justification='center')],
-                  [sg.Column(column, scrollable=True, size=(225, 300))],
+                  [sg.Column(column, scrollable=True, size=(225, 300), vertical_scroll_only=True)],
                   [sg.Button('Save', key='key_save'),
                    sg.Button('Next Student', key='key_next_stud')]]
 
         window = sg.Window('Mark ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
 
         while open_variable:
-            # This is the code that reads and updates your window
             event, values = window.Read()
-            saved = False  #########################################################################################
-            # if marking_first.quit_option == True:
-            #   break
+            saved = False
             if event == 'key_save':
                 for x in range(int(marking_first.numberOfMark)):
                     tracker = int(x * 2)
@@ -68,15 +65,15 @@ if marking_first.quit_option ==False:
                     else:
                         sg.Popup('incomplete input')
 
-                for x in range(int(marking_first.numberOfMark)):
+                for y in range(int(marking_first.numberOfMark)):
 
                     cur.execute("""
                         insert into EOM_MARKS (STUDENT_ID, COLOUR, TASK, EXPECTATION, MARK, COMMENTS, ANOMALY, DELETED_FLAG)
-                        values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, :No_variable, 
-                        :No_variable_second)""",
+                        values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, 
+                        :No_variable, :No_variable_second)""",
 
-                                task_variable=mark[0][x],
-                                mark_variable=mark[1][x],
+                                task_variable=mark[0][y],
+                                mark_variable=mark[1][y],
                                 null_variable='',
                                 studentID=studentID,
                                 No_variable='N',
@@ -86,7 +83,7 @@ if marking_first.quit_option ==False:
                                 )
 
                     con.commit()
-                saved = True
+                    saved = True
             if event == 'key_next_stud':
                 mark = [[], []]
 
