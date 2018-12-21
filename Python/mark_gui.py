@@ -4,6 +4,8 @@ import cx_Oracle
 import sys
 
 marking_first.do_it()
+
+
 def getName(x):
     cur.execute("select * from EOM_STUDENTS")
     for row in cur:
@@ -31,20 +33,24 @@ sg.ChangeLookAndFeel('DarkBlue')
 
 
 if marking_first.quit_option ==False:
-    for x in range(int(marking_first.numberOfMark)):
-        column.append(
-            [sg.Text('Expectation  ', text_color='white', justification='left'),
-             sg.InputText(mark[0][x], size=(10, 1))],)
-        column.append(
-            [sg.Text('Mark            ', text_color='white', justification='left'), sg.InputText('', size=(10, 1))], )
-        column.append([sg.Text('_' * 100, size=(23, 1))], )
-
-    mark = [[], []]
 
     for x in range(int(sql_rows)):
         open_variable = True
         studentID = x+1
         student_name = getName(studentID)
+
+        sg.Popup(mark[0])
+        for x in range(int(marking_first.numberOfMark)):
+            column.append(
+                [sg.Text('Expectation  ', text_color='white', justification='left'),
+                 sg.InputText(mark[0][x], size=(10, 1))], )
+            column.append(
+                [sg.Text('Mark            ', text_color='white', justification='left'),
+                 sg.InputText('', size=(10, 1))], )
+            column.append([sg.Text('_' * 100, size=(23, 1))], )
+
+        mark = [[], []]
+
         layout = [[sg.Text('Mark entry - ' + student_name, size=(25, 1),
                            font=("Helvetica", 15), justification='center')],
                   [sg.Column(column, scrollable=True, size=(225, 300), vertical_scroll_only=True)],
@@ -55,39 +61,44 @@ if marking_first.quit_option ==False:
         while open_variable:
             event, values = window.Read()
             saved = False
+            do = False
             if event == 'key_next_stud':
                 for x in range(int(marking_first.numberOfMark)):
                     tracker = int(x * 2)
-                    if values[tracker + 0] != None:
-                        if values[tracker + 1] != None:
+                    if values[tracker + 0] != '':
+                        if values[tracker + 1] != '':
                             mark[0].append(values[tracker + 0])
                             mark[1].append(values[tracker + 1])
+                            do = True
                         else:
                             sg.Popup('incomplete input')
                     else:
                         sg.Popup('incomplete input')
 
-                for y in range(int(marking_first.numberOfMark)):
-                    cur.execute("""
-                        insert into EOM_MARKS (STUDENT_ID, COLOUR, TASK, EXPECTATION, MARK, COMMENTS, ANOMALY, DELETED_FLAG)
-                        values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, 
-                        :No_variable, :No_variable_second)""",
+                    if do:
+                        for y in range(int(marking_first.numberOfMark)):
+                            cur.execute("""
+                                insert into EOM_MARKS (STUDENT_ID, COLOUR, TASK, EXPECTATION, MARK, COMMENTS, ANOMALY, DELETED_FLAG)
+                                values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, 
+                                :No_variable, :No_variable_second)""",
 
-                                task_variable=mark[0][y],
-                                mark_variable=mark[1][y],
-                                null_variable='',
-                                studentID=studentID,
-                                No_variable='N',
-                                No_variable_second='N',
-                                color=marking_first.color,
-                                nameOfMark=marking_first.nameOfMark
-                                )
+                                        task_variable=mark[0][y],
+                                        mark_variable=mark[1][y],
+                                        null_variable='',
+                                        studentID=studentID,
+                                        No_variable='N',
+                                        No_variable_second='N',
+                                        color=marking_first.color,
+                                        nameOfMark=marking_first.nameOfMark
+                                        )
 
-                    con.commit()
-                    saved = True
+                            con.commit()
+                            saved = True
 
-                mark = [[], []]
-                break
+                            column = ()
+
+                if saved:
+                    break
 
             if values is None:
                 sys.exit()
