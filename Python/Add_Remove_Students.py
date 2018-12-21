@@ -48,8 +48,9 @@ while 'key_add_students':
 
         # for x in range(int(student_names)):
 
-    cur.execute("CREATE SEQUENCE EOM_STUDENTS_S  MINVALUE 1  START WITH 1  INCREMENT BY 1  CACHE 10")
-    print()
+    cur.execute("SELECT EOM_STUDENTS_S.nextval from DUAL")
+    cur.execute("SELECT EOM_STUDENTS_S.currval from DUAL")
+
 
     # cur.execute(
     #     "INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.currval, 'TESTB-01/2018', 'Mike', 'Dong')")
