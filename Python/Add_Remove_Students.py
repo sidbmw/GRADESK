@@ -49,7 +49,6 @@ while 'key_add_students':
         # for x in range(int(student_names)):
 
     cur.execute("SELECT EOM_STUDENTS_S.nextval from DUAL")
-    cur.execute("SELECT EOM_STUDENTS_S.currval from DUAL")
 
 
     # cur.execute(
