@@ -14,11 +14,11 @@ sg.ChangeLookAndFeel('DarkBlue')
 # print(fetched_course_codes)
 
 number_Of_Students = sg.PopupGetText("Number of Students")
-scrollable_column = [[sg.InputText(), sg.InputText(), sg.Button(button_text=" X ")]]
+scrollable_column = [[sg.Input(), sg.Input(), sg.Button(button_text=" X ")]]
 
 for x in range(int(number_Of_Students) - 1):
-    scrollable_column = scrollable_column + [[sg.InputText(), sg.InputText(), sg.Button(button_text=" X ")]]
-    print(x)
+    scrollable_column = scrollable_column + [[sg.Input(), sg.Input(), sg.Button(button_text=" X ")]]
+    # print(x)
 
 layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Stretch()],
           [sg.Stretch(), sg.Text('Course code needs to be fetched into here')],
@@ -28,7 +28,7 @@ layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Str
           # [sg.Listbox(fetched_course_codes, size=(20, 4), enable_events=True, key='_LIST_')],
 
           [sg.Stretch(), sg.ReadButton('Add Students', key='key_add_students', size=(20, 2),
-                                       bind_return_key=True), sg.Stretch(), ]
+                                       bind_return_key=True), sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch() ]
           ]
 
 window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
@@ -38,14 +38,21 @@ while 'key_add_students':
     if event is None or event == 'Exit':
         break
 
-    for x in (number_Of_Students + 1):
-        cur.execute("SELECT EOM_STUDENTS_S.nextval from DUAL")
-        nextval_fetched = cur.fetchall()
-        print(nextval_fetched)
+    v_pos = 0
+    for x in range(1, (int(number_Of_Students) + 1)):
+        v_pos = x * 2 + 1
+        student_first_name = values[v_pos]
+        student_last_name = values[v_pos + 1]
 
-    # cur.execute(
-    #     "INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.currval, 'TESTB-01/2018', 'Mike', 'Dong')")
+        # Note: Correct class must be fetched, set outside for loop and inserted into SQL query below!
+        cur.execute(
+            """INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.nextval, 'ICS4U-01/2018', :student_first_name, :student_last_name)""",
+            student_first_name=student_first_name,
+            student_last_name=student_last_name
+        )
 
     con.commit()
+    sg.Popup("Student names have been stored in database")
+    break
 
 window.Close()
