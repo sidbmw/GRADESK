@@ -37,24 +37,15 @@ while 'key_add_students':
     event, values = window.Read()
     if event is None or event == 'Exit':
         break
-        # if values['_INPUT_'] != '':
-        #     search = values['_INPUT_']
-        #     new_values = [x for x in fetched_course_codes if search in x]
-        #     window.Element('_LIST_').Update(new_values)
-        # else:
-        #     window.Element('_LIST_').Update(fetched_course_codes)
-        # if event == '_LIST_' and len(values['_LIST_']):
-        #     sg.Popup('Selected ', values['_LIST_'])
 
-        # for x in range(int(student_names)):
-
-    cur.execute("SELECT EOM_STUDENTS_S.nextval from DUAL")
-
+    for x in (number_Of_Students + 1):
+        cur.execute("SELECT EOM_STUDENTS_S.nextval from DUAL")
+        nextval_fetched = cur.fetchall()
+        print(nextval_fetched)
 
     # cur.execute(
     #     "INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.currval, 'TESTB-01/2018', 'Mike', 'Dong')")
 
     con.commit()
-    # break
 
 window.Close()
