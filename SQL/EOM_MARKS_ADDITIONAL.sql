@@ -38,3 +38,33 @@ Insert into EOM.EOM_MARKS (STUDENT_ID,COLOUR,TASK,EXPECTATION,MARK,COMMENTS,ANOM
 Insert into EOM.EOM_MARKS (STUDENT_ID,COLOUR,TASK,EXPECTATION,MARK,COMMENTS,ANOMALY,DELETED_FLAG) values (3,'blue','T2','B1','4++',null,'N','N');
 Insert into EOM.EOM_MARKS (STUDENT_ID,COLOUR,TASK,EXPECTATION,MARK,COMMENTS,ANOMALY,DELETED_FLAG) values (3,'blue','T2','A3','4++',null,'N','N');
 Insert into EOM.EOM_MARKS (STUDENT_ID,COLOUR,TASK,EXPECTATION,MARK,COMMENTS,ANOMALY,DELETED_FLAG) values (3,'blue','T1','B2','4++',null,'N','N');
+
+CREATE TABLE eom_main_screen_layout
+(
+  INC   VARCHAR(2),
+  R     VARCHAR(2),
+  1--   VARCHAR(2),      
+  1-/1  VARCHAR(2),
+  1     VARCHAR(2),
+  1/1+  VARCHAR(2),
+  1+    VARCHAR(2),
+  1+/2- VARCHAR(2),
+  2-    VARCHAR(2),
+  2-/2  VARCHAR(2),
+  2     VARCHAR(2),
+  2/2+  VARCHAR(2),
+  2+    VARCHAR(2),
+  2+/3- VARCHAR(2),
+  3-    VARCHAR(2),
+  3-/3  VARCHAR(2),
+  3     VARCHAR(2),
+  3/3+  VARCHAR(2),
+  3+    VARCHAR(2),
+  3+/4- VARCHAR(2),
+  4-    VARCHAR(2),
+  4-/4  VARCHAR(2),
+  4     VARCHAR(2),
+  4/4+  VARCHAR(2),
+  4+    VARCHAR(2),
+  4++   VARCHAR(2),
+);
