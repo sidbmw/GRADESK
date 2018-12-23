@@ -28,7 +28,7 @@ layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Str
           # [sg.Listbox(fetched_course_codes, size=(20, 4), enable_events=True, key='_LIST_')],
 
           [sg.Stretch(), sg.ReadButton('Add Students', key='key_add_students', size=(20, 2),
-                                       bind_return_key=True), sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch() ]
+                                       bind_return_key=True), sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch()]
           ]
 
 window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)

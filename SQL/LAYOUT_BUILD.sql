@@ -12,6 +12,8 @@ SELECT STUDENT_ID, EXPECTATION, eom_main_screen_layout_s.NEXTVAL, TASK
 FROM EOM_MARKS WHERE STUDENT_ID = 1 AND EXPECTATION = 'B2' AND MARK = '4/4+';
 
 --------------------------------------------------------------------------------
+drop table eom_main_screen_layout;
+
 INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, SEQ_NO, X_INC)
 SELECT STUDENT_ID, EXPECTATION, eom_main_screen_layout_s.NEXTVAL, TASK
 FROM EOM_MARKS WHERE STUDENT_ID = 1 AND EXPECTATION = 'B2' AND MARK = 'INC';
