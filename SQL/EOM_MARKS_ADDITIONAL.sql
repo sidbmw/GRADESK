@@ -44,6 +44,7 @@ drop table eom_main_screen_layout;
 CREATE TABLE eom_main_screen_layout (
     student_id    NUMBER NOT NULL,
     expectation   VARCHAR(2) NOT NULL,
+    seq_no        NUMBER NOT NULL,
     x_inc         VARCHAR(2),
     x_r           VARCHAR(2),
     x_1mm         VARCHAR(2), -- 1--
