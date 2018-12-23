@@ -17,7 +17,7 @@ g = window.FindElement('_GRAPH_')
 for row in range(16):
     for col in range(25):
         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black')
-
+        g.DrawText('{}'.format('4++'), (col * BOX_SIZE + 13, row * BOX_SIZE + 10))
 
 while True:  # Event Loop
     event, values = window.Read()
