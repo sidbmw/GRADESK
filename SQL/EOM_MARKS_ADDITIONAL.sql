@@ -49,7 +49,7 @@ CREATE TABLE eom_main_screen_layout (
     x_r           VARCHAR(2),
     x_1mm         VARCHAR(2), -- 1--
     x_1ms1        VARCHAR(2), --1-/1--
-    x_1           VARCHAR(2), --1--
+    x_1           VARCHAR(2), --1-- 
     x_1s1p        VARCHAR(2), --1/1+--
     x_1p          VARCHAR(2), --1+--
     x_1ps2m       VARCHAR(2), --1+/2--
