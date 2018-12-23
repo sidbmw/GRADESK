@@ -68,7 +68,13 @@ CREATE TABLE eom_main_screen_layout (
     x_4m          VARCHAR(2),
     x_4ms4        VARCHAR(2),
     x_4           VARCHAR(2),
-    x4s4p         VARCHAR(2),
+    x_4s4p        VARCHAR(2),
     x_4p          VARCHAR(2),
     x_4pp         VARCHAR(2)
 );
+
+CREATE SEQUENCE eom_main_screen_layout_s
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 10;
