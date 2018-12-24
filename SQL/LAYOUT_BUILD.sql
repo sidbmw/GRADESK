@@ -1701,6 +1701,8 @@ FROM EOM_MARKS WHERE STUDENT_ID = 1 AND EXPECTATION = 'D4' AND MARK = '4++';
 --------------------------------------------------------------------------------------
 
 
+SELECT COUNT (*) FROM EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = 1;
+
 
 
 
