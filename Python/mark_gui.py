@@ -31,6 +31,17 @@ column = []  # part of the layout
 
 sg.ChangeLookAndFeel('DarkBlue')
 
+sg.Popup(mark[0])
+for x in range(int(marking_first.numberOfMark)):
+    column.append(
+        [sg.Text('Expectation  ', text_color='white', justification='left'),
+         sg.InputText(mark[0][x], size=(10, 1))], )
+    column.append(
+        [sg.Text('Mark            ', text_color='white', justification='left'),
+         sg.InputText('', size=(10, 1))], )
+    column.append([sg.Text('_' * 100, size=(23, 1))], )
+
+mark = [[], []]
 
 if marking_first.quit_option ==False:
 
@@ -38,18 +49,6 @@ if marking_first.quit_option ==False:
         open_variable = True
         studentID = x+1
         student_name = getName(studentID)
-
-        sg.Popup(mark[0])
-        for x in range(int(marking_first.numberOfMark)):
-            column.append(
-                [sg.Text('Expectation  ', text_color='white', justification='left'),
-                 sg.InputText(mark[0][x], size=(10, 1))], )
-            column.append(
-                [sg.Text('Mark            ', text_color='white', justification='left'),
-                 sg.InputText('', size=(10, 1))], )
-            column.append([sg.Text('_' * 100, size=(23, 1))], )
-
-        mark = [[], []]
 
         layout = [[sg.Text('Mark entry - ' + student_name, size=(25, 1),
                            font=("Helvetica", 15), justification='center')],
