@@ -19,7 +19,7 @@ student_id = 1
 cur.execute("SELECT COUNT (*) FROM EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = :student_id", student_id=student_id)
 v_num_of_rows = cur.fetchall()
 v_num_of_rows = [n[0] for n in v_num_of_rows]
-print(v_num_of_rows[0])
+# print(v_num_of_rows[0])
 
 for row in range(v_num_of_rows[0]):
     for col in range(27):
@@ -28,7 +28,7 @@ for row in range(v_num_of_rows[0]):
             arr_marks = ['Expectation', 'INC', 'R', '1--', '1-/1', '1', '1/1+', '1+', '1+/2-', '2-', '2-/2', '2', '2/2+', '2+', '2+/3-', '3-', '3-/3', '3', '3/3+', '3+', '3+/4-', '4-', '4-/4',
                          '4',
                          '4/4+', '4+', '4++']
-            g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black', fill_color= '#00BFFF')
+            g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black', fill_color='#00BFFF')
             g.DrawText('{}'.format(arr_marks[col]), (col * BOX_SIZE + 13, row * BOX_SIZE + 10))
 
         else:
@@ -39,7 +39,7 @@ for row in range(v_num_of_rows[0]):
             raw_data = cur.fetchall()
             cooked_data = [n[col] for n in raw_data]
 
-            print(raw_data)
+            # print(raw_data)
 
             if 1 <= col <= 2:
                 g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black', fill_color='red')
@@ -88,6 +88,6 @@ while True:  # Event Loop
             continue
         box_x = mouse[0] // BOX_SIZE
         box_y = mouse[1] // BOX_SIZE
-        # print(box_x, box_y)
+        print(box_x, box_y)
 
 window.Close()
