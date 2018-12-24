@@ -43,7 +43,7 @@ for x in range(int(marking_first.numberOfMark)):
 
 mark = [[], []]
 
-if marking_first.quit_option ==False:
+if marking_first.quit_option == False:
 
     for x in range(int(sql_rows)):
         open_variable = True

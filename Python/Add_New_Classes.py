@@ -1,10 +1,11 @@
 # !/usr/bin/env python
 import cx_Oracle
 import PySimpleGUI as sg
+from Add_Remove_Students import do_it as add_student
 
 
 def do_it():
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
 
@@ -28,25 +29,30 @@ def do_it():
         v_course_code = values[0]
         v_period_num = values[1]
         v_year = values[2]
-        print(v_course_code, v_period_num, v_year)
 
         cur.execute("select * from EOM_CLASS")
         for row in cur:
-            if v_course_code == (row[0]):
+            if v_course_code + '/' + v_year == (row[0]):
                 sg.Popup("INVALID")
                 break
         break
 
-    window.Close()
+    if v_course_code !='' and v_period_num != '' and v_year != '':
 
-    cur.execute("""
 
-         insert into EOM_CLASS (CLASS, YEAR, PERIOD_NUM)
-         values (:v_course_code, :v_year, :v_period_num)""",
+        cur.execute("""
+  
+             insert into EOM_CLASS (CLASS, PERIOD_NUM)
+             values (:v_course_code, :v_period_num)""",
 
-                v_course_code=values[0],
-                v_year=values[2],
-                v_period_num=values[1]
-                )
+                    v_course_code=v_course_code + '/' + v_year,
+                    v_period_num=v_period_num
+                    )
 
-    con.commit()
+        con.commit()
+
+        add_student(v_course_code)
+
+        window.Close()
+    else:
+        sg.Popup("Please complete input")

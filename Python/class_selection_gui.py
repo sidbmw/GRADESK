@@ -57,7 +57,6 @@ def do_it():
                     cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :stuff", stuff=str(classes[x] + '/' + year[x]))
 
             con.commit()
-            break
 
         if event is None:
             break
