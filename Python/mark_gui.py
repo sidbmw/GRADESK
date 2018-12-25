@@ -21,7 +21,7 @@ def getRows():
     return num_of_rows
 
 
-con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 sql_rows = getRows()
 
@@ -31,12 +31,11 @@ column = []  # part of the layout
 
 sg.ChangeLookAndFeel('DarkBlue')
 
-
-if marking_first.quit_option ==False:
+if marking_first.quit_option == False:
 
     for x in range(int(sql_rows)):
         open_variable = True
-        studentID = x+1
+        studentID = x + 1
         student_name = getName(studentID)
 
         sg.Popup(mark[0])
