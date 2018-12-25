@@ -7,7 +7,7 @@ select * from EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = 1 AND EXPECTATION = 'B2'
 begin
 FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
-  FOR r_x_4s4p in (select rownum, x_4s4p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = 'B2' AND x_4s4p is not null AND STUDENT_ID = 1)
+  FOR r_x_4s4p in (select rownum, x_4s4p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_4s4p is not null AND STUDENT_ID = 1)
   LOOP
     
     UPDATE EOM_MAIN_SCREEN_LAYOUT

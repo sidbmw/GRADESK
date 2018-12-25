@@ -6,14 +6,13 @@ SELECT TASK FROM EOM_MARKS WHERE STUDENT_ID = 1 AND EXPECTATION = 'B2' AND MARK 
 
 SELECT * FROM EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = 1 AND EXPECTATION = 'B2' ;
 
-update eom_main_screen_layout set seq_no=rownum where student_id=1 and expectation='B2';
-
-eom_main_screen_layout_s;
 
 
-INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, SEQ_NO, X_4S4P)
-SELECT STUDENT_ID, EXPECTATION, eom_main_screen_layout_s.NEXTVAL, TASK
-FROM EOM_MARKS WHERE STUDENT_ID = 1 AND EXPECTATION = 'B2' AND MARK = '4/4+';
+--
+--
+--INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, SEQ_NO, X_4S4P)
+--SELECT STUDENT_ID, EXPECTATION, eom_main_screen_layout_s.NEXTVAL, TASK
+--FROM EOM_MARKS WHERE STUDENT_ID = 1 AND EXPECTATION = 'B2' AND MARK = '4/4+';
 
 --------------------------------------------------------------------------------
 drop table eom_main_screen_layout;
@@ -5069,8 +5068,27 @@ FROM EOM_MARKS WHERE STUDENT_ID = 3 AND EXPECTATION = 'D4' AND MARK = '4++';
 end;
 /
 
---Reset seq_no for each student_id, expectation
-update eom_main_screen_layout set seq_no=rownum where student_id=1 and expectation='B2';
+
+--assign seq_no on the layout table for each student_id, expectation
+BEGIN
+    FOR r_exp IN (
+        SELECT DISTINCT
+            expectation
+        FROM
+            eom_main_screen_layout
+        WHERE
+            student_id = 1
+    ) LOOP
+        UPDATE eom_main_screen_layout
+        SET
+            seq_no = ROWNUM
+        WHERE
+            student_id = 1
+            AND expectation = r_exp.expectation;
+
+    END LOOP;
+END;
+/
 
 --------------------------------------------------------------------------------------
 
