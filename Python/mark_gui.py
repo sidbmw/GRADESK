@@ -9,53 +9,54 @@ marking_first.do_it()
 def do_it(course):
     theArray = []
 
+    mark = [[],
+            []]
+
+    column = []  # part of the layout
+
     def getName(x):
         cur.execute("select * from EOM_STUDENTS")
         for row in cur:
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-
     def getRows(x):
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
             if row[1] == x:
-                theArray.append(v_row)
-            v_row += 1
+                v_row += 1
+                theArray.append(row[0])
+
         return v_row
 
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
-    mark = [[],
-            []]
-
     for x in range(int(marking_first.numberOfMark)):
         mark[0].append("")
         mark[1].append("")
 
-    column = []  # part of the layout
-
     sg.ChangeLookAndFeel('DarkBlue')
 
-    for x in range(int(marking_first.numberOfMark)):
-        column.append(
-            [sg.Text('Expectation  ', text_color='white', justification='left'),
-             sg.InputText(mark[0][x], size=(10, 1))], )
-        column.append(
-            [sg.Text('Mark            ', text_color='white', justification='left'),
-             sg.InputText('', size=(10, 1))], )
-        column.append([sg.Text('_' * 100, size=(23, 1))], )
+    if not marking_first.quit_option:
 
-    mark = [[], []]
-
-    if marking_first.quit_option == False:
-
+        print("courses thing", getRows(course))  # why is this 3???
         for x in range(int(getRows(course))):
             open_variable = True
-            studentID = int(theArray[x])+1
+            studentID = int(theArray[x])
             student_name = getName(studentID)
+
+            for z in range(int(marking_first.numberOfMark)):
+                column.append(
+                    [sg.Text('Expectation  ', text_color='white', justification='left'),
+                     sg.InputText(mark[0][z], size=(10, 1))], )
+                column.append(
+                    [sg.Text('Mark            ', text_color='white', justification='left'),
+                     sg.InputText('', size=(10, 1))], )
+                column.append([sg.Text('_' * 100, size=(23, 1))], )
+
+            mark = [[], []]
 
             layout = [[sg.Text('Mark entry - ' + student_name, size=(25, 1),
                                font=("Helvetica", 15), justification='center')],
@@ -69,12 +70,10 @@ def do_it(course):
                 saved = False
                 do = False
                 if event == 'key_next_stud':
-                    mark = [[], []]
                     for x in range(int(marking_first.numberOfMark)):
                         tracker = int(x * 2)
                         if values[tracker + 0] is not None:
                             if values[tracker + 1] is not None:
-                                print(mark)
                                 mark[0].append(values[tracker + 0])
                                 mark[1].append(values[tracker + 1])
                                 do = True
@@ -87,7 +86,6 @@ def do_it(course):
 
                     if do:
                         for y in range(int(marking_first.numberOfMark)):
-                            print(mark, y)
                             cur.execute("""
                                 insert into EOM_MARKS (STUDENT_ID, COLOUR, TASK, EXPECTATION, MARK, COMMENTS, ANOMALY, DELETED_FLAG)
                                 values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, 
@@ -106,7 +104,7 @@ def do_it(course):
                             con.commit()
                             saved = True
 
-                            column = ()
+                            column = []
 
                     if saved:
                         break
@@ -115,7 +113,7 @@ def do_it(course):
                     sys.exit()
 
             window.Close()  # Don't forget to close your window!
-        sg.Popup('You have just finished marking ' + marking_first.nameOfMark + '!')
+        sg.Popup('You have just finished marking ' + marking_first.nameOfMark + ' for ' + course + "!")
 
 
-do_it('ICS4U-01/2018')
+do_it('ICS4U-02/2018')
