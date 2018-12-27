@@ -5,15 +5,28 @@ import PySimpleGUI as sg
 
 
 def do_it(course):
+    sg.ChangeLookAndFeel('DarkBlue')
+
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
-    sg.ChangeLookAndFeel('DarkBlue')
+    student_numbers = []
 
-    # cur.execute("SELECT  CLASS FROM EOM_CLASS")
-    # fetch_course_code = cur.fetchall()
-    # fetched_course_codes = [n[0] for n in fetch_course_code]
-    # print(fetched_course_codes)
+    def getName(x):
+        cur.execute("select * from EOM_STUDENTS")
+        for row in cur:
+            if x == (row[0]):
+                return str(row[2] + " " + row[3])
+
+    def getRows(x):
+        cur.execute("select * from EOM_STUDENTS")
+        v_row = 0
+        for row in cur:
+            if row[1] == x:
+                v_row += 1
+                student_numbers.append(row[0])
+
+        return v_row
 
     number_Of_Students =
     scrollable_column = [[sg.Input(), sg.Input()]]

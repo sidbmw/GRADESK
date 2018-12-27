@@ -8,26 +8,26 @@ marking_first.do_it()
 
 
 def do_it(course):
-    theArray = []
+    the_array = []
 
     mark = [[],
             []]
 
     column = []  # part of the layout
 
-    def getName(x):
+    def get_name(x):
         cur.execute("select * from EOM_STUDENTS")
         for row in cur:
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-    def getRows(x):
+    def get_rows(x):
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
             if row[1] == x:
                 v_row += 1
-                theArray.append(row[0])
+                the_array.append(row[0])
 
         return v_row
 
@@ -42,11 +42,11 @@ def do_it(course):
 
     if not marking_first.quit_option:
 
-        print("courses thing", getRows(course))  # why is this 3???
-        for x in range(int(getRows(course))):
+        print("courses thing", get_rows(course))  # why is this 3???
+        for x in range(int(get_rows(course))):
             open_variable = True
-            studentID = int(theArray[x])
-            student_name = getName(studentID)
+            studentID = int(the_array[x])
+            student_name = get_name(studentID)
 
             for z in range(int(marking_first.numberOfMark)):
                 column.append(

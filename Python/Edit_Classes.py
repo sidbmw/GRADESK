@@ -34,8 +34,6 @@ def do_it(x, y, z):
         event, values = window.Read()
         if event is None or event == 'Exit':
             break
-        v_class = values[0] + '/' + values[2]
-        v_period_num = int(values[1])
 
         cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
                     other_stuff=old_class)
