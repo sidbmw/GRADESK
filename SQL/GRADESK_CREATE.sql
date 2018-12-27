@@ -1,7 +1,9 @@
 DROP TABLE eom_class;
 DROP TABLE eom_students;
 DROP TABLE eom_marks;
+DROP TABLE eom_main_screen_layout;
 DROP SEQUENCE eom_students_s;
+DROP SEQUENCE eom_main_screen_layout_s;
 
 CREATE TABLE eom_class
 (
@@ -9,7 +11,7 @@ CREATE TABLE eom_class
   period_num INTEGER      NOT NULL
 );
 
-CREATE UNIQUE INDEX eom_class_U1 ON eom_class (class, year, period_num);
+CREATE UNIQUE INDEX eom_class_U1 ON eom_class (class, period_num);
 
 CREATE TABLE eom_students
 (
