@@ -20,11 +20,24 @@ while event != 'close_window':
     student_id = cur.fetchall()
     student_id = [n[0] for n in student_id]
     student_id = student_id[0]
-    print(student_id, sort_id)
+
+    student_first_name = cur.execute("SELECT FIRST_NAME FROM EOM_STUDENTS WHERE STUDENT_ID = :student_id", student_id=student_id)
+    student_first_name = cur.fetchall()
+    student_first_name = [n[0] for n in student_first_name]
+    student_first_name = student_first_name[0]
+
+    student_last_name = cur.execute("SELECT LAST_NAME FROM EOM_STUDENTS WHERE STUDENT_ID = :student_id", student_id=student_id)
+    student_last_name = cur.fetchall()
+    student_last_name = [n[0] for n in student_last_name]
+    student_last_name = student_last_name[0]
+
+    student_full_name = student_last_name + str(", ") + student_first_name
+    print(student_first_name, student_last_name)
 
     cur.callproc('eom_build_layout', [student_id])
 
     layout = [
+        [sg.Text(student_full_name)],
         [sg.Graph((1800, 700), (0, 450), (450, 0), key='_GRAPH_', change_submits=True, drag_submits=False)],
         [sg.Button('Previous Student', key='_prev_student_'), sg.Button('Next Student', key='_next_student_'), sg.Button("Exit", key="close_window")]
     ]
@@ -93,9 +106,17 @@ while event != 'close_window':
             print(box_x, box_y)
 
         if event == '_next_student_':
-            sort_id += 1
-            window.Close()
-            break
+            max_sort_id = cur.execute("SELECT MAX(SORT_ID) FROM EOM_STUDENTS")
+            max_sort_id = cur.fetchall()
+            max_sort_id = [n[0] for n in max_sort_id]
+            max_sort_id = max_sort_id[0]
+
+            if sort_id < max_sort_id:
+                sort_id += 1
+                window.Close()
+                break
+            else:
+                sg.Popup("No students after this")
 
         if event == '_prev_student_':
             if sort_id == 1:
