@@ -7,6 +7,15 @@ cur = con.cursor(scrollable=True)
 BOX_SIZE = 16
 student_id = 1
 
+student_data = cur.execute("""
+begin 
+eom_build_layout (:student_id);
+end
+/
+""", student_id=student_id)
+
+
+
 event = ''
 
 while event != 'close_window':
