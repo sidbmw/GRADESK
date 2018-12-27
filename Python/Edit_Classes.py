@@ -7,7 +7,7 @@ old_period_number = 0
 
 
 def do_it(x, y, z):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
 
@@ -36,9 +36,6 @@ def do_it(x, y, z):
             break
         v_class = values[0] + '/' + values[2]
         v_period_num = int(values[1])
-
-        print(old_class, old_period_number)
-        print(v_class, v_period_num)
 
         cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
                     other_stuff=old_class)

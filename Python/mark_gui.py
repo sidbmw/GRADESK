@@ -3,6 +3,7 @@ import marking_first
 import cx_Oracle
 import sys
 
+
 marking_first.do_it()
 
 
