@@ -14,7 +14,7 @@ while event != 'close_window':
 
     layout = [
         [sg.Graph((1800, 700), (0, 450), (450, 0), key='_GRAPH_', change_submits=True, drag_submits=False)],
-        [sg.Button('Next Student', key='_next_student_'), sg.Button("Exit", key="close_window")]
+        [sg.Button('Previous Student', key='_prev_student_'), sg.Button('Next Student', key='_next_student_'), sg.Button("Exit", key="close_window")]
     ]
 
     window = sg.Window('Window Title', ).Layout(layout).Finalize()
@@ -84,6 +84,12 @@ while event != 'close_window':
             student_id += 1
             window.Close()
             break
+
+        if event == '_prev_student_':
+            student_id -= 1
+            window.Close()
+            break
+
         if event == "close_window":
             window.Close()
             break
