@@ -5,11 +5,23 @@ con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
 BOX_SIZE = 16
-student_id = 1
+
+sort_id = 1
 
 event = ''
 
 while event != 'close_window':
+    sort_id = cur.execute("select sort_id from EOM_STUDENTS where SORT_ID = :sort_id", sort_id=sort_id)
+    sort_id = cur.fetchall()
+    sort_id = [n[0] for n in sort_id]
+    sort_id = sort_id[0]
+
+    student_id = cur.execute("SELECT STUDENT_ID FROM EOM_STUDENTS WHERE SORT_ID = :sort_id", sort_id=sort_id)
+    student_id = cur.fetchall()
+    student_id = [n[0] for n in student_id]
+    student_id = student_id[0]
+    print(student_id, sort_id)
+
     cur.callproc('eom_build_layout', [student_id])
 
     layout = [
@@ -81,14 +93,17 @@ while event != 'close_window':
             print(box_x, box_y)
 
         if event == '_next_student_':
-            student_id += 1
+            sort_id += 1
             window.Close()
             break
 
         if event == '_prev_student_':
-            student_id -= 1
-            window.Close()
-            break
+            if sort_id == 1:
+                sg.Popup("No students before this")
+            else:
+                sort_id -= 1
+                window.Close()
+                break
 
         if event == "close_window":
             window.Close()
