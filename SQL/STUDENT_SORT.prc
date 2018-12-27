@@ -1,4 +1,5 @@
-DECLARE
+create or replace procedure eom_student_sort is 
+
     v_sort_id   NUMBER:= 1;
 BEGIN
 
@@ -24,8 +25,9 @@ BEGIN
         v_sort_id := v_sort_id + 1;
     END LOOP;
 
-END;
+END eom_student_sort;
 /
+
 
 
 SELECT * FROM EOM_STUDENTS ORDER BY CLASS, LAST_NAME, FIRST_NAME;

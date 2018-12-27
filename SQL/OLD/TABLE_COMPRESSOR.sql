@@ -23,7 +23,7 @@ LOOP
 
   END LOOP;
 
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_r in (select rownum, x_r, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_r is not null AND STUDENT_ID = 1)
   LOOP
@@ -60,7 +60,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_1ms1 in (select rownum, x_1ms1, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1ms1 is not null AND STUDENT_ID = 1)
   LOOP
@@ -78,7 +78,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_1 in (select rownum, x_1, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1 is not null AND STUDENT_ID = 1)
   LOOP
@@ -96,7 +96,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_1s1p in (select rownum, x_1s1p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1s1p is not null AND STUDENT_ID = 1)
   LOOP
@@ -114,7 +114,7 @@ LOOP
 
   END LOOP;
 
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_1p in (select rownum, x_1p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1p is not null AND STUDENT_ID = 1)
   LOOP
@@ -132,7 +132,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_1ps2m in (select rownum, x_1ps2m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1ps2m is not null AND STUDENT_ID = 1)
   LOOP
@@ -172,7 +172,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_2ms2 in (select rownum, x_2ms2, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2ms2 is not null AND STUDENT_ID = 1)
   LOOP
@@ -190,7 +190,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_2 in (select rownum, x_2, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2 is not null AND STUDENT_ID = 1)
   LOOP
@@ -208,7 +208,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_2s2p in (select rownum, x_2s2p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2s2p is not null AND STUDENT_ID = 1)
   LOOP
@@ -226,7 +226,7 @@ LOOP
 
   END LOOP;
 
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_2p in (select rownum, x_2p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2p is not null AND STUDENT_ID = 1)
   LOOP
@@ -244,7 +244,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_2ps3m in (select rownum, x_2ps3m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2ps3m is not null AND STUDENT_ID = 1)
   LOOP
@@ -284,7 +284,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_3ms3 in (select rownum, x_3ms3, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3ms3 is not null AND STUDENT_ID = 1)
   LOOP
@@ -302,7 +302,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_3 in (select rownum, x_3, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3 is not null AND STUDENT_ID = 1)
   LOOP
@@ -320,7 +320,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_3s3p in (select rownum, x_3s3p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3s3p is not null AND STUDENT_ID = 1)
   LOOP
@@ -338,7 +338,7 @@ LOOP
 
   END LOOP;
 
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_3p in (select rownum, x_3p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3p is not null AND STUDENT_ID = 1)
   LOOP
@@ -356,7 +356,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_3ps3m in (select rownum, x_3ps3m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3ps3m is not null AND STUDENT_ID = 1)
   LOOP
@@ -396,7 +396,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_4ms4 in (select rownum, x_4ms4, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_4ms4 is not null AND STUDENT_ID = 1)
   LOOP
@@ -414,7 +414,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_4 in (select rownum, x_4, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_4 is not null AND STUDENT_ID = 1)
   LOOP
@@ -432,7 +432,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_4s4p in (select rownum, x_4s4p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_4s4p is not null AND STUDENT_ID = 1)
   LOOP
@@ -450,7 +450,7 @@ LOOP
 
   END LOOP;
 
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_4p in (select rownum, x_4p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_4p is not null AND STUDENT_ID = 1)
   LOOP
@@ -468,7 +468,7 @@ LOOP
 
   END LOOP;
   
-FOR r_exp IN (SELECT DISTrT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
+FOR r_exp IN (SELECT DISTINCT EXPECTATION FROM eom_main_screen_layout WHERE student_id = 1)
 LOOP
   FOR r_x_4pp in (select rownum, x_4pp, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_4pp is not null AND STUDENT_ID = 1)
   LOOP
@@ -487,16 +487,6 @@ LOOP
   END LOOP;
   
 -------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
 
 
   

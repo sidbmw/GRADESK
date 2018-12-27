@@ -51,8 +51,9 @@ while 'key_add_students':
             student_last_name=student_last_name
         )
 
-    con.commit()
     sg.Popup("Student names have been stored in database")
+    cur.callproc('eom_student_sort')
+    con.commit()
     break
 
 window.Close()

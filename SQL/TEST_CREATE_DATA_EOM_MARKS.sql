@@ -41,40 +41,4 @@ Insert into EOM.EOM_MARKS (STUDENT_ID,COLOUR,TASK,EXPECTATION,MARK,COMMENTS,ANOM
 
 drop table eom_main_screen_layout;
 
-CREATE TABLE eom_main_screen_layout (
-    student_id    NUMBER NOT NULL,
-    expectation   VARCHAR(2) NOT NULL,
-    seq_no        NUMBER,
-    x_inc         VARCHAR(2),
-    x_r           VARCHAR(2),
-    x_1mm         VARCHAR(2), -- 1--
-    x_1ms1        VARCHAR(2), --1-/1--
-    x_1           VARCHAR(2), --1-- 
-    x_1s1p        VARCHAR(2), --1/1+--
-    x_1p          VARCHAR(2), --1+--
-    x_1ps2m       VARCHAR(2), --1+/2--
-    x_2m          VARCHAR(2),
-    x_2ms2        VARCHAR(2),
-    x_2           VARCHAR(2),
-    x_2s2p        VARCHAR(2),
-    x_2p          VARCHAR(2),
-    x_2ps3m       VARCHAR(2),
-    x_3m          VARCHAR(2),
-    x_3ms3        VARCHAR(2),
-    x_3           VARCHAR(2),
-    x_3s3p        VARCHAR(2),
-    x_3p          VARCHAR(2),
-    x_3ps4m       VARCHAR(2),
-    x_4m          VARCHAR(2),
-    x_4ms4        VARCHAR(2),
-    x_4           VARCHAR(2),
-    x_4s4p        VARCHAR(2),
-    x_4p          VARCHAR(2),
-    x_4pp         VARCHAR(2)
-);
 
-CREATE SEQUENCE eom_main_screen_layout_s
-  MINVALUE 1
-  START WITH 1
-  INCREMENT BY 1
-  CACHE 10;
