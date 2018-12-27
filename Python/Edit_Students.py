@@ -12,13 +12,13 @@ def do_it(course):
 
     student_numbers = []
 
-    def getName(x):
+    def get_name(x):
         cur.execute("select * from EOM_STUDENTS")
         for row in cur:
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-    def getRows(x):
+    def get_rows(x):
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
@@ -28,10 +28,9 @@ def do_it(course):
 
         return v_row
 
-    number_Of_Students =
-    scrollable_column = [[sg.Input(), sg.Input()]]
+    number_of_students = get_rows(course)
 
-    for x in range(int(number_Of_Students) - 1):
+    for x in range(int(number_of_students) - 1):
         scrollable_column = scrollable_column + [[sg.Input(), sg.Input()]]
 
     layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Stretch()],

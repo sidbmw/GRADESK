@@ -8,7 +8,7 @@ marking_first.do_it()
 
 
 def do_it(course):
-    the_array = []
+    student_numbers = []
 
     mark = [[],
             []]
@@ -27,7 +27,7 @@ def do_it(course):
         for row in cur:
             if row[1] == x:
                 v_row += 1
-                the_array.append(row[0])
+                student_numbers.append(row[0])
 
         return v_row
 
@@ -45,7 +45,7 @@ def do_it(course):
         print("courses thing", get_rows(course))  # why is this 3???
         for x in range(int(get_rows(course))):
             open_variable = True
-            studentID = int(the_array[x])
+            studentID = int(student_numbers[x])
             student_name = get_name(studentID)
 
             for z in range(int(marking_first.numberOfMark)):
