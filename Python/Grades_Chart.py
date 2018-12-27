@@ -7,20 +7,10 @@ cur = con.cursor(scrollable=True)
 BOX_SIZE = 16
 student_id = 1
 
-student_data = cur.execute("""
-begin 
-eom_build_layout (:student_id);
-end
-/
-""", student_id=student_id)
-
-
-
 event = ''
 
 while event != 'close_window':
-    # if '_next_student_' == True:
-    # student_id = 1
+    cur.callproc('eom_build_layout', [student_id])
 
     layout = [
         [sg.Graph((1800, 700), (0, 450), (450, 0), key='_GRAPH_', change_submits=True, drag_submits=False)],
