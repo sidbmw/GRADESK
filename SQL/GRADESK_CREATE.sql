@@ -16,7 +16,8 @@ CREATE TABLE eom_students
   student_id NUMBER       NOT NULL,
   class      VARCHAR2(15) NOT NULL,
   first_name VARCHAR2(50) NOT NULL,
-  last_name  VARCHAR2(50) NOT NULL
+  last_name  VARCHAR2(50) NOT NULL,
+  sort_id    NUMBER       
 );
 
 
