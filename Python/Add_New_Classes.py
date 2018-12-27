@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 import cx_Oracle
 import PySimpleGUI as sg
-from Add_Remove_Students import do_it as add_student
+from Add_Students import do_it as add_student
 
 
 def do_it():
@@ -38,7 +38,6 @@ def do_it():
         break
 
     if v_course_code !='' and v_period_num != '' and v_year != '':
-
 
         cur.execute("""
   

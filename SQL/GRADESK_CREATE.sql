@@ -11,8 +11,6 @@ CREATE TABLE eom_class
 
 CREATE UNIQUE INDEX eom_class_U1 ON eom_class (class, year, period_num);
 
-
-
 CREATE TABLE eom_students
 (
   student_id NUMBER       NOT NULL,

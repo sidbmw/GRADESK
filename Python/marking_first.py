@@ -1,16 +1,18 @@
 import PySimpleGUI as sg
 import cx_Oracle
 
-nameOfMark = ' '
-numberOfMark = 1
-color = ' '
-quit_option = False
 
 def do_it():
     global nameOfMark
     global numberOfMark
     global color
     global quit_option
+
+    nameOfMark = ' '
+    numberOfMark = 0
+    color = ' '
+    quit_option = False
+
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
