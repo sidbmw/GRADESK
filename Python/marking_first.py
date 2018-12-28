@@ -51,28 +51,30 @@ def do_it(course):
 
             cur.execute("SELECT STUDENT_ID, TASK FROM EOM_MARKS")  # -------------------------------------------change
             fetched_data = cur.fetchall()
-            print(fetched_data)
-            for row in cur:
-                print(get_first_student(course), row[0], values[4], row[2])
-                # if get_first_student(course) == int(row[0]):
-                #     print("#1 working")
-                #     if values[4] == row[2]:
-                #         print("#2 working")
-                #         sg.Popup("there's already an assignment like this for " + course + "!")
-                #         break_variable = False
-                #         break
+            student_id = [n[0] for n in fetched_data]
+            task = [n[1] for n in fetched_data]
 
-            print("exited for loop")
+            for x in range(len(student_id)):
+                if get_first_student(course) == int(student_id[x]):
+                    if values[4] == task[x]:
+                        sg.Popup("there's already an assignment like this for " + course + "!")
+                        break_variable = False
+
+                        break
 
             if values[4] and values[5] is not None:
                 if values[0]:
                     color = 'blue'
+
                 if values[1]:
                     color = 'red'
+
                 if values[2]:
                     color = 'green'
+
                 if values[3]:
                     color = 'yellow'
+
                 nameOfMark = values[4]
                 numberOfMark = values[5]
 
