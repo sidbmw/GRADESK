@@ -16,7 +16,8 @@ min_sort_id = cur.execute("SELECT MIN(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :
 min_sort_id = cur.fetchall()
 min_sort_id = [n[0] for n in min_sort_id]
 min_sort_id = min_sort_id[0]
-sort_id = min_sort_id
+# sort_id = min_sort_id
+sort_id = 11
 
 while event != 'close_window':
     sort_id = cur.execute("select sort_id from EOM_STUDENTS where SORT_ID = :sort_id", sort_id=sort_id)
@@ -49,13 +50,15 @@ while event != 'close_window':
 
     cur.callproc('eom_build_layout', [student_id])
 
+    scrollable_column = [[sg.Graph((1800, 700), (0, 450), (450, -60), key='_GRAPH_', change_submits=True, drag_submits=False)]]
+
     layout = [
-        [sg.Text(student_full_name), sg.Text(class_code)],
-        [sg.Graph((1800, 700), (0, 450), (450, 0), key='_GRAPH_', change_submits=True, drag_submits=False)],
+        [sg.Text(student_full_name, font='Helvetica', size=(40, 1)), sg.Text(class_code, font='Helvetica', justification='right', size=(40, 1))],
+        [sg.Column(scrollable_column, scrollable=True, size=(1800, 700), vertical_scroll_only=True)],
         [sg.Button('Previous Student', key='_prev_student_'), sg.Button('Next Student', key='_next_student_'), sg.Button("Exit", key="close_window")]
     ]
 
-    window = sg.Window('Window Title', ).Layout(layout).Finalize()
+    window = sg.Window(student_full_name).Layout(layout).Finalize()
 
     g = window.FindElement('_GRAPH_')
 
@@ -106,6 +109,7 @@ while event != 'close_window':
         event, values = window.Read()
         # print(event, values)
         if event is None or event == 'Exit':
+            window.Close()
             break
         mouse = values['_GRAPH_']
 
