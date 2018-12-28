@@ -13,7 +13,7 @@ def do_it():
     color = ' '
     quit_option = False
 
-    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     sg.ChangeLookAndFeel('DarkBlue')
