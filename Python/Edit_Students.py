@@ -66,3 +66,5 @@ def do_it(course):
         break
 
     window.Close()
+
+do_it('ICS4U-01/2018')
