@@ -53,14 +53,14 @@ while True:  # Event Loop
 
         # print(first_name)
 
-        cur.execute("SELECT STUDENT_ID, CLASS FROM EOM_STUDENTS WHERE FIRST_NAME = :first_name AND LAST_NAME = :last_name", first_name=first_name, last_name=last_name)
-        student_id_and_class = cur.fetchall()
-        student_id = [n[0] for n in student_id_and_class]
-        student_id = student_id[0]
-        class_code = [n[1] for n in student_id_and_class]
+        cur.execute("SELECT SORT_ID, CLASS FROM EOM_STUDENTS WHERE FIRST_NAME = :first_name AND LAST_NAME = :last_name", first_name=first_name, last_name=last_name)
+        sort_id_and_class = cur.fetchall()
+        sort_id = [n[0] for n in sort_id_and_class]
+        sort_id = sort_id[0]
+        class_code = [n[1] for n in sort_id_and_class]
         class_code = class_code[0]
 
         # student id and class code fetched from selected name (in dropdown menu)
-        print(student_id, class_code)
+        print(sort_id, class_code)
 
 window.Close()

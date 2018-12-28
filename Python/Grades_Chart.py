@@ -17,9 +17,13 @@ min_sort_id = cur.fetchall()
 min_sort_id = [n[0] for n in min_sort_id]
 min_sort_id = min_sort_id[0]
 # sort_id = min_sort_id
-sort_id = 1
+sort_id = None
 
 while event != 'close_window':
+
+    if sort_id is None:
+        sort_id = 1
+
     sort_id = cur.execute("select sort_id from EOM_STUDENTS where SORT_ID = :sort_id", sort_id=sort_id)
     sort_id = cur.fetchall()
     sort_id = [n[0] for n in sort_id]
