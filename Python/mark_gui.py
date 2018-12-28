@@ -3,81 +3,30 @@ import marking_first
 import cx_Oracle
 import sys
 
-marking_first.do_it()
+marking_first.do_it('ICS4U-02/2018')
 
-
-def getName(x):
-    cur.execute("select * from EOM_STUDENTS")
-    for row in cur:
-        if x == (row[0]):
-            return str(row[2] + " " + row[3])
-
-
-def getRows():
-    cur.execute("select * from EOM_STUDENTS")
-    num_of_rows = 0
-    for row in cur:
-        num_of_rows += 1
-    return num_of_rows
-
-
-con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
-cur = con.cursor(scrollable=True)
-sql_rows = getRows()
-
-mark = [[''],
-        ['']]
-column = []  # part of the layout
-
-sg.ChangeLookAndFeel('DarkBlue')
-
-if marking_first.quit_option == False:
-
-    for x in range(int(sql_rows)):
-        open_variable = True
-        studentID = x + 1
-        student_name = getName(studentID)
-
-        sg.Popup(mark[0])
-        for x in range(int(marking_first.numberOfMark)):
-            column.append(
-                [sg.Text('Expectation  ', text_color='white', justification='left'),
-                 sg.InputText(mark[0][x], size=(10, 1))], )
-            column.append(
-                [sg.Text('Mark            ', text_color='white', justification='left'),
-                 sg.InputText('', size=(10, 1))], )
-            column.append([sg.Text('_' * 100, size=(23, 1))], )
-
-        mark = [[], []]
-
-        layout = [[sg.Text('Mark entry - ' + student_name, size=(25, 1),
-                           font=("Helvetica", 15), justification='center')],
-                  [sg.Column(column, scrollable=True, size=(225, 300), vertical_scroll_only=True)],
-                  [sg.Button('Next Student', key='key_next_stud')]]
-
-        window = sg.Window('Mark ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
 
 def do_it(course):
-    student_numbers = []
+    theArray = []
 
     mark = [[],
             []]
 
     column = []  # part of the layout
 
-    def get_name(x):
+    def getName(x):
         cur.execute("select * from EOM_STUDENTS")
         for row in cur:
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-    def get_rows(x):
+    def getRows(x):
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
             if row[1] == x:
                 v_row += 1
-                student_numbers.append(row[0])
+                theArray.append(row[0])
 
         return v_row
 
@@ -92,11 +41,11 @@ def do_it(course):
 
     if not marking_first.quit_option:
 
-        print("courses thing", get_rows(course))  # why is this 3???
-        for x in range(int(get_rows(course))):
+        print("courses thing", getRows(course))  # why is this 3???
+        for x in range(int(getRows(course))):
             open_variable = True
-            studentID = int(student_numbers[x])
-            student_name = get_name(studentID)
+            studentID = int(theArray[x])
+            student_name = getName(studentID)
 
             for z in range(int(marking_first.numberOfMark)):
                 column.append(
@@ -139,7 +88,7 @@ def do_it(course):
                         for y in range(int(marking_first.numberOfMark)):
                             cur.execute("""
                                 insert into EOM_MARKS (STUDENT_ID, COLOUR, TASK, EXPECTATION, MARK, COMMENTS, ANOMALY, DELETED_FLAG)
-                                values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable,
+                                values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, 
                                 :No_variable, :No_variable_second)""",
 
                                     task_variable=mark[0][y],

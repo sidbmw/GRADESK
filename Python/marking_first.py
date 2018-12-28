@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import cx_Oracle
 
 
-def do_it():
+def do_it(course):
     global nameOfMark
     global numberOfMark
     global color
@@ -12,6 +12,12 @@ def do_it():
     numberOfMark = 0
     color = ' '
     quit_option = False
+
+    def get_first_student(x):
+        cur.execute("select * from EOM_STUDENTS")
+        for row in cur:
+            if row[1] == x:
+                return row[0]
 
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
@@ -26,7 +32,7 @@ def do_it():
          sg.Radio('Quiz           ', 'RADIO1', text_color='Yellow')],
         [sg.Text('Name of Assigment      '), sg.InputText('', size=(10, 1))],
         [sg.Text('Number of expectations'), sg.InputText('', size=(10, 1))],
-        [sg.Quit(button_color=('black', 'orange')), sg.Button('Next', key='next_key')]]  # get the next key working
+        [sg.Quit(button_color=('black', 'orange')), sg.Button('Next', key='next_key')]]
 
     window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
 
@@ -40,11 +46,12 @@ def do_it():
         if event == 'Quit':
             quit_option = True
             break
-        if event == 'next_key':  # the next key is not working for some reason
-            cur.execute("select * from EOM_MARKS")
+        if event == 'next_key':
+            print("im done")
+            cur.execute("select * from EOM_MARKS")  # -----------------------------------------------------------change
             for row in cur:
-                if values[4] == (row[2]):  # row[0] is row 1 first term, row 2 first term, row 3 first term...
-                    sg.Popup("there's already an assignment like this")
+                if get_first_student(course) == row[0] and values[4] == row[2]:
+                    sg.Popup("there's already an assignment like this for " + course + "!")
                     break_variable = False
                     break
             if values[4] and values[5] != None:
