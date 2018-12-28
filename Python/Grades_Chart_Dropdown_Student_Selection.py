@@ -36,14 +36,14 @@ while True:  # Event Loop
         break
     print(event, values)
 
-    # if values['_INPUT_'] != '':
-    #     search = values['_INPUT_']
-    #     new_values = [x for x in full_name if search in x]
-    #     window.Element('_LIST_').Update(new_values)
-    # else:
-    #     window.Element('_LIST_').Update(full_name)
-    #
-    # if event == '_LIST_' and len(values['_LIST_']):
-    #     sg.Popup('Selected ', values['_LIST_'])
+    if values['_INPUT_'] != '':
+        search = values['_INPUT_']
+        new_values = [x for x in full_name if search in x]
+        window.Element('_LIST_').Update(new_values)
+    else:
+        window.Element('_LIST_').Update(full_name)
+
+    if event == '_LIST_' and len(values['_LIST_']):
+        sg.Popup('Selected ', values['_LIST_'])
 
 window.Close()
