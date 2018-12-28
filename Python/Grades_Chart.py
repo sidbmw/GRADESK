@@ -53,7 +53,7 @@ while event != 'close_window':
     scrollable_column = [[sg.Graph((1800, 700), (0, 450), (450, -60), key='_GRAPH_', change_submits=True, drag_submits=False)]]
 
     layout = [
-        [sg.Text(student_full_name, font='Helvetica', size=(40, 1)), sg.Text(class_code, font='Helvetica', justification='right', size=(40, 1))],
+        [sg.Text(student_full_name, font='Helvetica', size=(40, 1)), sg.Text(class_code, font='Helvetica', size=(40, 1))],
         [sg.Column(scrollable_column, scrollable=True, size=(1800, 700), vertical_scroll_only=True)],
         [sg.Button('Previous Student', key='_prev_student_'), sg.Button('Next Student', key='_next_student_'), sg.Button("Exit", key="close_window")]
     ]
