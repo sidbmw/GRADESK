@@ -6,9 +6,17 @@ cur = con.cursor(scrollable=True)
 
 BOX_SIZE = 16
 
-sort_id = 1
-
 event = ''
+
+# Note for MIKE:
+# Course code should be passed into class_code from the class selection screen
+class_code = 'ICS4U-01/2018'
+
+min_sort_id = cur.execute("SELECT MIN(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
+min_sort_id = cur.fetchall()
+min_sort_id = [n[0] for n in min_sort_id]
+min_sort_id = min_sort_id[0]
+sort_id = min_sort_id
 
 while event != 'close_window':
     sort_id = cur.execute("select sort_id from EOM_STUDENTS where SORT_ID = :sort_id", sort_id=sort_id)
@@ -32,12 +40,17 @@ while event != 'close_window':
     student_last_name = student_last_name[0]
 
     student_full_name = student_last_name + str(", ") + student_first_name
-    print(student_first_name, student_last_name)
+    # print(student_first_name, student_last_name)
+
+    class_code = cur.execute("SELECT CLASS FROM EOM_STUDENTS WHERE STUDENT_ID = :student_id", student_id=student_id)
+    class_code = cur.fetchall()
+    class_code = [n[0] for n in class_code]
+    class_code = class_code[0]
 
     cur.callproc('eom_build_layout', [student_id])
 
     layout = [
-        [sg.Text(student_full_name)],
+        [sg.Text(student_full_name), sg.Text(class_code)],
         [sg.Graph((1800, 700), (0, 450), (450, 0), key='_GRAPH_', change_submits=True, drag_submits=False)],
         [sg.Button('Previous Student', key='_prev_student_'), sg.Button('Next Student', key='_next_student_'), sg.Button("Exit", key="close_window")]
     ]
@@ -56,12 +69,10 @@ while event != 'close_window':
         for col in range(27):
 
             if row == 0:
-                arr_marks = ['Expectation', 'INC', 'R', '1--', '1-/1', '1', '1/1+', '1+', '1+/2-', '2-', '2-/2', '2', '2/2+', '2+', '2+/3-', '3-', '3-/3', '3', '3/3+', '3+',
-                             '3+/4-',
-                             '4-', '4-/4',
-                             '4',
-                             '4/4+', '4+', '4++']
-                g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black', fill_color='#2196F3')
+                arr_marks = ['Expectation', 'INC', 'R', '1--', '1-/1', '1', '1/1+', '1+', '1+/2-', '2-', '2-/2', '2', '2/2+', '2+', '2+/3-', '3-', '3-/3', '3', '3/3+',
+                             '3+', '3+/4-', '4-', '4-/4', '4', '4/4+', '4+', '4++']
+                g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black',
+                                fill_color='#2196F3')
                 g.DrawText('{}'.format(arr_marks[col]), (col * BOX_SIZE + 13, row * BOX_SIZE + 10))
 
             else:
@@ -106,7 +117,7 @@ while event != 'close_window':
             print(box_x, box_y)
 
         if event == '_next_student_':
-            max_sort_id = cur.execute("SELECT MAX(SORT_ID) FROM EOM_STUDENTS")
+            max_sort_id = cur.execute("SELECT MAX(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
             max_sort_id = cur.fetchall()
             max_sort_id = [n[0] for n in max_sort_id]
             max_sort_id = max_sort_id[0]
