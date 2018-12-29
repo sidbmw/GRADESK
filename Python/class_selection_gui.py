@@ -22,7 +22,8 @@ def do_it():
 
     for x in range(len(classes) - 1):
         column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
-                       sg.Button('access', button_color=('black', 'orange')), sg.Radio('select', "RADIO1")], )
+                       sg.Button('access', button_color=('black', 'orange'), key=str(x)), sg.Radio('select', "RADIO1")],
+                      )
         column.append([sg.Text('Period: ' + period[x]), sg.Text('Year: ' + year[x])], )
         column.append([sg.Text(' ')])
 
