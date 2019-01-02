@@ -3,12 +3,7 @@ import PySimpleGUI as sg
 from mark_gui import do_it as mark  # this is for the add assignment button, mark(course code + year)
 
 
-def do_it(course):  # course is the course code, /, then year
-
-    word = course.split('/')
-    course_code = word[0]
-    year = word[1]  # split up, just replace some of your variables with these
-
+def do_it(course):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
@@ -16,9 +11,8 @@ def do_it(course):  # course is the course code, /, then year
 
     event = ''
 
-    # Note for MIKE:
-    # Course code should be passed into class_code from the class selection screen
-    class_code = 'ICS4U-01/2018'
+    # class_code = 'ICS4U-01/2018'
+    class_code = course
 
     min_sort_id = cur.execute("SELECT MIN(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
     min_sort_id = cur.fetchall()

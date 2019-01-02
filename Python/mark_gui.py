@@ -4,10 +4,9 @@ import cx_Oracle
 import sys
 
 
-marking_first.do_it('ICS4U-02/2018')
-
-
 def do_it(course):
+    marking_first.do_it('ICS4U-02/2018')
+
     student_numbers = []
 
     mark = [[],
@@ -91,14 +90,14 @@ def do_it(course):
                                 values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, 
                                 :No_variable, :No_variable_second)""",
 
-                                    task_variable=mark[0][y],
-                                    mark_variable=mark[1][y],
-                                    null_variable='',
-                                    studentID=studentID,
-                                    No_variable='N',
-                                    No_variable_second='N',
-                                    color=marking_first.color,
-                                    nameOfMark=marking_first.nameOfMark
+                                        task_variable=mark[0][y],
+                                        mark_variable=mark[1][y],
+                                        null_variable='',
+                                        studentID=studentID,
+                                        No_variable='N',
+                                        No_variable_second='N',
+                                        color=marking_first.color,
+                                        nameOfMark=marking_first.nameOfMark
                                         )
 
                             con.commit()
@@ -114,6 +113,3 @@ def do_it(course):
 
             window.Close()  # Don't forget to close your window!
         sg.Popup('You have just finished marking ' + marking_first.nameOfMark + ' for ' + course + "!")
-
-
-do_it('ICS4U-02/2018')
