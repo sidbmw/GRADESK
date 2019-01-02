@@ -10,14 +10,14 @@ event = ''
 
 # Note for MIKE:
 # Course code should be passed into class_code from the class selection screen
-class_code = 'ICS4U-01/2018'
+class_code = 'ICS4U-02/2018'
 
 min_sort_id = cur.execute("SELECT MIN(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
 min_sort_id = cur.fetchall()
 min_sort_id = [n[0] for n in min_sort_id]
 min_sort_id = min_sort_id[0]
-# sort_id = min_sort_id
-sort_id = 1
+sort_id = min_sort_id
+# sort_id = 1
 
 while event != 'close_window':
     sort_id = cur.execute("select sort_id from EOM_STUDENTS where SORT_ID = :sort_id", sort_id=sort_id)
