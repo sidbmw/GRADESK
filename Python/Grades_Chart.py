@@ -137,7 +137,7 @@ def do_it(course):
                     sg.Popup("No students after this")
 
             if event == '_prev_student_':
-                if sort_id == 1:
+                if sort_id == min_sort_id:
                     sg.Popup("No students before this")
                 else:
                     sort_id -= 1
