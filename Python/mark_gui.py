@@ -4,10 +4,9 @@ import cx_Oracle
 import sys
 
 
-marking_first.do_it('ICS4U-02/2018')
-
-
 def do_it(course):
+    marking_first.do_it('ICS4U-02/2018')
+
     student_numbers = []
 
     mark = [[],
@@ -116,4 +115,6 @@ def do_it(course):
         sg.Popup('You have just finished marking ' + marking_first.nameOfMark + ' for ' + course + "!")
 
 
-do_it('ICS4U-02/2018')
+
+
+

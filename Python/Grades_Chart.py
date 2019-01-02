@@ -9,7 +9,7 @@ def do_it(course):  # course is the course code, /, then year
     course_code = word[0]
     year = word[1]     # split up, just replace some of your variables with these
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     BOX_SIZE = 16
@@ -24,8 +24,8 @@ def do_it(course):  # course is the course code, /, then year
     min_sort_id = cur.fetchall()
     min_sort_id = [n[0] for n in min_sort_id]
     min_sort_id = min_sort_id[0]
-    # sort_id = min_sort_id
-    sort_id = 1
+    sort_id = min_sort_id
+    #sort_id = 1
 
     while event != 'close_window':
         sort_id = cur.execute("select sort_id from EOM_STUDENTS where SORT_ID = :sort_id", sort_id=sort_id)
