@@ -3,30 +3,31 @@ import marking_first
 import cx_Oracle
 import sys
 
+
 marking_first.do_it('ICS4U-02/2018')
 
 
 def do_it(course):
-    theArray = []
+    student_numbers = []
 
     mark = [[],
             []]
 
     column = []  # part of the layout
 
-    def getName(x):
+    def get_name(x):
         cur.execute("select * from EOM_STUDENTS")
         for row in cur:
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-    def getRows(x):
+    def get_rows(x):
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
             if row[1] == x:
                 v_row += 1
-                theArray.append(row[0])
+                student_numbers.append(row[0])
 
         return v_row
 
@@ -41,11 +42,10 @@ def do_it(course):
 
     if not marking_first.quit_option:
 
-        print("courses thing", getRows(course))  # why is this 3???
-        for x in range(int(getRows(course))):
+        for x in range(int(get_rows(course))):
             open_variable = True
-            studentID = int(theArray[x])
-            student_name = getName(studentID)
+            studentID = int(student_numbers[x])
+            student_name = get_name(studentID)
 
             for z in range(int(marking_first.numberOfMark)):
                 column.append(

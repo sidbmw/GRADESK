@@ -2,10 +2,11 @@ import PySimpleGUI as sg
 import cx_Oracle
 from Add_New_Classes import do_it as add
 from Edit_Classes import do_it as edit
+#from Grades_Chart import do_it as access
 
 
 def do_it():
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     classes = []
     period = []
@@ -22,7 +23,8 @@ def do_it():
 
     for x in range(len(classes) - 1):
         column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
-                       sg.Button('access', button_color=('black', 'orange')), sg.Radio('select', "RADIO1")], )
+                       sg.Button('access', button_color=('black', 'orange'), key=str(x)), sg.Radio('select', "RADIO1")],
+                      )
         column.append([sg.Text('Period: ' + period[x]), sg.Text('Year: ' + year[x])], )
         column.append([sg.Text(' ')])
 
@@ -43,6 +45,14 @@ def do_it():
 
     while True:
         event, values = window.Read()
+
+        for x in range(len(classes)-1):
+            if event == str(x):
+                print(classes[x] + '/' + year[x])
+                access(classes[x] + '/' + year[x])
+
+                break
+
         if event == 'key_add_class':
             add()
 
