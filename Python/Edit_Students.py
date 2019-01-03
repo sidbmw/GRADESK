@@ -1,6 +1,6 @@
 import cx_Oracle
-
 import PySimpleGUI as sg
+from Add_Students import do_it as add
 
 
 def do_it(course):
@@ -34,16 +34,16 @@ def do_it(course):
 
         return v_row
 
-    number_of_students = get_rows('ICS4U-01/2018')  # the array is filled as well
+    number_of_students = get_rows(course)  # the array is filled as well
 
     scrollable_column = []
 
     for x in range(int(number_of_students) - 1):
         scrollable_column = scrollable_column + [[sg.Input(get_first_name(student_numbers[x])),
                                                   sg.Input(get_last_name(student_numbers[x])),
-                                                  sg.Checkbox('', key=x)]]
+                                                  sg.Checkbox('')]]
 
-    layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Stretch()],
+    layout = [[sg.Stretch(), sg.Text('Edit Students', font=("Helvetica", 25)), sg.Stretch()],
               [sg.Text("                              First Name"), sg.Text("                                         "
                                                                             "             Last Name"),
                sg.Text("                          Delete")],
@@ -57,40 +57,51 @@ def do_it(course):
 
     window = sg.Window('Edit students', default_element_size=(40, 2)).Layout(layout)
 
-    reopen = False
+    def reopen():
+        window.Close()
+        do_it(course)
 
     while True:
         event, values = window.Read()
         if event is None or event == 'Exit':
             break
 
+        if event == 'key_add_students':
+            add(course)
+            reopen()
+
         if event == 'save_key':
             for x in range(int(number_of_students)-1):
                 edited = False
-                v_pos = x * 2
+                v_pos = x * 3
+                student_first_name = values[v_pos+2]
+                student_last_name = values[v_pos + 3]
 
-                student_first_name = values[v_pos]
-                student_last_name = values[v_pos + 1]
+                if values[v_pos+4]:
+                    cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :stuff", stuff=student_numbers[x])
+                    con.commit()
+                else:
+                    if student_first_name != get_first_name(student_numbers[x]):
+                        edited = True
+                    if student_last_name != get_last_name(student_numbers[x]):
+                        edited = True
 
-                if student_first_name != get_first_name(student_numbers[x]):
-                    edited = True
-                if student_last_name != get_last_name(student_numbers[x]):
-                    edited = True
+                    if edited:
+                        number = int(student_numbers[x])
 
-                # Note: Correct class must be fetched, set outside for loop and inserted into SQL query below!
-                if edited:
-                    cur.execute("UPDATE EOM_STUDENTS SET FIRST_NAME = :first_name AND LAST_NAME = :last_name "
-                                "WHERE STUDENT_ID = :student_id",
-                                firs_name=student_first_name,
-                                last_name=student_last_name,
-                                student_id=student_numbers[x]
-                                )
+                        cur.execute("UPDATE EOM_STUDENTS SET FIRST_NAME = :first_name, LAST_NAME = :last_name "
+                                    "WHERE STUDENT_ID = :student_number",
+                                    first_name=student_first_name,
+                                    last_name=student_last_name,
+                                    student_number=number
+                                    )
+                        con.commit()
+            sg.Popup("Student names have been edited")
+            reopen()
 
-        con.commit()
-        sg.Popup("Student names have been stored in database")
         break
 
     window.Close()
 
 
-#do_it('ICS4U-01/2018')
+do_it('ICS4U-04/2018')
