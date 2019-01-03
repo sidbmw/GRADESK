@@ -1,12 +1,26 @@
 # !/usr/bin/env python
 import cx_Oracle
 import PySimpleGUI as sg
+from Edit_Students import do_it as edit
 
 old_class = ''
 old_period_number = 0
 
 
 def do_it(x, y, z):
+    student_numbers = []
+
+    def get_rows(course_code):  # both fills the array with student ids and gets the amount of students
+
+        cur.execute("select * from EOM_STUDENTS")
+        v_row = 0
+        for row in cur:
+            if row[1] == course_code:
+                v_row += 1
+                student_numbers.append(row[0])
+
+        return v_row
+
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
@@ -24,25 +38,35 @@ def do_it(x, y, z):
               [sg.Input(y, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
               [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10), default_value=int(z))],
-              [sg.ReadButton('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10),
-                             bind_return_key=True)]
+              [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10),),
+               sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10),)]
               ]
 
     window = sg.Window('Edit Courses', default_element_size=(40, 2)).Layout(layout)
 
-    while 'edit_courses_button':
+    while True:
         event, values = window.Read()
         if event is None or event == 'Exit':
             break
 
-        cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
-                    other_stuff=old_class)
+        if event == 'edit_courses_button':
+            cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
+                        other_stuff=old_class)
 
-        cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :stuff", v_class=values[0] + '/' + values[2],
-                    stuff=old_class)
+            cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :stuff", v_class=values[0] + '/' + values[2],
+                        stuff=old_class)
 
-        con.commit()
+            for x in range(int(get_rows(old_class))-1):
+                cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
+                            new_class=values[0] + '/' + values[2],
+                            other_stuff=student_numbers[x])
 
-        break
+            con.commit()
+
+            break
+
+        if event == 'edit_student_key':
+            edit(old_class)
+            break
 
     window.Close()

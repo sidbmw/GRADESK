@@ -1,31 +1,25 @@
 import cx_Oracle
 import PySimpleGUI as sg
-from mark_gui import do_it as mark        # this is for the add assignment button, mark(course code + year)
+from mark_gui import do_it as mark  # this is for the add assignment button, mark(course code + year)
 
 
-def do_it(course):  # course is the course code, /, then year
-
-    word = course.split('/')
-    course_code = word[0]
-    year = word[1]     # split up, just replace some of your variables with these
-
-    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+def do_it(course):
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     BOX_SIZE = 16
 
     event = ''
 
-    # Note for MIKE:
-    # Course code should be passed into class_code from the class selection screen
-    class_code = 'ICS4U-01/2018'
+    # class_code = 'ICS4U-01/2018'
+    class_code = course
 
     min_sort_id = cur.execute("SELECT MIN(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
     min_sort_id = cur.fetchall()
     min_sort_id = [n[0] for n in min_sort_id]
     min_sort_id = min_sort_id[0]
     sort_id = min_sort_id
-    #sort_id = 1
+    # sort_id = 1
 
     while event != 'close_window':
         sort_id = cur.execute("select sort_id from EOM_STUDENTS where SORT_ID = :sort_id", sort_id=sort_id)
@@ -80,7 +74,8 @@ def do_it(course):  # course is the course code, /, then year
             for col in range(27):
 
                 if row == 0:
-                    arr_marks = ['Expectation', 'INC', 'R', '1--', '1-/1', '1', '1/1+', '1+', '1+/2-', '2-', '2-/2', '2', '2/2+', '2+', '2+/3-', '3-', '3-/3', '3', '3/3+',
+                    arr_marks = ['Expectation', 'INC', 'R', '1--', '1-/1', '1', '1/1+', '1+', '1+/2-', '2-', '2-/2', '2', '2/2+', '2+', '2+/3-', '3-', '3-/3', '3',
+                                 '3/3+',
                                  '3+', '3+/4-', '4-', '4-/4', '4', '4/4+', '4+', '4++']
                     g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black',
                                     fill_color='#2196F3')
@@ -142,7 +137,7 @@ def do_it(course):  # course is the course code, /, then year
                     sg.Popup("No students after this")
 
             if event == '_prev_student_':
-                if sort_id == 1:
+                if sort_id == min_sort_id:
                     sg.Popup("No students before this")
                 else:
                     sort_id -= 1
