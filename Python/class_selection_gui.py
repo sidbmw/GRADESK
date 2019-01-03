@@ -69,7 +69,7 @@ def do_it():
 
             con.commit()
 
-        if event is None:
+        if event is None:   
             break
 
     window.Close()
