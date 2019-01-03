@@ -5,7 +5,6 @@ import pyscreenshot as ImageGrab
 con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
-im = ImageGrab.grab(bbox=(10, 10, 510, 510))  # X1,Y1,X2,Y2
 
 BOX_SIZE = 16
 
@@ -150,6 +149,7 @@ while event != 'close_window':
             break
 
         if event == '_print_':
+            im = ImageGrab.grab(bbox=(10, 10, 510, 510))  # X1,Y1,X2,Y2
             im.show()
 
 window.Close()
