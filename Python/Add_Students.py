@@ -1,6 +1,5 @@
 # !/usr/bin/env python
 import cx_Oracle
-
 import PySimpleGUI as sg
 
 
