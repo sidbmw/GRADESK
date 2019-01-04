@@ -3,9 +3,8 @@ set feedback off
 
 spool C:\Users\siddh\Documents\ICS4U\Reports\report.htm
 
-select * from eom_students;
-
-select * from eom_marks;
+select * from eom_main_screen_layout;
 
 exit
 
+    
