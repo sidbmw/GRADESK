@@ -16,7 +16,6 @@ def do_it():
     student_numbers = []
 
     def get_rows(course_code):  # both fills the array with student ids and gets the amount of students
-
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
@@ -75,9 +74,13 @@ def do_it():
         if event == 'key_delete_class':
             for x in range(len(classes)):
                 if values[x]:
-                    cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :stuff", stuff=str(classes[x] + '/' + year[x]))
+                    cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :course_code", course_code=str(classes[x] + '/' + year[x]))
                     con.commit()
                     reopen()
+
+            cur.execute("select * from EOM_STUDENTS")
+            for x in range(get_rows(str(classes[x] + '/' + year[x]))-1):
+                cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :v_id", v_id=student_numbers[x])
 
         if event is None:
             break

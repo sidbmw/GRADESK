@@ -4,7 +4,8 @@ import PySimpleGUI as sg
 
 
 def do_it(course):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    #con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     sg.ChangeLookAndFeel('DarkBlue')
@@ -14,7 +15,7 @@ def do_it(course):
     # fetched_course_codes = [n[0] for n in fetch_course_code]
     # print(fetched_course_codes)
 
-    number_Of_Students = sg.PopupGetText("Number of Students")
+    number_Of_Students = int(sg.PopupGetText("Number of Students"))
     scrollable_column = [[sg.Input(), sg.Input()]]
 
     for x in range(int(number_Of_Students) - 1):
@@ -31,15 +32,16 @@ def do_it(course):
     window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
 
     while 'key_add_students':
+
         event, values = window.Read()
         if event is None or event == 'Exit':
             break
 
-        for x in range(1, (int(number_Of_Students) + 1)):
-            v_pos = x * 2 + 1
+        for x in range((int(number_Of_Students) - 1)):
+            v_pos = x * 2 + 2
             student_first_name = values[v_pos]
             student_last_name = values[v_pos + 1]
-
+            print(values)
             # Note: Correct class must be fetched, set outside for loop and inserted into SQL query below!
             cur.execute(
                 """INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.nextval, 
