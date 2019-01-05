@@ -78,7 +78,7 @@ def do_it(course):
                 student_last_name = values[v_pos + 3]
 
                 if values[v_pos+4]:
-                    cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :stuff", stuff=student_numbers[x])
+                    cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :v_id", v_id=student_numbers[x])
                     con.commit()
                 else:
                     if student_first_name != get_first_name(student_numbers[x]):
@@ -99,9 +99,5 @@ def do_it(course):
             sg.Popup("Student names have been edited")
             reopen()
 
-        break
-
     window.Close()
 
-
-do_it('ICS4U-04/2018')

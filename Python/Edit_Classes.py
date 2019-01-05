@@ -38,8 +38,8 @@ def do_it(x, y, z):
               [sg.Input(y, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
               [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10), default_value=int(z))],
-              [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10),),
-               sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10),)]
+              [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10),)],
+              [sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10),)]
               ]
 
     window = sg.Window('Edit Courses', default_element_size=(40, 2)).Layout(layout)

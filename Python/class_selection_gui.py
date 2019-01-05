@@ -5,6 +5,7 @@ from Edit_Classes import do_it as edit
 from Grades_Chart import do_it as access
 
 
+
 def do_it():
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
@@ -12,6 +13,17 @@ def do_it():
     period = []
     year = []
     column = []
+    student_numbers = []
+
+    def get_rows(course_code):  # both fills the array with student ids and gets the amount of students
+
+        cur.execute("select * from EOM_STUDENTS")
+        v_row = 0
+        for row in cur:
+            if row[1] == course_code:
+                v_row += 1
+                student_numbers.append(row[0])
+        return v_row
 
     cur.execute("select * from EOM_CLASS")
     for row in cur:
@@ -79,4 +91,3 @@ def do_it():
 
 
 do_it()
-

@@ -21,7 +21,6 @@ def do_it(course):
 
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-
     sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [
