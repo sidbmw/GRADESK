@@ -101,3 +101,4 @@ def do_it(course):
 
     window.Close()
 
+#do_it('ICS4U-01/2018')
