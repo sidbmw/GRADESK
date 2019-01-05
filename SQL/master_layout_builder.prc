@@ -621,6 +621,8 @@ X_4S4P IS NULL AND
 X_4P IS NULL AND
 X_4PP IS NULL;
 
+commit;
+
 end eom_build_layout;
 /
 
