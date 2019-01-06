@@ -154,6 +154,7 @@ def do_it(course):
             if event == "close_window":
                 print("closed window?")
                 cur.execute("delete EOM_MAIN_SCREEN_LAYOUT")
+                con.commit()
                 window.Close()
                 break
 
