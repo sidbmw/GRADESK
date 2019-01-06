@@ -1,6 +1,7 @@
 import cx_Oracle
 import PySimpleGUI as sg
 import os
+
 # from mark_gui import do_it as mark  # this is for the add assignment button, mark(course code + year)
 
 
@@ -126,6 +127,7 @@ while event != 'close_window':
             print(box_x, box_y)
 
         if event == '_next_student_':
+            cur.execute("delete eom_main_screen_layout")
             max_sort_id = cur.execute("SELECT MAX(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
             max_sort_id = cur.fetchall()
             max_sort_id = [n[0] for n in max_sort_id]
@@ -137,8 +139,10 @@ while event != 'close_window':
                 break
             else:
                 sg.Popup("No students after this")
+            cur.execute("delete eom_main_screen_layout")
 
         if event == '_prev_student_':
+            cur.execute("delete eom_main_screen_layout")
             if sort_id == min_sort_id:
                 sg.Popup("No students before this")
             else:
@@ -147,6 +151,7 @@ while event != 'close_window':
                 break
 
         if event == "close_window":
+            cur.execute("delete eom_main_screen_layout")
             window.Close()
             break
 
