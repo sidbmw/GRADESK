@@ -1,5 +1,5 @@
 create or replace procedure eom_build_layout ( p_student_id in NUMBER) is 
-
+s
 --Prerequisite eom_marks should have data for the student
 --Data gets loaded into the layout table for a particular student
 begin

@@ -38,10 +38,13 @@ def do_it(course):
 
     scrollable_column = []
 
-    for x in range(int(number_of_students) - 1):
+    print(number_of_students)
+
+    for x in range(int(number_of_students)):
         scrollable_column = scrollable_column + [[sg.Input(get_first_name(student_numbers[x])),
                                                   sg.Input(get_last_name(student_numbers[x])),
                                                   sg.Checkbox('')]]
+        print(get_first_name(student_numbers[x]), get_last_name(student_numbers[x]), x)
 
     layout = [[sg.Stretch(), sg.Text('Edit Students', font=("Helvetica", 25)), sg.Stretch()],
               [sg.Text("                              First Name"), sg.Text("                                         "

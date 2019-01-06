@@ -50,11 +50,11 @@ def do_it(x, y, z):
             break
 
         if event == 'edit_courses_button':
-            cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
-                        other_stuff=old_class)
+            cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :old_course", v_period_num=values[1],
+                        old_course=old_class)
 
-            cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :stuff", v_class=values[0] + '/' + values[2],
-                        stuff=old_class)
+            cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course", v_class=values[0] + '/' + values[2],
+                        old_course=old_class)
 
             for x in range(int(get_rows(old_class))-1):
                 cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
@@ -67,6 +67,5 @@ def do_it(x, y, z):
 
         if event == 'edit_student_key':
             edit(old_class)
-            break
 
     window.Close()

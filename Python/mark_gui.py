@@ -113,8 +113,3 @@ def do_it(course):
 
             window.Close()  # Don't forget to close your window!
         sg.Popup('You have just finished marking ' + marking_first.nameOfMark + ' for ' + course + "!")
-
-
-
-
-
