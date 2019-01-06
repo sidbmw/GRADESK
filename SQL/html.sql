@@ -1,8 +1,19 @@
 set markup html on spool on
 set feedback off
 
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD-Mon-YYYY hh24:mi:ss';
+set heading off
+set termout off
+COLUMN SYSDATE NEW_VALUE report_date
+
+SELECT SYSDATE FROM DUAL;
+
 spool C:\Users\siddh\Documents\ICS4U\Reports\report.htm
-ttitle center "Student Report" skip 3
+
+
+
+BTITLE CENTER 'STUDENT REPORT' RIGHT 'Date: ' report_date
+
 
 --select * from eom_main_screen_layout;
 
@@ -11,6 +22,8 @@ select  'Student Name :  ' || last_name ||', ' || first_name "Student Name"
 from eom_students
 where student_id = (select distinct student_id from eom_main_screen_layout);
 
+
+ttitle off
 
 set heading on
 column expectation format a30 heading 'Expectation'
