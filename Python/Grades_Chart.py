@@ -115,6 +115,7 @@ while event != 'close_window':
         event, values = window.Read()
         # print(event, values)
         if event is None or event == 'Exit':
+            cur.execute("delete eom_main_screen_layout")
             window.Close()
             break
         mouse = values['_GRAPH_']
@@ -139,7 +140,6 @@ while event != 'close_window':
                 break
             else:
                 sg.Popup("No students after this")
-            cur.execute("delete eom_main_screen_layout")
 
         if event == '_prev_student_':
             cur.execute("delete eom_main_screen_layout")
