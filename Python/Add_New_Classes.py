@@ -31,6 +31,9 @@ def do_it():
         v_period_num = values[1]
         v_year = values[2]
 
+        if len(str(v_course_code)):
+
+
         cur.execute("select * from EOM_CLASS")
         for row in cur:
             if v_course_code + '/' + v_year == (row[0]):
