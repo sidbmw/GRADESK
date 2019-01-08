@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import cx_Oracle
+from input_checker import check_string as check_string
 
 
 def do_it(course):
