@@ -17,8 +17,10 @@ def check_mark(user_input):
         if len(user_input) == 2:
             if list(user_input)[1] == '+' or list(user_input)[1] == '-':
                 return True
-        if len(user_input) == 3
+        if len(user_input) == 3:
             if list(user_input)[1] == '+' or list(user_input)[1] == '-':
                 if list(user_input)[2] == '+' or list(user_input)[2] == '-':
                     return True
         return True
+
+#def check_
