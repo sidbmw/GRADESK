@@ -85,7 +85,7 @@ def do_it():
             for x in range(get_rows(str(classes[x] + '/' + year[x]))-1):
                 print(student_numbers[x])
                 cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :v_id", v_id=student_numbers[x])
-                reopen()
+            reopen()
 
         if event is None:
             break

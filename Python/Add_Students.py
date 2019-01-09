@@ -46,20 +46,19 @@ def do_it(course):
                 print(values)
                 # Note: Correct class must be fetched, set outside for loop and inserted into SQL query below!
                 cur.execute(
-                    """INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME, SORT_ID) VALUES (EOM_STUDENTS_S.nextval, 
-                    :course_code, :student_first_name, :student_last_name, :sort_id_filler)""",
+                    """INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.nextval, 
+                    :course_code, :student_first_name, :student_last_name)""",
                     course_code=course,
                     student_first_name=student_first_name,
                     student_last_name=student_last_name,
-                    sort_id_filler=10
                 )
                 print("done", student_first_name, student_last_name)
-            con.commit()
             cur.callproc('eom_student_sort')
+            con.commit()
             sg.Popup("Student names have been stored in database")
             break
 
     window.Close()
 
-#do_it('ICS4U-02/2018')
+do_it('ICS4U-02/2018')
 

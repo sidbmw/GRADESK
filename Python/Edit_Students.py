@@ -24,7 +24,6 @@ def do_it(course):
                 return row[3]
 
     def get_rows(course_code):  # both fills the array with student ids and gets the amount of students
-
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
@@ -100,6 +99,7 @@ def do_it(course):
                                     )
                         con.commit()
             sg.Popup("Student names have been edited")
+            #cur.callproc('eom_student_sort')
             reopen()
 
     window.Close()
