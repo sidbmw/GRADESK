@@ -41,7 +41,7 @@ def do_it(course, student_number):
             sys.exit()
 
 
-do_it('ICS4U-01/2018', 1)
+do_it('ICS4U-01/2018', 5)
 
 
 

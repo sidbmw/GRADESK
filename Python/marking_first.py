@@ -1,7 +1,8 @@
 import PySimpleGUI as sg
 import cx_Oracle
-from input_checker import check_string as check_string
-
+from input_checker import check_string
+from input_checker import check_expectation
+from input_checker import check_mark
 
 def do_it(course):
     global nameOfMark
