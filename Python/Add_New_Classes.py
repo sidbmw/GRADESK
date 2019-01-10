@@ -50,7 +50,7 @@ def do_it():
 
         con.commit()
 
-        add_student(v_course_code)
+        add_student(v_course_code + '/' + v_year)
 
         window.Close()
     else:
