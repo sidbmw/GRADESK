@@ -38,8 +38,8 @@ def do_it(x, y, z):
               [sg.Input(y, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
               [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10), default_value=int(z))],
-              [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10), )],
-              [sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10), )]
+              [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10),)],
+              [sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10),)]
               ]
 
     window = sg.Window('Edit Courses', default_element_size=(40, 2)).Layout(layout)
@@ -50,15 +50,13 @@ def do_it(x, y, z):
             break
 
         if event == 'edit_courses_button':
-            cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :old_course",
-                        v_period_num=values[1],
+            cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :old_course", v_period_num=values[1],
                         old_course=old_class)
 
-            cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course",
-                        v_class=values[0] + '/' + values[2],
+            cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course", v_class=values[0] + '/' + values[2],
                         old_course=old_class)
 
-            for x in range(int(get_rows(old_class)) - 1):
+            for x in range(int(get_rows(old_class))-1):
                 cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
                             new_class=values[0] + '/' + values[2],
                             other_stuff=student_numbers[x])

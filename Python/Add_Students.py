@@ -1,17 +1,22 @@
 # !/usr/bin/env python
 import cx_Oracle
-
 import PySimpleGUI as sg
 
 
 def do_it(course):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    #con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     sg.ChangeLookAndFeel('DarkBlue')
 
-    number_Of_Students = sg.PopupGetText("Number of Students")
-    scrollable_column = [[sg.Input(), sg.Input(), sg.Button(button_text=" X ")]]
+    # cur.execute("SELECT  CLASS FROM EOM_CLASS")
+    # fetch_course_code = cur.fetchall()
+    # fetched_course_codes = [n[0] for n in fetch_course_code]
+    # print(fetched_course_codes)
+
+    number_Of_Students = int(sg.PopupGetText("Number of Students"))
+    scrollable_column = [[sg.Input(), sg.Input()]]
 
     for x in range(int(number_Of_Students) - 1):
         scrollable_column = scrollable_column + [[sg.Input(), sg.Input(), sg.Button(button_text=" X ")]]
@@ -24,14 +29,14 @@ def do_it(course):
               # [sg.Input(do_not_clear=True, size=(20, 1), enable_events=True, key='_INPUT_')],
               # [sg.Listbox(fetched_course_codes, size=(20, 4), enable_events=True, key='_LIST_')],
 
-              [sg.Stretch(), sg.ReadButton('Add Students', key='key_add_students', size=(20, 2),
-                                           bind_return_key=True),
-               sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch()]
+              [sg.Stretch(), sg.Button('Add Students', key='key_add_students', size=(20, 2)),
+               sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch() ]
               ]
 
     window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
 
-    while 'key_add_students':
+    while True:
+        print('running')
         event, values = window.Read()
         if event is None or event == 'Exit':
             break
@@ -56,5 +61,3 @@ def do_it(course):
         break
 
     window.Close()
-
-

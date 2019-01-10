@@ -5,7 +5,8 @@ from Add_Students import do_it as add_student
 
 
 def do_it():
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    #con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
 
@@ -30,12 +31,13 @@ def do_it():
         v_period_num = values[1]
         v_year = values[2]
 
-        cur.execute("select * from EOM_CLASS")
-        for row in cur:
-            if v_course_code + '/' + v_year == (row[0]):
-                sg.Popup("INVALID")
-                break
-        break
+        if len(str(v_course_code)):
+            cur.execute("select * from EOM_CLASS")
+            for row in cur:
+                if v_course_code + '/' + v_year == (row[0]):
+                    sg.Popup("INVALID")
+                    break
+            break
 
     if v_course_code !='' and v_period_num != '' and v_year != '':
 

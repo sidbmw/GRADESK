@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Wednesday-January-02-2019   
+--  File created - Wednesday-January-02-2019
 --------------------------------------------------------
 REM INSERTING into EOM.EOM_STUDENTS
 SET DEFINE OFF;

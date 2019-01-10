@@ -145,7 +145,6 @@ while event != 'close_window':
             box_x = mouse[0] // BOX_SIZE
             box_y = mouse[1] // BOX_SIZE
             print(box_x, box_y)
-            
 
         if event == '_next_student_':
             cur.execute("delete eom_main_screen_layout")

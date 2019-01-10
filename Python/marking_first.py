@@ -1,6 +1,8 @@
 import PySimpleGUI as sg
 import cx_Oracle
-
+from input_checker import check_string
+from input_checker import check_expectation
+from input_checker import check_mark
 
 def do_it(course):
     global nameOfMark
@@ -21,7 +23,6 @@ def do_it(course):
 
     con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-
     sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [
