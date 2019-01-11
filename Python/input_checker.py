@@ -13,12 +13,32 @@ def check_expectation(user_input):
 
 
 def check_mark(user_input):
-    if list(user_input)[0].isalpha() or user_input == 'R':
+    if list(user_input)[0] == '1' or list(user_input)[0] == '2' or list(user_input)[0] == '3' or list(user_input)[0] == '4' \
+            or user_input == 'R' or user_input == 'INC':
+
         if len(user_input) == 2:
             if list(user_input)[1] == '+' or list(user_input)[1] == '-':
+                print('done,2')
                 return True
-        if len(user_input) == 3:
+            else:
+                return False
+
+        if len(user_input) == 3 and list(user_input)[0].isnumeric():
             if list(user_input)[1] == '+' or list(user_input)[1] == '-':
-                if list(user_input)[2] == '+' or list(user_input)[2] == '-':
+                if list(user_input)[2] == list(user_input)[1]:
+                    print('done, 3')
                     return True
+                else:
+                    return False
+            else:
+                return False
+
+        print('done, 3')
         return True
+
+    else:
+        return False
+
+
+print(check_mark('1-+'))
+
