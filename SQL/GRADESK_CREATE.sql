@@ -51,22 +51,22 @@ CREATE TABLE eom_main_screen_layout (
     seq_no        NUMBER,
     x_inc         VARCHAR(2),
     x_r           VARCHAR(2),
-    x_1mm         VARCHAR(2), -- 1--
-    x_1ms1        VARCHAR(2), --1-/1--
+    x_1m         VARCHAR(2), -- 1--
+--    x_1ms1        VARCHAR(2), --1-/1--
     x_1           VARCHAR(2), --1-- 
-    x_1s1p        VARCHAR(2), --1/1+--
+--    x_1s1p        VARCHAR(2), --1/1+--
     x_1p          VARCHAR(2), --1+--
-    x_1ps2m       VARCHAR(2), --1+/2--
+--    x_1ps2m       VARCHAR(2), --1+/2--
     x_2m          VARCHAR(2),
-    x_2ms2        VARCHAR(2),
+--    x_2ms2        VARCHAR(2),
     x_2           VARCHAR(2),
-    x_2s2p        VARCHAR(2),
+--    x_2s2p        VARCHAR(2),
     x_2p          VARCHAR(2),
-    x_2ps3m       VARCHAR(2),
+--    x_2ps3m       VARCHAR(2),
     x_3m          VARCHAR(2),
-    x_3ms3        VARCHAR(2),
+--    x_3ms3        VARCHAR(2),
     x_3           VARCHAR(2),
-    x_3s3p        VARCHAR(2),
+--    x_3s3p        VARCHAR(2),
     x_3p          VARCHAR(2),
     x_3ps4m       VARCHAR(2),
     x_4m          VARCHAR(2),
@@ -100,69 +100,69 @@ delete eom_main_screen_layout where student_id=p_student_id;
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = 'R';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1MM)
+        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1M)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1--';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1-';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1MS1)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1-/1';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1MS1)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1-/1';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1)
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1S1P)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1/1+';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1S1P)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1/1+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1P)
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1+';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, x_1ps2m)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1+/2-';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, x_1ps2m)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1+/2-';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2M)
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2-';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2MS2)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2-/2';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2MS2)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2-/2';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2)
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2S2P)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2/2+';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2S2P)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2/2+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2P)
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2+';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2PS3M)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2+/3-';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2PS3M)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2+/3-';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3M)
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3-';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3MS3)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3-/3';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3MS3)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3-/3';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3)
         SELECT STUDENT_ID, EXPECTATION, TASK
         FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3';
 
-        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3S3P)
-        SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3/3+';
+--        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3S3P)
+--        SELECT STUDENT_ID, EXPECTATION, TASK
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3/3+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3P)
         SELECT STUDENT_ID, EXPECTATION, TASK
@@ -255,38 +255,38 @@ delete eom_main_screen_layout where student_id=p_student_id;
 
 
 
-  FOR r_x_1mm in (select rownum, x_1mm, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1mm is not null AND student_id=p_student_id)
+  FOR r_x_1m in (select rownum, x_1m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1m is not null AND student_id=p_student_id)
   LOOP
 
     UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_1mm=null
-    where  rowid=r_x_1mm.rowid
+    set    x_1m=null
+    where  rowid=r_x_1m.rowid
     AND student_id=p_student_id
     AND EXPECTATION = r_exp.expectation;
 
     update EOM_MAIN_SCREEN_LAYOUT
-    set    x_1mm=r_x_1mm.x_1mm
-    WHERE  seq_no=r_x_1mm.rownum
+    set    x_1m=r_x_1m.x_1m
+    WHERE  seq_no=r_x_1m.rownum
     AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
 
   END LOOP;
 
 
-  FOR r_x_1ms1 in (select rownum, x_1ms1, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1ms1 is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_1ms1=null
-    where  rowid=r_x_1ms1.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_1ms1=r_x_1ms1.x_1ms1
-    WHERE  seq_no=r_x_1ms1.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_1ms1 in (select rownum, x_1ms1, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1ms1 is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_1ms1=null
+--    where  rowid=r_x_1ms1.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_1ms1=r_x_1ms1.x_1ms1
+--    WHERE  seq_no=r_x_1ms1.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 
   FOR r_x_1 in (select rownum, x_1, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1 is not null AND student_id=p_student_id)
@@ -306,21 +306,21 @@ delete eom_main_screen_layout where student_id=p_student_id;
   END LOOP;
 
 
-  FOR r_x_1s1p in (select rownum, x_1s1p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1s1p is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_1s1p=null
-    where  rowid=r_x_1s1p.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_1s1p=r_x_1s1p.x_1s1p
-    WHERE  seq_no=r_x_1s1p.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_1s1p in (select rownum, x_1s1p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1s1p is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_1s1p=null
+--    where  rowid=r_x_1s1p.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_1s1p=r_x_1s1p.x_1s1p
+--    WHERE  seq_no=r_x_1s1p.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 
   FOR r_x_1p in (select rownum, x_1p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1p is not null AND student_id=p_student_id)
@@ -340,21 +340,21 @@ delete eom_main_screen_layout where student_id=p_student_id;
   END LOOP;
 
 
-  FOR r_x_1ps2m in (select rownum, x_1ps2m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1ps2m is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_1ps2m=null
-    where  rowid=r_x_1ps2m.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_1ps2m=r_x_1ps2m.x_1ps2m
-    WHERE  seq_no=r_x_1ps2m.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_1ps2m in (select rownum, x_1ps2m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_1ps2m is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_1ps2m=null
+--    where  rowid=r_x_1ps2m.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_1ps2m=r_x_1ps2m.x_1ps2m
+--    WHERE  seq_no=r_x_1ps2m.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 -------------------------------------------------------------------------------------------------
 
@@ -378,21 +378,21 @@ delete eom_main_screen_layout where student_id=p_student_id;
   END LOOP;
 
 
-  FOR r_x_2ms2 in (select rownum, x_2ms2, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2ms2 is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_2ms2=null
-    where  rowid=r_x_2ms2.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_2ms2=r_x_2ms2.x_2ms2
-    WHERE  seq_no=r_x_2ms2.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_2ms2 in (select rownum, x_2ms2, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2ms2 is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_2ms2=null
+--    where  rowid=r_x_2ms2.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_2ms2=r_x_2ms2.x_2ms2
+--    WHERE  seq_no=r_x_2ms2.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 
   FOR r_x_2 in (select rownum, x_2, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2 is not null AND student_id=p_student_id)
@@ -412,21 +412,21 @@ delete eom_main_screen_layout where student_id=p_student_id;
   END LOOP;
 
 
-  FOR r_x_2s2p in (select rownum, x_2s2p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2s2p is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_2s2p=null
-    where  rowid=r_x_2s2p.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_2s2p=r_x_2s2p.x_2s2p
-    WHERE  seq_no=r_x_2s2p.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_2s2p in (select rownum, x_2s2p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2s2p is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_2s2p=null
+--    where  rowid=r_x_2s2p.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_2s2p=r_x_2s2p.x_2s2p
+--    WHERE  seq_no=r_x_2s2p.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 
   FOR r_x_2p in (select rownum, x_2p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2p is not null AND student_id=p_student_id)
@@ -446,21 +446,21 @@ delete eom_main_screen_layout where student_id=p_student_id;
   END LOOP;
 
 
-  FOR r_x_2ps3m in (select rownum, x_2ps3m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2ps3m is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_2ps3m=null
-    where  rowid=r_x_2ps3m.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_2ps3m=r_x_2ps3m.x_2ps3m
-    WHERE  seq_no=r_x_2ps3m.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_2ps3m in (select rownum, x_2ps3m, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_2ps3m is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_2ps3m=null
+--    where  rowid=r_x_2ps3m.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_2ps3m=r_x_2ps3m.x_2ps3m
+--    WHERE  seq_no=r_x_2ps3m.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 -------------------------------------------------------------------------------------------------
 
@@ -484,21 +484,21 @@ delete eom_main_screen_layout where student_id=p_student_id;
   END LOOP;
 
 
-  FOR r_x_3ms3 in (select rownum, x_3ms3, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3ms3 is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_3ms3=null
-    where  rowid=r_x_3ms3.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_3ms3=r_x_3ms3.x_3ms3
-    WHERE  seq_no=r_x_3ms3.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_3ms3 in (select rownum, x_3ms3, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3ms3 is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_3ms3=null
+--    where  rowid=r_x_3ms3.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_3ms3=r_x_3ms3.x_3ms3
+--    WHERE  seq_no=r_x_3ms3.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 
   FOR r_x_3 in (select rownum, x_3, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3 is not null AND student_id=p_student_id)
@@ -518,21 +518,21 @@ delete eom_main_screen_layout where student_id=p_student_id;
   END LOOP;
 
 
-  FOR r_x_3s3p in (select rownum, x_3s3p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3s3p is not null AND student_id=p_student_id)
-  LOOP
-
-    UPDATE EOM_MAIN_SCREEN_LAYOUT
-    set    x_3s3p=null
-    where  rowid=r_x_3s3p.rowid
-    AND student_id=p_student_id
-    AND EXPECTATION = r_exp.expectation;
-
-    update EOM_MAIN_SCREEN_LAYOUT
-    set    x_3s3p=r_x_3s3p.x_3s3p
-    WHERE  seq_no=r_x_3s3p.rownum
-    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
-
-  END LOOP;
+--  FOR r_x_3s3p in (select rownum, x_3s3p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3s3p is not null AND student_id=p_student_id)
+--  LOOP
+--
+--    UPDATE EOM_MAIN_SCREEN_LAYOUT
+--    set    x_3s3p=null
+--    where  rowid=r_x_3s3p.rowid
+--    AND student_id=p_student_id
+--    AND EXPECTATION = r_exp.expectation;
+--
+--    update EOM_MAIN_SCREEN_LAYOUT
+--    set    x_3s3p=r_x_3s3p.x_3s3p
+--    WHERE  seq_no=r_x_3s3p.rownum
+--    AND student_id=p_student_id AND EXPECTATION = r_exp.expectation;
+--
+--  END LOOP;
 
 
   FOR r_x_3p in (select rownum, x_3p, rowid from EOM_MAIN_SCREEN_LAYOUT where expectation = r_exp.expectation AND x_3p is not null AND student_id=p_student_id)
@@ -682,22 +682,22 @@ END LOOP;
 delete eom_main_screen_layout where student_id=p_student_id
 AND X_INC IS NULL AND 
 X_R IS NULL AND
-X_1MM IS NULL AND
-X_1MS1 IS NULL AND
+X_1M IS NULL AND
+--X_1MS1 IS NULL AND
 X_1 IS NULL AND
-X_1S1P IS NULL AND
+--X_1S1P IS NULL AND
 X_1P IS NULL AND
-X_1PS2M IS NULL AND
+--X_1PS2M IS NULL AND
 X_2M IS NULL AND
-X_2MS2 IS NULL AND
+--X_2MS2 IS NULL AND
 X_2 IS NULL AND
-X_2S2P IS NULL AND
+--X_2S2P IS NULL AND
 X_2P IS NULL AND
-X_2PS3M IS NULL AND
+--X_2PS3M IS NULL AND
 X_3M IS NULL AND
-X_3MS3 IS NULL AND
+--X_3MS3 IS NULL AND
 X_3 IS NULL AND
-X_3S3P IS NULL AND
+--X_3S3P IS NULL AND
 X_3P IS NULL AND
 X_3PS4M IS NULL AND
 X_4M IS NULL AND

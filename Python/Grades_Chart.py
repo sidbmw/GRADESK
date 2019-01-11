@@ -9,7 +9,7 @@ def do_it(course):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
-    BOX_SIZE = 16
+    BOX_SIZE = 23
 
     event = ''
 
@@ -80,13 +80,10 @@ def do_it(course):
         # print(v_num_of_rows[0])
 
         for row in range(v_num_of_rows[0]):
-            for col in range(27):
+            for col in range(19):
 
                 if row == 0:
-                    arr_marks = ['Expectation', 'INC', 'R', '1--', '1-/1', '1', '1/1+', '1+', '1+/2-', '2-', '2-/2',
-                                 '2', '2/2+', '2+', '2+/3-', '3-', '3-/3', '3',
-                                 '3/3+',
-                                 '3+', '3+/4-', '4-', '4-/4', '4', '4/4+', '4+', '4++']
+                    arr_marks = ['Expectation', 'INC', 'R', '1-', '1', '1+', '2-', '2', '2+', '3-', '3', '3+', '3+/4-', '4-', '4-/4', '4', '4/4+', '4+', '4++']
                     g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                     (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black',
                                     fill_color='#2196F3')
@@ -94,7 +91,7 @@ def do_it(course):
 
                 else:
                     v_table_data = cur.execute(
-                        """SELECT expectation, x_inc, x_r, x_1mm, x_1ms1, x_1, x_1s1p, x_1p, x_1ps2m, x_2m, x_2ms2, x_2, x_2s2p, x_2p, x_2ps3m, x_3m, x_3ms3, x_3, x_3s3p, x_3p, x_3ps4m, x_4m, x_4ms4, x_4, x_4s4p, x_4p, x_4pp FROM EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = :student_id""",
+                        """SELECT expectation, x_inc, x_r, x_1m, x_1, x_1p, x_2m, x_2, x_2p, x_3m, x_3, x_3p, x_3ps4m, x_4m, x_4ms4, x_4, x_4s4p, x_4p, x_4pp FROM EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = :student_id""",
                         student_id=student_id)
                     raw_data = cur.fetchall()
                     cooked_data = [n[col] for n in raw_data]
