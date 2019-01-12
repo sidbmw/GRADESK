@@ -45,8 +45,8 @@ def do_it():
     column.append([sg.Text('Period: ' + period[len(classes) - 1]), sg.Text('Year: ' + year[len(year)-1])])
 
     layout = [
-        [sg.Text('  Class selection', size=(17, 1), font=("Helvetica", 25), text_color='black', justification='center')],
-        [sg.Column(column, scrollable=True, size=(350, 200))],
+        [sg.Text('          Class selection', size=(17, 1), font=("Helvetica", 25), text_color='black', justification='center')],
+        [sg.Column(column, scrollable=True, size=(400, 300))],
         [sg.Button('Add Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_add_class'),
          sg.Button('Edit Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_edit_class'),
          sg.Button('Delete Class', button_color=('white', 'black'), font
