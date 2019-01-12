@@ -104,21 +104,25 @@ def do_it(course):
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
                                         line_color='black',
                                         fill_color='#F44336')
-                    if 3 <= col <= 7:
+                    if 3 <= col <= 5:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
                                         line_color='black',
                                         fill_color='#E040FB')
-                    if 8 <= col <= 13:
+                    if 6 <= col <= 8:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
                                         line_color='black',
                                         fill_color='#76FF03')
-                    if 14 <= col <= 19:
+                    if 9 <= col <= 12:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
                                         line_color='black',
                                         fill_color='#FF8A65')
+                    if 13 <= col <= 19:
+                        g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
+                                        (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
+                                        line_color='black', fill_color='#4CAF50')
                     else:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
