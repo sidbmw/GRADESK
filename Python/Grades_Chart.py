@@ -185,6 +185,6 @@ def do_it(course):
                 os.startfile(filepath='C:/Users/siddh/Documents/ICS4U/Reports/report.htm')
 
             if event == '_add_assignment_':
-                marking_program
+                marking_program(class_code, student_id)
 
     window.Close()

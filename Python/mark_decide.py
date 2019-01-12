@@ -15,15 +15,13 @@ def do_it(course, student_number):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     student_name = get_name(student_number)
 
-    layout = [[sg.Text('New assessment for whole class or just ' + student_name + '?', size=(20, 2),
-                       font=("Helvetica", 12), justification='center')],
-             [sg.Text('   ')],
-              [sg.Button('For whole class', key='key_class'),
-               sg.Button('For ' + student_name + ' only', key='key_single')]]
+    layout = [[sg.Text('New assessment for whole class or just ' + student_name + '?', size=(20, 2), font=("Helvetica", 12), justification='center')],
+              [sg.Text('   ')],
+              [sg.Button('For whole class', key='key_class'), sg.Button('For ' + student_name + ' only', key='key_single')]]
 
     window = sg.Window('Mark ', auto_size_text=True, default_element_size=(50, 2)).Layout(layout)
 
@@ -39,10 +37,3 @@ def do_it(course, student_number):
 
         if values is None:
             sys.exit()
-
-
-# do_it('ICS4U-01/2018', 5)
-
-
-
-

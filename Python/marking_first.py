@@ -4,6 +4,7 @@ from input_checker import check_string
 from input_checker import check_expectation
 from input_checker import check_mark
 
+
 def do_it(course):
     global nameOfMark
     global numberOfMark
@@ -21,16 +22,14 @@ def do_it(course):
             if row[1] == x:
                 return row[0]
 
-    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [
         [sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='white', justification='center')],
-        [sg.Radio('Test             ', 'RADIO1', default=True, text_color='blue'),
-         sg.Radio('Assignment   ', 'RADIO1', text_color='red')],
-        [sg.Radio('Presentation ', 'RADIO1', text_color='green'),
-         sg.Radio('Quiz           ', 'RADIO1', text_color='Yellow')],
+        [sg.Radio('Test             ', 'RADIO1', default=True, text_color='blue'), sg.Radio('Assignment   ', 'RADIO1', text_color='red')],
+        [sg.Radio('Presentation ', 'RADIO1', text_color='green'), sg.Radio('Quiz           ', 'RADIO1', text_color='Yellow')],
         [sg.Text('Name of Assigment      '), sg.InputText('', size=(10, 1))],
         [sg.Text('Number of expectations'), sg.InputText('', size=(10, 1))],
         [sg.Quit(button_color=('black', 'orange')), sg.Button('Next', key='next_key')]]
@@ -58,7 +57,7 @@ def do_it(course):
             for x in range(len(student_id)):
                 if get_first_student(course) == int(student_id[x]):
                     if values[4] == task[x]:
-                        sg.Popup("there's already an assignment like this for " + course + "!")
+                        sg.Popup("There's already an assignment like this for " + course + "!")
                         break_variable = False
 
                         break
@@ -84,4 +83,4 @@ def do_it(course):
         else:
             sg.Popup('invalid input')
 
-    window.Close()
+
