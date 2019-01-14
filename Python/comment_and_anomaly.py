@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 import cx_Oracle
-from input_checker import check_string as check_string
+from input_checker import check_string
 
 
 def do_it(student_id, mark):
@@ -41,10 +41,14 @@ def do_it(student_id, mark):
                                     v_comment=comments, V_anomaly='Y', v_id=student_id, v_mark=mark)
                         print('2')
                     con.commit()
-
-            cur.execute("UPDATE EOM_MARKS SET COMMENTS = :v_comment WHERE STUDENT_ID=:v_id AND TASK=:v_mark",
-                        v_comment=comments, v_id=student_id, v_mark=mark)
-            con.commit()
+                else:
+                    for row in cur:  # problem "cx_Oracle.InterfaceError: not a query"
+                        cur.execute("UPDATE EOM_MARKS SET COMMENTS = :v_comment WHERE STUDENT_ID=:v_id AND TASK=:v_mark",
+                                    v_comment=comments, v_id=student_id, v_mark=mark)
+                    con.commit()
+                break
+            else:
+                sg.Popup('Invalid entry, try again.')
 
         if event is None:
             break

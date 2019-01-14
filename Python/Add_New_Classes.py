@@ -1,7 +1,7 @@
 import cx_Oracle
 import PySimpleGUI as sg
 from Add_Students import do_it as add_student
-from input_checker import check_string as check_string
+from input_checker import check_string
 
 
 def do_it():

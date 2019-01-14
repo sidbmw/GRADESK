@@ -2,7 +2,8 @@ import PySimpleGUI as sg
 import marking_first
 import cx_Oracle
 import sys
-
+from input_checker import check_expectation
+from input_checker import check_mark
 
 def do_it(course, student_number):
     marking_first.do_it(course)
@@ -57,8 +58,8 @@ def do_it(course, student_number):
             if event == 'key_finish':
                 for x in range(int(marking_first.numberOfMark)):
                     tracker = x * 2
-                    if values[tracker + 0] is not None:
-                        if values[tracker + 1] is not None:
+                    if values[tracker + 0] is not None and check_expectation(values[tracker + 0]):
+                        if values[tracker + 1] is not None and check_mark(values[tracker + 1]):
                             mark[0].append(values[tracker + 0])
                             mark[1].append(values[tracker + 1])
                             do = True

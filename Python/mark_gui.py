@@ -2,7 +2,8 @@ import PySimpleGUI as sg
 import marking_first
 import cx_Oracle
 import sys
-
+from input_checker import check_expectation
+from input_checker import check_mark
 
 def do_it(course):
     marking_first.do_it('ICS4U-02/2018')
@@ -69,18 +70,18 @@ def do_it(course):
                 saved = False
                 do = False
                 if event == 'key_next_stud':
-                    for x in range(int(marking_first.numberOfMark)):
-                        tracker = int(x * 2)
-                        if values[tracker + 0] is not None:
-                            if values[tracker + 1] is not None:
+                    for y in range(int(marking_first.numberOfMark)):
+                        tracker = int(y * 2)
+                        if values[tracker + 0] is not None and check_expectation(values[tracker + 0]):
+                            if values[tracker + 1] is not None and check_mark(values[tracker + 1]):
                                 mark[0].append(values[tracker + 0])
                                 mark[1].append(values[tracker + 1])
                                 do = True
                             else:
-                                sg.Popup('incomplete input')
+                                sg.Popup('Invalid expectation')
                                 do = False
                         else:
-                            sg.Popup('incomplete input')
+                            sg.Popup('Invalid mark')
                             do = False
 
                     if do:

@@ -48,40 +48,39 @@ def do_it(course):
             quit_option = True
             break
         if event == 'next_key':
-            print("im done")
+            if check_expectation(values[4]) and check_string(values[5], 'int', 10):
+                cur.execute("SELECT STUDENT_ID, TASK FROM EOM_MARKS")
+                fetched_data = cur.fetchall()
+                student_id = [n[0] for n in fetched_data]
+                task = [n[1] for n in fetched_data]
 
-            cur.execute("SELECT STUDENT_ID, TASK FROM EOM_MARKS")  # -------------------------------------------change
-            fetched_data = cur.fetchall()
-            student_id = [n[0] for n in fetched_data]
-            task = [n[1] for n in fetched_data]
+                for x in range(len(student_id)):
+                    if get_first_student(course) == int(student_id[x]):
+                        if values[4] == task[x]:
+                            sg.Popup("there's already an assignment like this for " + course + "!")
+                            break_variable = False
 
-            for x in range(len(student_id)):
-                if get_first_student(course) == int(student_id[x]):
-                    if values[4] == task[x]:
-                        sg.Popup("there's already an assignment like this for " + course + "!")
-                        break_variable = False
+                            break
 
+                if values[4] and values[5] is not None:
+                    if values[0]:
+                        color = 'blue'
+
+                    if values[1]:
+                        color = 'red'
+
+                    if values[2]:
+                        color = 'green'
+
+                    if values[3]:
+                        color = 'yellow'
+
+                    nameOfMark = values[4]
+                    numberOfMark = values[5]
+
+                    if break_variable:
                         break
-
-            if values[4] and values[5] is not None:
-                if values[0]:
-                    color = 'blue'
-
-                if values[1]:
-                    color = 'red'
-
-                if values[2]:
-                    color = 'green'
-
-                if values[3]:
-                    color = 'yellow'
-
-                nameOfMark = values[4]
-                numberOfMark = values[5]
-
-                if break_variable:
-                    break
-        else:
-            sg.Popup('invalid input')
+            else:
+                sg.Popup('Invalid input, try again.')
 
     window.Close()
