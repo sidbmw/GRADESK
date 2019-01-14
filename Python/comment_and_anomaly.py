@@ -11,7 +11,7 @@ def do_it(student_id, mark):
     sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [[sg.Text('Comments', font=("Helvetica", 11), text_color='white', justification='left')],
-              [sg.InputText(size=(25, 0))],  # 250 char limit
+              [sg.InputText(size=(250, 0))],  # 250 char limit
               [sg.Text('      Mark as anomaly'), sg.Checkbox('')],
               [sg.Button('Delete this assignment', button_color=('black', 'orange'), key='_delete_')],
               [sg.Text('')],
