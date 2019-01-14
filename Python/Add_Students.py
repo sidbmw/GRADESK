@@ -41,13 +41,11 @@ def do_it(course):
         if event is None or event == 'Exit':
             break
 
-        v_pos = 0
         for x in range(1, (int(number_Of_Students) + 1)):
             v_pos = x * 2 + 1
             student_first_name = values[v_pos]
             student_last_name = values[v_pos + 1]
 
-            # Note: Correct class must be fetched, set outside for loop and inserted into SQL query below!
             cur.execute(
                 """INSERT INTO EOM_STUDENTS (STUDENT_ID, CLASS, FIRST_NAME, LAST_NAME) VALUES (EOM_STUDENTS_S.nextval, :course, :student_first_name, :student_last_name)""",
                 student_first_name=student_first_name,

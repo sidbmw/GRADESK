@@ -1,8 +1,14 @@
-def check_string(user_input, v_type, v_max_length):
-    if len(str(user_input)) <= v_max_length and type(user_input) == v_type:
-        return True
-    else:
-        return False
+def check_string(user_input, v_type, v_max):
+    if v_type == 'str':
+        if len(str(user_input)) <= v_max and str(type(user_input)) == '<class \'' + v_type + '\'>':
+            return True
+        else:
+            return False
+    if v_type == 'int':
+        if int(user_input) <= v_max and str(type(user_input)) == '<class \'' + v_type + '\'>':
+            return True
+        else:
+            return False
 
 
 def check_expectation(user_input):
@@ -22,3 +28,4 @@ def check_mark(user_input):
                 if list(user_input)[2] == '+' or list(user_input)[2] == '-':
                     return True
         return True
+

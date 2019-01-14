@@ -1,10 +1,11 @@
 import PySimpleGUI as sg
 import cx_Oracle
+from input_checker import check_string as check_string
 
 
 def do_it(student_id, mark):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
-    cur = con.cursor(scrollable=True)
+    # con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    # cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [[sg.Text('Comments', font=("Helvetica", 11), text_color='white', justification='left')],
@@ -31,18 +32,19 @@ def do_it(student_id, mark):
 
         if event == 'save':
             comments = values[0]
-            if values[1]:
-                cur.execute("select * from EOM_MARKS")
-                for row in cur:  # problem "cx_Oracle.InterfaceError: not a query"
-                    cur.execute("UPDATE EOM_MARKS SET COMMENTS=:v_comment, ANOMALY=:v_anomaly "
-                                "WHERE STUDENT_ID=:v_id AND TASK=:v_mark",
-                                v_comment=comments, V_anomaly='Y', v_id=student_id, v_mark=mark)
-                    print('2')
-                con.commit()
+            if check_string(comments, 'str', 250):
+                if values[1]:  # anomaly
+                    cur.execute("select * from EOM_MARKS")
+                    for row in cur:  # problem "cx_Oracle.InterfaceError: not a query"
+                        cur.execute("UPDATE EOM_MARKS SET COMMENTS=:v_comment, ANOMALY=:v_anomaly "
+                                    "WHERE STUDENT_ID=:v_id AND TASK=:v_mark",
+                                    v_comment=comments, V_anomaly='Y', v_id=student_id, v_mark=mark)
+                        print('2')
+                    con.commit()
 
-        # cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :other_stuff", v_period_num=values[1],
-        # other_stuff=old_class)
-        # con.commit()
+            cur.execute("UPDATE EOM_MARKS SET COMMENTS = :v_comment WHERE STUDENT_ID=:v_id AND TASK=:v_mark",
+                        v_comment=comments, v_id=student_id, v_mark=mark)
+            con.commit()
 
         if event is None:
             break

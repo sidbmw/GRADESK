@@ -2,6 +2,7 @@
 import cx_Oracle
 import PySimpleGUI as sg
 from Edit_Students import do_it as edit
+from input_checker import check_string as check_string
 
 old_class = ''
 old_period_number = 0
@@ -50,20 +51,25 @@ def do_it(x, y, z):
             break
 
         if event == 'edit_courses_button':
-            cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :old_course", v_period_num=values[1],
-                        old_course=old_class)
 
-            cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course", v_class=values[0] + '/' + values[2],
-                        old_course=old_class)
+            if values[0] != '' and values[1] != '' and values[2] != '':
+                if check_string(values[0], 'str', 8) and check_string(values[1], 'int', 4) \
+                        and check_string(values[2], 'int', 2025):
 
-            for x in range(int(get_rows(old_class))-1):
-                cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
-                            new_class=values[0] + '/' + values[2],
-                            other_stuff=student_numbers[x])
+                    cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :old_course", v_period_num=values[1],
+                                old_course=old_class)
 
-            con.commit()
+                    cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course", v_class=values[0] + '/' + values[2],
+                                old_course=old_class)
 
-            break
+                    for x in range(int(get_rows(old_class))-1):
+                        cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
+                                    new_class=values[0] + '/' + values[2],
+                                    other_stuff=student_numbers[x])
+
+                    con.commit()
+
+                    break
 
         if event == 'edit_student_key':
             edit(old_class)

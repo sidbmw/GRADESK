@@ -1,7 +1,7 @@
-# !/usr/bin/env python
 import cx_Oracle
 import PySimpleGUI as sg
 from Add_Students import do_it as add_student
+from input_checker import check_string as check_string
 
 
 def do_it():
@@ -39,21 +39,28 @@ def do_it():
                     break
             break
 
-    if v_course_code !='' and v_period_num != '' and v_year != '':
+        if v_course_code != '' and v_period_num != '' and v_year != '':
+            if check_string(v_course_code, 'str', 8) and check_string(v_period_num, 'int', 4) \
+                    and check_string(v_year, 'int', 2025):
 
-        cur.execute("""
-  
-             insert into EOM_CLASS (CLASS, PERIOD_NUM)
-             values (:v_course_code, :v_period_num)""",
+                cur.execute("""
+                     insert into EOM_CLASS (CLASS, PERIOD_NUM)
+                     values (:v_course_code, :v_period_num)""",
 
-                    v_course_code=v_course_code + '/' + v_year,
-                    v_period_num=v_period_num
-                    )
+                            v_course_code=v_course_code + '/' + v_year,
+                            v_period_num=v_period_num
+                            )
 
-        con.commit()
+                con.commit()
 
-        add_student(v_course_code + '/' + v_year)
+                add_student(v_course_code + '/' + v_year)
 
-        window.Close()
-    else:
-        sg.Popup("Please complete input")
+                window.Close()
+            else:
+                sg.Popup('Incorrect data format, try again.')
+        else:
+            sg.Popup("Please complete input")
+
+
+do_it()
+
