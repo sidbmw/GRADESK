@@ -94,107 +94,107 @@ delete eom_main_screen_layout where student_id=p_student_id;
     LOOP
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_INC)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = 'INC';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = 'INC';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_R)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = 'R';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = 'R';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1M)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1-';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '1-';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1MS1)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1-/1';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '1-/1';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '1';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1S1P)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1/1+';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '1/1+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_1P)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1+';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '1+';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, x_1ps2m)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '1+/2-';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '1+/2-';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2M)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2-';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '2-';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2MS2)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2-/2';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '2-/2';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '2';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2S2P)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2/2+';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '2/2+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2P)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2+';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '2+';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_2PS3M)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '2+/3-';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '2+/3-';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3M)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3-';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '3-';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3MS3)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3-/3';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '3-/3';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '3';
 
 --        INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3S3P)
 --        SELECT STUDENT_ID, EXPECTATION, TASK
---        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3/3+';
+--        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '3/3+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3P)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3+';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '3+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_3PS4M)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '3+/4-';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '3+/4-';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_4M)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '4-';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '4-';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_4MS4)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '4-/4';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '4-/4';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_4)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '4';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '4';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_4S4P)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '4/4+';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '4/4+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_4P)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '4+';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '4+';
 
         INSERT INTO eom_main_screen_layout (STUDENT_ID, EXPECTATION, X_4PP)
         SELECT STUDENT_ID, EXPECTATION, TASK
-        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND MARK = '4++';
+        FROM EOM_MARKS WHERE student_id=p_student_id AND EXPECTATION = r_exp.expectation AND DELETED_FLAG = 'N' AND MARK = '4++';
 
     --END LOOP;
     
