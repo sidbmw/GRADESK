@@ -5,7 +5,7 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def do_it(course):
+def do_it(course, type):
     global nameOfMark
     global numberOfMark
     global color
@@ -30,7 +30,7 @@ def do_it(course):
         [sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='white', justification='center')],
         [sg.Radio('Test             ', 'RADIO1', default=True, text_color='blue'), sg.Radio('Assignment   ', 'RADIO1', text_color='red')],
         [sg.Radio('Presentation ', 'RADIO1', text_color='green'), sg.Radio('Quiz           ', 'RADIO1', text_color='Yellow')],
-        [sg.Text('Name of Assigment      '), sg.InputText('', size=(10, 1))],
+        [sg.Text('Name of assignment      '), sg.InputText('', size=(10, 1))],
         [sg.Text('Number of expectations'), sg.InputText('', size=(10, 1))],
         [sg.Quit(button_color=('black', 'orange')), sg.Button('Next', key='next_key')]]
 
@@ -47,19 +47,21 @@ def do_it(course):
             quit_option = True
             break
         if event == 'next_key':
+            print(check_expectation(values[4]), values[5], check_string(values[5], 'int', 10))
             if check_expectation(values[4]) and check_string(values[5], 'int', 10):
                 cur.execute("SELECT STUDENT_ID, TASK FROM EOM_MARKS")
                 fetched_data = cur.fetchall()
                 student_id = [n[0] for n in fetched_data]
                 task = [n[1] for n in fetched_data]
 
-                for x in range(len(student_id)):
-                    if get_first_student(course) == int(student_id[x]):
-                        if values[4] == task[x]:
-                            sg.Popup("there's already an assignment like this for " + course + "!")
-                            break_variable = False
+                if type == 'multiple':
+                    for x in range(len(student_id)):
+                        if get_first_student(course) == int(student_id[x]):
+                            if values[4] == task[x]:
+                                sg.Popup("there's already an assignment like this for " + course + "!")
+                                break_variable = False
 
-                            break
+                                break
 
                 if values[4] and values[5] is not None:
                     if values[0]:
@@ -81,3 +83,7 @@ def do_it(course):
                         break
             else:
                 sg.Popup('Invalid input, try again.')
+
+
+# do_it()
+

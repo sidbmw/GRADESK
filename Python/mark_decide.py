@@ -37,3 +37,5 @@ def do_it(course, student_number):
 
         if values is None:
             sys.exit()
+
+    window.Close()

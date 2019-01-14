@@ -7,7 +7,7 @@ from input_checker import check_mark
 
 
 def do_it(course):
-    marking_first.do_it('ICS4U-02/2018')
+    marking_first.do_it(course, 'other stuff')
 
     student_numbers = []
 

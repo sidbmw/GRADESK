@@ -5,8 +5,9 @@ import sys
 from input_checker import check_expectation
 from input_checker import check_mark
 
+
 def do_it(course, student_number):
-    marking_first.do_it(course)
+    marking_first.do_it(course, 'single')
 
     mark = [[],
             []]
