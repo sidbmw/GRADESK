@@ -5,7 +5,7 @@ import cx_Oracle
 def do_it(student_id, mark):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [[sg.Text('Comments', font=("Helvetica", 11), text_color='white', justification='left')],
               [sg.InputText(size=(25, 0))],  # 250 char limit
@@ -49,4 +49,4 @@ def do_it(student_id, mark):
     window.Close()
 
 
-do_it(1, 'T1')
+# do_it(1, 'T1')
