@@ -92,7 +92,7 @@ while event != 'close_window':
 
             else:
                 v_table_data = cur.execute(
-                    """SELECT expectation, x_inc, x_r, x_1m, x_1, x_1p, x_2m, x_2, x_2p, x_3m, x_3, x_3p, x_3ps4m, x_4m, x_4ms4, x_4, x_4s4p, x_4p, x_4pp FROM EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = :student_id""",
+                    """SELECT expectation, x_inc, x_r, x_1m, x_1, x_1p, x_2m, x_2, x_2p, x_3m, x_3, x_3p, x_3ps4m, x_4m, x_4ms4, x_4, x_4s4p, x_4p, x_4pp FROM EOM_MAIN_SCREEN_LAYOUT WHERE STUDENT_ID = :student_id ORDER BY EXPECTATION""",
                     student_id=student_id)
                 raw_data = cur.fetchall()
                 cooked_data = [n[col] for n in raw_data]
