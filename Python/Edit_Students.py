@@ -6,7 +6,7 @@ from Add_Students import do_it as add
 def do_it(course):
     sg.ChangeLookAndFeel('DarkBlue')
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     student_numbers = []

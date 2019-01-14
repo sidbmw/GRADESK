@@ -5,6 +5,7 @@ import sys
 from input_checker import check_expectation
 from input_checker import check_mark
 
+
 def do_it(course):
     marking_first.do_it('ICS4U-02/2018')
 
@@ -31,7 +32,7 @@ def do_it(course):
 
         return v_row
 
-    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     for x in range(int(marking_first.numberOfMark)):

@@ -22,7 +22,7 @@ def do_it(course):
             if row[1] == x:
                 return row[0]
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     # sg.ChangeLookAndFeel('DarkBlue')
 

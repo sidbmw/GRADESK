@@ -6,7 +6,7 @@ from input_checker import check_string
 
 def do_it():
     #con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
-    con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
 
@@ -62,5 +62,5 @@ def do_it():
             sg.Popup("Please complete input")
 
 
-do_it()
+#do_it()
 

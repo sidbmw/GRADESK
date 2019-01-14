@@ -6,7 +6,7 @@ from Grades_Chart import do_it as access
 
 
 def do_it():
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     # sg.ChangeLookAndFeel('DarkBlue')
     classes = []

@@ -19,7 +19,7 @@ def do_it(course, student_number):
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     for x in range(int(marking_first.numberOfMark)):
