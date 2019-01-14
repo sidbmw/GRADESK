@@ -5,6 +5,7 @@ import sys
 from input_checker import check_expectation
 from input_checker import check_mark
 
+
 def do_it(course):
     marking_first.do_it('ICS4U-02/2018')
 

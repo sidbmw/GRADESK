@@ -5,6 +5,7 @@ import os
 from mark_decide import do_it as marking_program  # this is for the add assignment button, mark(course code + year)
 from comment_and_anomaly import do_it as comment_program
 
+
 def do_it(course):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
@@ -83,11 +84,12 @@ def do_it(course):
             for col in range(19):
 
                 if row == 0:
-                    arr_marks = ['Expectation', 'INC', 'R', '1-', '1', '1+', '2-', '2', '2+', '3-', '3', '3+', '3+/4-', '4-', '4-/4', '4', '4/4+', '4+',
+                    arr_marks = ['Expectation', 'INC', 'R', '1-', '1', '1+', '2-', '2', '2+', '3-', '3', '3+', '3+/4-', '4-', '4-/4', '4', '4/4+',
+                                 '4+',
                                  '4++']
                     g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                     (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black',
-                                    fill_color='#2196F3')
+                                    fill_color='#90A4AE')
                     g.DrawText('{}'.format(arr_marks[col]), (col * BOX_SIZE + 13, row * BOX_SIZE + 10))
 
                 else:
@@ -103,17 +105,17 @@ def do_it(course):
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
                                         line_color='black',
-                                        fill_color='#F44336')
+                                        fill_color='#EF5350')
                     if 3 <= col <= 5:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
                                         line_color='black',
-                                        fill_color='#E040FB')
+                                        fill_color='#29B6F6')
                     if 6 <= col <= 8:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
                                         line_color='black',
-                                        fill_color='#76FF03')
+                                        fill_color='#FFEE58')
                     if 9 <= col <= 12:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
@@ -122,7 +124,7 @@ def do_it(course):
                     if 13 <= col <= 19:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
-                                        line_color='black', fill_color='#4CAF50')
+                                        line_color='black', fill_color='#66BB6A')
                     else:
                         g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3),
                                         (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3),
