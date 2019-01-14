@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import cx_Oracle
 
 
-# from input_checker import check_string as check_string
+from input_checker import check_string as check_string
 
 
 def do_it(student_id, mark):
@@ -11,7 +11,7 @@ def do_it(student_id, mark):
     sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [[sg.Text('Comments', font=("Helvetica", 11), text_color='white', justification='left')],
-              [sg.InputText(size=(250, 0))],  # 250 char limit
+              [sg.InputText(size=(250, 0))],
               [sg.Text('      Mark as anomaly'), sg.Checkbox('')],
               [sg.Button('Delete this assignment', button_color=('black', 'orange'), key='_delete_')],
               [sg.Text('')],
@@ -36,7 +36,6 @@ def do_it(student_id, mark):
 
         if event == '_save_':
             comments = values[0]
-            # if check_string(comments, 'str', 250):
             if values[1]:  # anomaly
                 cur.execute("UPDATE EOM_MARKS SET COMMENTS=:v_comment, ANOMALY=:v_anomaly WHERE STUDENT_ID=:v_id AND TASK=:v_mark",
                             v_comment=comments, V_anomaly='Y', v_id=student_id, v_mark=mark)
