@@ -64,10 +64,10 @@ def do_it(course, student_number):
                             mark[1].append(values[tracker + 1])
                             do = True
                         else:
-                            sg.Popup('incomplete input')
+                            sg.Popup('Invalid expectation')
                             do = False
                     else:
-                        sg.Popup('incomplete input')
+                        sg.Popup('Invalid mark')
                         do = False
 
                 if do:
@@ -89,8 +89,6 @@ def do_it(course, student_number):
 
                         con.commit()
                         saved = True
-
-                        column = []
 
                 if saved:
                     break
