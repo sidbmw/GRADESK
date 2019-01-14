@@ -50,4 +50,4 @@ def do_it(student_id, mark):
 
 # window.Close()
 
-do_it(1, 'T1')
+# do_it(1, 'T1')
