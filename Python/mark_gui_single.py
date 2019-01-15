@@ -5,8 +5,9 @@ import sys
 from input_checker import check_expectation
 from input_checker import check_mark
 
+
 def do_it(course, student_number):
-    marking_first.do_it(course)
+    marking_first.do_it(course, 'single')
 
     mark = [[],
             []]
@@ -74,7 +75,7 @@ def do_it(course, student_number):
                     for y in range(int(marking_first.numberOfMark)):
                         cur.execute("""
                             insert into EOM_MARKS (STUDENT_ID, COLOUR, TASK, EXPECTATION, MARK, COMMENTS, ANOMALY, DELETED_FLAG)
-                            values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable, 
+                            values (:studentID, :color, :nameOfMark, :task_variable, :mark_variable, :null_variable,
                             :No_variable, :No_variable_second)""",
 
                                 task_variable=mark[0][y],

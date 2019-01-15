@@ -6,7 +6,7 @@ from class_selection_gui import do_it as start
 con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
 cur = con.cursor(scrollable=True)
 
-sg.ChangeLookAndFeel('DarkBlue')
+# sg.ChangeLookAndFeel('DarkBlue')
 
 # cur.execute("SELECT  CLASS FROM EOM_CLASS")
 # fetch_course_code = cur.fetchall()

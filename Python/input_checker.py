@@ -5,7 +5,7 @@ def check_string(user_input, v_type, v_max):
         else:
             return False
     if v_type == 'int':
-        if int(user_input) <= v_max and str(type(user_input)) == '<class \'' + v_type + '\'>':
+        if int(user_input) <= int(v_max) and user_input.isnumeric():
             return True
         else:
             return False
@@ -13,9 +13,9 @@ def check_string(user_input, v_type, v_max):
 
 def check_expectation(user_input):
     if list(user_input)[0].isalpha() and list(user_input)[1].isnumeric():  #
-        print('it is')
+        return True
     else:
-        print('it is not')
+        return False
 
 
 def check_mark(user_input):
@@ -24,7 +24,6 @@ def check_mark(user_input):
 
         if len(user_input) == 2:
             if list(user_input)[1] == '+' or list(user_input)[1] == '-':
-                print('done,2')
                 return True
             else:
                 return False
@@ -32,12 +31,12 @@ def check_mark(user_input):
         if len(user_input) == 3 and list(user_input)[0].isnumeric():
             if list(user_input)[1] == '+' or list(user_input)[1] == '-':
                 if list(user_input)[2] == list(user_input)[1]:
-                    print('done, 3')
                     return True
                 else:
                     return False
             else:
                 return False
-
-        print('done, 3')
         return True
+
+
+# print(check_expectation('T1'))
