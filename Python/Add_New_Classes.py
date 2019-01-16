@@ -37,7 +37,6 @@ def do_it():
                 if v_course_code + '/' + v_year == (row[0]):
                     sg.Popup("INVALID")
                     break
-            break
 
         if v_course_code != '' and v_period_num != '' and v_year != '':
             if check_string(v_course_code, 'str', 8) and check_string(v_period_num, 'int', 4) \
