@@ -23,10 +23,6 @@ def do_it(course, student_number):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
-    for x in range(int(marking_first.numberOfMark)):
-        mark[0].append("")
-        mark[1].append("")
-
     sg.ChangeLookAndFeel('DarkBlue')
 
     if not marking_first.quit_option:
@@ -37,7 +33,7 @@ def do_it(course, student_number):
         for z in range(int(marking_first.numberOfMark)):
             column.append(
                 [sg.Text('Expectation  ', text_color='white', justification='left'),
-                 sg.InputText(mark[0][z], size=(10, 1))], )
+                 sg.InputText('', size=(10, 1))], )
             column.append(
                 [sg.Text('Mark            ', text_color='white', justification='left'),
                  sg.InputText('', size=(10, 1))], )
