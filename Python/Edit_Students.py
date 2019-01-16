@@ -6,7 +6,7 @@ from Add_Students import do_it as add
 def do_it(course):
     sg.ChangeLookAndFeel('DarkBlue')
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     student_numbers = []
@@ -52,7 +52,7 @@ def do_it(course):
               [sg.Column(scrollable_column, scrollable=True, size=(650, 500), vertical_scroll_only=True)],
 
               [sg.Stretch(), sg.Button('Add Students', key='key_add_students', size=(20, 2)),
-               sg.Button('Save', key='save_key', size=(20, 2)),
+               sg.Button('Save', key='save_key', size=(20, 2)), sg.Button('exit', key='Exit'),
                # sg.Text("Save occurs only once 'Add Student' button is pressed"),
                sg.Stretch()]
               ]
@@ -66,7 +66,7 @@ def do_it(course):
     while True:
         event, values = window.Read()
         if event is None or event == 'Exit':
-            break
+            window.Close()
 
         if event == 'key_add_students':
             add(course)

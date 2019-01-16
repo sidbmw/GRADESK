@@ -22,7 +22,7 @@ def do_it(x, y, z):
 
         return v_row
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     sg.ChangeLookAndFeel('DarkBlue')
 

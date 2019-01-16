@@ -58,4 +58,3 @@ def do_it():
         else:
             sg.Popup("Please complete input")
 
-do_it()
