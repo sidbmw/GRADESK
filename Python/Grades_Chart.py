@@ -80,7 +80,7 @@ def do_it(course):
 
         # print(v_num_of_rows[0])
 
-        for row in range(v_num_of_rows[0]):
+        for row in range(v_num_of_rows[0] + 1):
             for col in range(19):
 
                 if row == 0:

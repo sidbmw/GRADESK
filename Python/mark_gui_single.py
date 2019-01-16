@@ -27,7 +27,7 @@ def do_it(course, student_number):
         mark[0].append("")
         mark[1].append("")
 
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     if not marking_first.quit_option:
 
