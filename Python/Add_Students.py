@@ -8,7 +8,7 @@ def do_it(course):
     # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     # cur.execute("SELECT  CLASS FROM EOM_CLASS")
     # fetch_course_code = cur.fetchall()
