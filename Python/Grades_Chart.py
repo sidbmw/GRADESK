@@ -136,7 +136,7 @@ def do_it(course):
             event, values = window.Read()
             # print(event, values)
             if event is None or event == 'Exit':
-                print("Exited window?")
+                # print("Exited window?")
                 cur.execute("delete eom_main_screen_layout")
                 window.Close()
                 break
@@ -147,10 +147,10 @@ def do_it(course):
                     continue
                 box_x = mouse[0] // BOX_SIZE
                 box_y = mouse[1] // BOX_SIZE
-                print(box_x, box_y)
+                # print(box_x, box_y)
 
                 v_selected_mark = raw_data[box_y - 1][box_x]
-                print(raw_data[box_y - 1][box_x])
+                # print(raw_data[box_y - 1][box_x])
                 comment_program(student_id, v_selected_mark)
 
             if event == '_next_student_':
@@ -178,7 +178,7 @@ def do_it(course):
                     break
 
             if event == "close_window":
-                print("closed window?")
+                # print("closed window?")
                 cur.execute("delete EOM_MAIN_SCREEN_LAYOUT")
                 con.commit()
                 window.Close()

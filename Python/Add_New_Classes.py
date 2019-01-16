@@ -8,7 +8,7 @@ def do_it():
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [[sg.Text('Add New Classes', size=(30, 2), justification='center', font=("Helvetica", 25))],
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
@@ -50,7 +50,6 @@ def do_it():
                             v_course_code=v_course_code + '/' + v_year,
                             v_period_num=v_period_num
                             )
-
                 con.commit()
 
                 add_student(v_course_code + '/' + v_year)
