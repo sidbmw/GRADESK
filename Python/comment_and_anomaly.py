@@ -10,8 +10,7 @@ def do_it(student_id, mark):
     cur = con.cursor(scrollable=True)
     old_comments = cur.execute("select COMMENTS from EOM_MARKS where STUDENT_ID=:v_id and TASK=:v_mark",
                                v_id=student_id, v_mark=mark)
-    cur.fetchone()
-    print(old_comments)
+    old_comments = cur.fetchone()
 
     if list(str(old_comments))[0] == '<':
         old_comments = ''
