@@ -24,7 +24,7 @@ def do_it(x, y, z):
 
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     global old_class
     global old_period_number

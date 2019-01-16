@@ -30,7 +30,7 @@ def do_it(course):
               # [sg.Listbox(fetched_course_codes, size=(20, 4), enable_events=True, key='_LIST_')],
 
               [sg.Stretch(), sg.Button('Add Students', key='key_add_students', size=(20, 2)),
-               sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch() ]
+               sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch()]
               ]
 
     window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
