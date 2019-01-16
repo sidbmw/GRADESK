@@ -6,7 +6,7 @@ from Grades_Chart import do_it as access
 
 
 def do_it():
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     # sg.ChangeLookAndFeel('DarkBlue')
     classes = []
@@ -33,7 +33,6 @@ def do_it():
         period.append(str(row[1]))
 
     for x in range(len(classes)-1):
-        print(x, len(classes)-1)
         column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
                        sg.Button('access', button_color=('black', 'orange'), key=str(x)), sg.Radio('select', "RADIO1")],
                       )
@@ -55,8 +54,6 @@ def do_it():
     # event, values  = sg.Window('Class selection', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
     window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
 
-    print(year)
-
     def reopen():
         window.Close()
         do_it()
@@ -75,15 +72,15 @@ def do_it():
                     reopen()
 
         if event == 'key_delete_class':
+            deleted = ''
             for x in range(len(classes)):
                 if values[x]:
+                    deleted = classes[x]
                     cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :course_code", course_code=str(classes[x] + '/' + year[x]))
                     con.commit()
 
-            print(student_numbers)
             cur.execute("select * from EOM_STUDENTS")
-            for x in range(get_rows(str(classes[x] + '/' + year[x]))-1):
-                print(student_numbers[x])
+            for z in range(get_rows(deleted)):
                 cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :v_id", v_id=student_numbers[x])
             reopen()
 

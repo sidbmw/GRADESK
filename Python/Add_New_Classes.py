@@ -5,10 +5,9 @@ from input_checker import check_string
 
 
 def do_it():
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-    sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [[sg.Text('Add New Classes', size=(30, 2), justification='center', font=("Helvetica", 25))],
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
@@ -31,13 +30,11 @@ def do_it():
         v_period_num = values[1]
         v_year = values[2]
 
-        if len(str(v_course_code)):
-            cur.execute("select * from EOM_CLASS")
-            for row in cur:
-                if v_course_code + '/' + v_year == (row[0]):
-                    sg.Popup("INVALID")
-                    break
-            break
+        cur.execute("select * from EOM_CLASS")
+        for row in cur:
+            if v_course_code + '/' + v_year == (row[0]):
+                sg.Popup("INVALID")
+                break
 
         if v_course_code != '' and v_period_num != '' and v_year != '':
             if check_string(v_course_code, 'str', 8) and check_string(v_period_num, 'int', 4) \
@@ -61,4 +58,4 @@ def do_it():
         else:
             sg.Popup("Please complete input")
 
-# do_it()
+do_it()

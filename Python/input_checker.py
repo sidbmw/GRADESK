@@ -36,7 +36,12 @@ def check_mark(user_input):
                     return False
             else:
                 return False
-        return True
 
-
-# print(check_expectation('T1'))
+        if (len(user_input) == 4 or len(user_input) == 5) and list(user_input)[0].isnumeric() and list(user_input)[3].isnumeric() and list(user_input)[2] == '/':
+            if int(list(user_input)[0])+1 == int(list(user_input)[3]) and list(user_input)[1] == '+' and list(user_input)[4] == '-':
+                return True
+            if list(user_input)[0] == list(user_input)[3] and len(list(user_input)) == 4:
+                return True
+            else:
+                return False
+    return False

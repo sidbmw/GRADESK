@@ -7,7 +7,7 @@ from comment_and_anomaly import do_it as comment_program
 
 
 def do_it(course):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
     BOX_SIZE = 23

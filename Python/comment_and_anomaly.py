@@ -164,6 +164,3 @@ def edit_mark(student_id, mark_name):
     window.Close()
     print('restarting cycle')
     do_it(student_id, mark_name)
-
-
-do_it(1, 'T1')
