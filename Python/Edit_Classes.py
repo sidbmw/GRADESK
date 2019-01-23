@@ -1,14 +1,14 @@
 # !/usr/bin/env python
 import cx_Oracle
 import PySimpleGUI as sg
-from Edit_Students import do_it as edit
+from Edit_Students import run_program as edit
 from input_checker import check_string as check_string
 
 old_class = ''
 old_period_number = 0
 
 
-def do_it(x, y, z):
+def run_program(x, y, z):
     student_numbers = []
 
     def get_rows(course_code):  # both fills the array with student ids and gets the amount of students

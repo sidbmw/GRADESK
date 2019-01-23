@@ -1,11 +1,11 @@
 import PySimpleGUI as sg
 import cx_Oracle
-from Add_New_Classes import do_it as add
-from Edit_Classes import do_it as edit
-from Grades_Chart import do_it as access
+from Add_New_Classes import run_program as add
+from Edit_Classes import run_program as edit
+from Grades_Chart import run_program as access
 
 
-def do_it():
+def run_program():
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     # sg.ChangeLookAndFeel('DarkBlue')
@@ -59,7 +59,7 @@ def do_it():
 
     def reopen():
         window.Close()
-        do_it()
+        run_program()
 
     while True:
         event, values = window.Read()
@@ -98,4 +98,4 @@ def do_it():
     window.Close()
 
 
-do_it()
+run_program()
