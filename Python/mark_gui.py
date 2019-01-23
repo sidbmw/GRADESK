@@ -50,10 +50,10 @@ def run_program(course):
 
             for z in range(int(marking_first.numberOfMark)):
                 column.append(
-                    [sg.Text('Expectation  ', text_color='white', justification='left'),
+                    [sg.Text('Expectation  ', text_color='black', justification='left'),
                      sg.InputText(mark[0][z], size=(10, 1))], )
                 column.append(
-                    [sg.Text('Mark            ', text_color='white', justification='left'),
+                    [sg.Text('Mark            ', text_color='black', justification='left'),
                      sg.InputText('', size=(10, 1))], )
                 column.append([sg.Text('_' * 100, size=(23, 1))], )
 

@@ -6,7 +6,7 @@ from Grades_Chart import run_program as access
 
 
 def run_program():
-    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     classes = []
     period = []
@@ -32,7 +32,7 @@ def run_program():
         period.append(str(row[1]))
 
     for x in range(len(classes)):
-        if x == len(classes)-1:
+        if x == len(classes) - 1:
             column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
                            sg.Button('access', button_color=('black', 'orange'), key=str(x)), sg.Radio('select', "RADIO1", default=True)],
                           )
@@ -91,7 +91,7 @@ def run_program():
         if event is None:
             break
 
-        for x in range(len(classes) - 1):
+        for x in range(len(classes)):
             if event == str(x):
                 print('reached')
                 access(classes[x] + '/' + year[x])
