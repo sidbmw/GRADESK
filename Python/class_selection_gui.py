@@ -8,7 +8,6 @@ from Grades_Chart import run_program as access
 def run_program():
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-    # sg.ChangeLookAndFeel('DarkBlue')
     classes = []
     period = []
     year = []
@@ -32,30 +31,32 @@ def run_program():
         year.append(str(word[1]))
         period.append(str(row[1]))
 
-    for x in range(len(classes) - 1):
-        # print(x, len(classes) - 1)
-        column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
-                       sg.Button('access', button_color=('black', 'orange'), key=str(x)), sg.Radio('select', "RADIO1")],
-                      )
+    for x in range(len(classes)):
+        if x == len(classes) - 1:
+            column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
+                           sg.Button('access', button_color=('black', 'orange'), key=str(x)), sg.Radio('select', "RADIO1", default=True)],
+                          )
+        else:
+            column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
+                           sg.Button('access', button_color=('black', 'orange'), key=str(x)),
+                           sg.Radio('select', "RADIO1", default=True)],
+                          )
         column.append([sg.Text('Period: ' + period[x]), sg.Text('Year: ' + year[x])], )
         column.append([sg.Text(' ')])
 
-    column.append([sg.Text(classes[len(classes) - 1] + "     ", size=(20, 1), justification='right'),
-                   sg.Button('access', button_color=('black', 'orange')), sg.Radio('select', "RADIO1", default=True)], )
-    column.append([sg.Text('Period: ' + period[len(classes) - 1]), sg.Text('Year: ' + year[len(year) - 1])])
+    # column.append([sg.Text(classes[len(classes) - 1] + "     ", size=(20, 1), justification='right'),
+    #                sg.Button('access', button_color=('black', 'orange')), sg.Radio('select', "RADIO1", default=True)], )
+    # column.append([sg.Text('Period: ' + period[len(classes) - 1]), sg.Text('Year: ' + year[len(year)-1])])
 
     layout = [
         [sg.Text('          Class selection', size=(17, 1), font=("Helvetica", 25), text_color='black', justification='center')],
         [sg.Column(column, scrollable=True, size=(400, 300))],
         [sg.Button('Add Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_add_class'),
          sg.Button('Edit Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_edit_class'),
-         sg.Button('Delete Class', button_color=('white', 'black'), font
-         =("Helvetica", 15), key='key_delete_class')]]
+         sg.Button('Delete Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_delete_class'),
+         sg.Button('Exit', button_color=('white', 'black'), font=("Helvetica", 15), key='Exit')]]
 
-    # event, values  = sg.Window('Class selection', auto_size_text=True, default_element_size=(40, 1)).Layout(layout).Read()
     window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
-
-    # print(year)
 
     def reopen():
         window.Close()
@@ -63,6 +64,9 @@ def run_program():
 
     while True:
         event, values = window.Read()
+
+        if event == 'Exit':
+            break
 
         if event == 'key_add_class':
             add()
@@ -75,15 +79,15 @@ def run_program():
                     reopen()
 
         if event == 'key_delete_class':
+            deleted = ''
             for x in range(len(classes)):
                 if values[x]:
+                    deleted = classes[x]
                     cur.execute("DELETE FROM EOM_CLASS WHERE CLASS = :course_code", course_code=str(classes[x] + '/' + year[x]))
                     con.commit()
 
-            # print(student_numbers)
             cur.execute("select * from EOM_STUDENTS")
-            for x in range(get_rows(str(classes[x] + '/' + year[x])) - 1):
-                # print(student_numbers[x])
+            for z in range(get_rows(deleted)):
                 cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :v_id", v_id=student_numbers[x])
             reopen()
 
