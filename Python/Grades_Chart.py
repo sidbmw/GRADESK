@@ -2,20 +2,18 @@ import cx_Oracle
 import PySimpleGUI as sg
 import os
 
-from mark_decide import do_it as marking_program  # this is for the add assignment button, mark(course code + year)
-from comment_and_anomaly import do_it as comment_program
+from mark_decide import run_program as marking_program  # this is for the add assignment button, mark(course code + year)
+from comment_and_anomaly import run_program as comment_program
 
 
-def do_it(course):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+def run_program(course):
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # Connecting to the database with a hardcoded username and password
     cur = con.cursor(scrollable=True)
 
-    BOX_SIZE = 23
+    BOX_SIZE = 23  # This sets the size of each cell in the grades_chart window. Increase or decrease this number depending on preference
 
     event = ''
-
-    # class_code = 'ICS4U-01/2018'
-    class_code = course
+    class_code = course  # This sets the the class_code variable to the value passed on from the class_selection_gui window
 
     min_sort_id = cur.execute("SELECT MIN(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
     min_sort_id = cur.fetchall()
@@ -187,8 +185,8 @@ def do_it(course):
             if event == "_print_":
                 os.environ['ORACLE_HOME'] = "C:/oraclexe/app/oracle/product/11.2.0/server"
                 os.system(
-                    "C:/oraclexe/app/oracle/product/11.2.0/server/bin/sqlplus.exe EOM/EOM @C:/Users/gordr/Documents/Github/ICS4U/SQL/html.sql")
-                os.startfile(filepath='C:/Users/gordr/Documents/Github/ICS4U/Reports/report.htm')
+                    "C:/oraclexe/app/oracle/product/11.2.0/server/bin/sqlplus.exe EOM/EOM @C:/Users/siddh/Documents/ICS4U/SQL/html.sql")
+                os.startfile(filepath='C:/Users/siddh/Documents/ICS4U/Reports/report.htm')
 
             if event == '_add_assignment_':
                 marking_program(class_code, student_id)

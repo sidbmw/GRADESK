@@ -3,12 +3,12 @@ import cx_Oracle
 import PySimpleGUI as sg
 
 
-def do_it(course):
+def run_program(course):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
 
-    sg.ChangeLookAndFeel('DarkBlue')
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     # cur.execute("SELECT  CLASS FROM EOM_CLASS")
     # fetch_course_code = cur.fetchall()
@@ -30,7 +30,7 @@ def do_it(course):
               # [sg.Listbox(fetched_course_codes, size=(20, 4), enable_events=True, key='_LIST_')],
 
               [sg.Stretch(), sg.Button('Add Students', key='key_add_students', size=(20, 2)),
-               sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch() ]
+               sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch()]
               ]
 
     window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)

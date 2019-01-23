@@ -1,10 +1,10 @@
 import cx_Oracle
 import PySimpleGUI as sg
-from Add_Students import do_it as add
+from Add_Students import run_program as add
 
 
-def do_it(course):
-    sg.ChangeLookAndFeel('DarkBlue')
+def run_program(course):
+    # sg.ChangeLookAndFeel('DarkBlue')
 
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
@@ -61,7 +61,7 @@ def do_it(course):
 
     def reopen():
         window.Close()
-        do_it(course)
+        run_program(course)
 
     while True:
         event, values = window.Read()
@@ -73,13 +73,13 @@ def do_it(course):
             reopen()
 
         if event == 'save_key':
-            for x in range(int(number_of_students)-1):
+            for x in range(int(number_of_students) - 1):
                 edited = False
                 v_pos = x * 3
-                student_first_name = values[v_pos+2]
+                student_first_name = values[v_pos + 2]
                 student_last_name = values[v_pos + 3]
 
-                if values[v_pos+4]:
+                if values[v_pos + 4]:
                     cur.execute("DELETE FROM EOM_STUDENTS WHERE STUDENT_ID = :v_id", v_id=student_numbers[x])
                     con.commit()
                 else:
@@ -106,4 +106,4 @@ def do_it(course):
 
     window.Close()
 
-#do_it('ICS4U-01/2018')
+# run_program('ICS4U-01/2018')
