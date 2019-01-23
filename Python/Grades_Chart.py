@@ -7,15 +7,13 @@ from comment_and_anomaly import do_it as comment_program
 
 
 def do_it(course):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # Connecting to the database with a hardcoded username and password
     cur = con.cursor(scrollable=True)
 
-    BOX_SIZE = 23
+    BOX_SIZE = 23  # This sets the size of each cell in the grades_chart window. Increase or decrease this number depending on preference
 
     event = ''
-
-    # class_code = 'ICS4U-01/2018'
-    class_code = course
+    class_code = course  # This sets the the class_code variable to the value passed on from the class_selection_gui window
 
     min_sort_id = cur.execute("SELECT MIN(SORT_ID) FROM EOM_STUDENTS WHERE CLASS = :class_code", class_code=class_code)
     min_sort_id = cur.fetchall()
