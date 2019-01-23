@@ -93,6 +93,7 @@ def run_program():
 
         for x in range(len(classes) - 1):
             if event == str(x):
+                print('reached')
                 access(classes[x] + '/' + year[x])
                 reopen()
 
