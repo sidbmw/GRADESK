@@ -1,9 +1,9 @@
 import cx_Oracle
 import PySimpleGUI as sg
-from Add_Students import do_it as add
+from Add_Students import run_program as add
 
 
-def do_it(course):
+def run_program(course):
     # sg.ChangeLookAndFeel('DarkBlue')
 
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
@@ -61,7 +61,7 @@ def do_it(course):
 
     def reopen():
         window.Close()
-        do_it(course)
+        run_program(course)
 
     while True:
         event, values = window.Read()
@@ -106,4 +106,4 @@ def do_it(course):
 
     window.Close()
 
-# do_it('ICS4U-01/2018')
+# run_program('ICS4U-01/2018')

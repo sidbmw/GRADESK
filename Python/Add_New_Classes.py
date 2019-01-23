@@ -1,10 +1,10 @@
 import cx_Oracle
 import PySimpleGUI as sg
-from Add_Students import do_it as add_student
+from Add_Students import run_program as add_student
 from input_checker import check_string
 
 
-def do_it():
+def run_program():
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
@@ -59,4 +59,4 @@ def do_it():
         else:
             sg.Popup("Please complete input")
 
-# do_it()
+# run_program()

@@ -2,11 +2,11 @@ import cx_Oracle
 import PySimpleGUI as sg
 import os
 
-from mark_decide import do_it as marking_program  # this is for the add assignment button, mark(course code + year)
-from comment_and_anomaly import do_it as comment_program
+from mark_decide import run_program as marking_program  # this is for the add assignment button, mark(course code + year)
+from comment_and_anomaly import run_program as comment_program
 
 
-def do_it(course):
+def run_program(course):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # Connecting to the database with a hardcoded username and password
     cur = con.cursor(scrollable=True)
 
