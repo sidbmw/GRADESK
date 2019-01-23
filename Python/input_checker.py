@@ -28,7 +28,7 @@ def check_mark(user_input):
             else:
                 return False
 
-        if len(user_input) == 3 and list(user_input)[0].isnumeric():
+        if len(user_input) == 3 and list(user_input)[0].isnumeric() and (list(user_input)[0] == '3' and list(user_input)[0] == '4'):
             if list(user_input)[1] == '+' or list(user_input)[1] == '-':
                 if list(user_input)[2] == list(user_input)[1]:
                     return True
@@ -37,7 +37,7 @@ def check_mark(user_input):
             else:
                 return False
 
-        if (len(user_input) == 4 or len(user_input) == 5) and list(user_input)[0].isnumeric() and list(user_input)[3].isnumeric() and list(user_input)[2] == '/':
+        if (len(user_input) == 4 or len(user_input) == 5) and (list(user_input)[0] == '3' and list(user_input)[0] == '4') and list(user_input)[0].isnumeric() and list(user_input)[3].isnumeric() and list(user_input)[2] == '/':
             if int(list(user_input)[0])+1 == int(list(user_input)[3]) and list(user_input)[1] == '+' and list(user_input)[4] == '-':
                 return True
             if list(user_input)[0] == list(user_input)[3] and len(list(user_input)) == 4:

@@ -5,11 +5,11 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def do_it(student_id, mark):
+def run_program(student_id, mark):
 
     def reopen():
         window.Close()
-        do_it(student_id, mark)
+        run_program(student_id, mark)
 
     con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
@@ -163,4 +163,4 @@ def edit_mark(student_id, mark_name):
                 break
     window.Close()
     print('restarting cycle')
-    do_it(student_id, mark_name)
+    run_program(student_id, mark_name)

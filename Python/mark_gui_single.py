@@ -6,8 +6,8 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def do_it(course, student_number):
-    marking_first.do_it(course, 'single')
+def run_program(course, student_number):
+    marking_first.run_program(course, 'single')
 
     mark = [[],
             []]
@@ -97,4 +97,4 @@ def do_it(course, student_number):
         sg.Popup('You have just finished marking ' + marking_first.nameOfMark + ' for ' + student_name + "!")
 
 
-#do_it('ICS4U-01/2018', 1)
+#run_program('ICS4U-01/2018', 1)

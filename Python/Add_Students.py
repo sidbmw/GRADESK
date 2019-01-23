@@ -3,23 +3,16 @@ import cx_Oracle
 import PySimpleGUI as sg
 
 
-def do_it(course):
+def run_program(course):
     con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-
-    sg.ChangeLookAndFeel('DarkBlue')
-
-    # cur.execute("SELECT  CLASS FROM EOM_CLASS")
-    # fetch_course_code = cur.fetchall()
-    # fetched_course_codes = [n[0] for n in fetch_course_code]
-    # print(fetched_course_codes)
 
     number_Of_Students = int(sg.PopupGetText("Number of Students"))
     scrollable_column = [[sg.Input(), sg.Input()]]
 
     for x in range(int(number_Of_Students) - 1):
-        scrollable_column = scrollable_column + [[sg.Input(), sg.Input(), sg.Button(button_text=" X ")]]
+        scrollable_column = scrollable_column + [[sg.Input(), sg.Input()]]
 
     layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Stretch()],
               [sg.Stretch(), sg.Text('Course code needs to be fetched into here')],

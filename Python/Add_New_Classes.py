@@ -1,10 +1,10 @@
 import cx_Oracle
 import PySimpleGUI as sg
-from Add_Students import do_it as add_student
+from Add_Students import run_program as add_student
 from input_checker import check_string
 
 
-def do_it():
+def run_program():
     con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
@@ -24,6 +24,7 @@ def do_it():
 
     while 'add_new_courses_button':
         event, values = window.Read()
+        v_exit = False
         if event is None or event == 'Exit':
             break
         v_course_code = values[0]
@@ -34,7 +35,11 @@ def do_it():
         for row in cur:
             if v_course_code + '/' + v_year == (row[0]):
                 sg.Popup("INVALID")
+                v_exit = True
                 break
+
+        if v_exit:
+            break
 
         if v_course_code != '' and v_period_num != '' and v_year != '':
             if check_string(v_course_code, 'str', 8) and check_string(v_period_num, 'int', 4) \
@@ -58,3 +63,4 @@ def do_it():
         else:
             sg.Popup("Please complete input")
 
+    window.Close()

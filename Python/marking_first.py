@@ -5,7 +5,7 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def do_it(course, type):
+def run_program(course, type):
     global nameOfMark
     global numberOfMark
     global color
@@ -85,4 +85,4 @@ def do_it(course, type):
                 sg.Popup('Invalid input, try again.')
 
 
-# do_it()
+# run_program()
