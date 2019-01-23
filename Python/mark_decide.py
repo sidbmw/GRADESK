@@ -1,11 +1,11 @@
 import PySimpleGUI as sg
 import cx_Oracle
 import sys
-from mark_gui import run_program as for_class
-from mark_gui_single import run_program as for_single
+from mark_gui import do_it as for_class
+from mark_gui_single import do_it as for_single
 
 
-def run_program(course, student_number):
+def do_it(course, student_number):
     def get_name(x):
         cur.execute("select * from EOM_STUDENTS")
         for row in cur:

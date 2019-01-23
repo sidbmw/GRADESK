@@ -6,8 +6,8 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def run_program(course):
-    marking_first.run_program(course, 'other stuff')
+def do_it(course):
+    marking_first.do_it(course, 'other stuff')
 
     student_numbers = []
 

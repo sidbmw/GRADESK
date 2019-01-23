@@ -5,7 +5,7 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def run_program(student_id, mark):
+def do_it(student_id, mark):
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     old_comments = cur.execute("select COMMENTS from EOM_MARKS where STUDENT_ID=:v_id and TASK=:v_mark",
@@ -159,6 +159,6 @@ def edit_mark(student_id, mark_name):
 
     window.Close()
     print('restarting cycle')
-    run_program(student_id, mark_name)
+    do_it(student_id, mark_name)
 
-# run_program(1, 'T1')
+# do_it(1, 'T1')

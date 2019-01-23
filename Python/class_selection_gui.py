@@ -1,11 +1,11 @@
 import PySimpleGUI as sg
 import cx_Oracle
-from Add_New_Classes import run_program as add
-from Edit_Classes import run_program as edit
-from Grades_Chart import run_program as access
+from Add_New_Classes import do_it as add
+from Edit_Classes import do_it as edit
+from Grades_Chart import do_it as access
 
 
-def run_program():
+def do_it():
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     classes = []
@@ -32,7 +32,7 @@ def run_program():
         period.append(str(row[1]))
 
     for x in range(len(classes)):
-        if x == len(classes) - 1:
+        if x == len(classes)-1:
             column.append([sg.Text(classes[x] + "     ", size=(20, 1), justification='right'),
                            sg.Button('access', button_color=('black', 'orange'), key=str(x)), sg.Radio('select', "RADIO1", default=True)],
                           )
@@ -53,20 +53,17 @@ def run_program():
         [sg.Column(column, scrollable=True, size=(400, 300))],
         [sg.Button('Add Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_add_class'),
          sg.Button('Edit Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_edit_class'),
-         sg.Button('Delete Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_delete_class'),
-         sg.Button('Exit', button_color=('white', 'black'), font=("Helvetica", 15), key='Exit')]]
+         sg.Button('Delete Class', button_color=('white', 'black'), font
+         =("Helvetica", 15), key='key_delete_class')]]
 
     window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
 
     def reopen():
         window.Close()
-        run_program()
+        do_it()
 
     while True:
         event, values = window.Read()
-
-        if event == 'Exit':
-            break
 
         if event == 'key_add_class':
             add()
@@ -102,4 +99,4 @@ def run_program():
     window.Close()
 
 
-run_program()
+do_it()
