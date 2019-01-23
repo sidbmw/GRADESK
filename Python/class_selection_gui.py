@@ -53,8 +53,8 @@ def do_it():
         [sg.Column(column, scrollable=True, size=(400, 300))],
         [sg.Button('Add Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_add_class'),
          sg.Button('Edit Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_edit_class'),
-         sg.Button('Delete Class', button_color=('white', 'black'), font
-         =("Helvetica", 15), key='key_delete_class')]]
+         sg.Button('Delete Class', button_color=('white', 'black'), font=("Helvetica", 15), key='key_delete_class'),
+         sg.Button('Exit', button_color=('white', 'black'), font=("Helvetica", 15), key='Exit')]]
 
     window = sg.FlexForm('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
 
@@ -64,6 +64,9 @@ def do_it():
 
     while True:
         event, values = window.Read()
+
+        if event == 'Exit':
+            break
 
         if event == 'key_add_class':
             add()
