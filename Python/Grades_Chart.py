@@ -185,8 +185,8 @@ def run_program(course):
             if event == "_print_":
                 os.environ['ORACLE_HOME'] = "C:/oraclexe/app/oracle/product/11.2.0/server"
                 os.system(
-                    "C:/oraclexe/app/oracle/product/11.2.0/server/bin/sqlplus.exe EOM/EOM @C:/Users/siddh/Documents/ICS4U/SQL/html.sql")
-                os.startfile(filepath='C:/Users/siddh/Documents/ICS4U/Reports/report.htm')
+                    "C:/oraclexe/app/oracle/product/11.2.0/server/bin/sqlplus.exe EOM/EOM @C:/Users/gordr/Documents/Github/ICS4U/SQL/html.sql")
+                os.startfile(filepath='C:/Users/gordr/Documents/Github/ICS4U/Reports/report.htm')
 
             if event == '_add_assignment_':
                 marking_program(class_code, student_id)
