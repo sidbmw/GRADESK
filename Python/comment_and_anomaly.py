@@ -159,8 +159,6 @@ def edit_mark(student_id, mark_name):
                     saved = True
 
             if saved:
-                print('saved is true')
                 break
     window.Close()
-    print('restarting cycle')
     run_program(student_id, mark_name)

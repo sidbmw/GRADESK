@@ -44,4 +44,9 @@ def check_mark(user_input):
                 return True
             else:
                 return False
-    return False
+        return True
+    else:
+        return False
+
+
+# print(check_mark('4'))

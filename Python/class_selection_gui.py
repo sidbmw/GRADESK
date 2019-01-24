@@ -91,7 +91,7 @@ def run_program():
         if event is None:
             break
 
-        for x in range(len(classes) - 1):
+        for x in range(len(classes)):
             if event == str(x):
                 print('reached')
                 access(classes[x] + '/' + year[x])

@@ -20,10 +20,8 @@ def run_program(course, student_number):
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
-
-    sg.ChangeLookAndFeel('DarkBlue')
 
     if not marking_first.quit_option:
 
@@ -32,10 +30,10 @@ def run_program(course, student_number):
 
         for z in range(int(marking_first.numberOfMark)):
             column.append(
-                [sg.Text('Expectation  ', text_color='white', justification='left'),
+                [sg.Text('Expectation  ', text_color='black', justification='left'),
                  sg.InputText('', size=(10, 1))], )
             column.append(
-                [sg.Text('Mark            ', text_color='white', justification='left'),
+                [sg.Text('Mark            ', text_color='black', justification='left'),
                  sg.InputText('', size=(10, 1))], )
             column.append([sg.Text('_' * 100, size=(23, 1))], )
 
@@ -61,11 +59,13 @@ def run_program(course, student_number):
                             mark[1].append(values[tracker + 1])
                             do = True
                         else:
-                            sg.Popup('Invalid expectation')
+                            sg.Popup('Invalid mark' + values[tracker + 1])
                             do = False
+                            break
                     else:
-                        sg.Popup('Invalid mark')
+                        sg.Popup('Invalid expectation' + values[tracker + 0])
                         do = False
+                        break
 
                 if do:
                     for y in range(int(marking_first.numberOfMark)):
@@ -96,5 +96,6 @@ def run_program(course, student_number):
             window.Close()  # Don't forget to close your window!
         sg.Popup('You have just finished marking ' + marking_first.nameOfMark + ' for ' + student_name + "!")
 
+        window.Close()
 
-#run_program('ICS4U-01/2018', 1)
+# run_program('ICS4U-01/2018', 5)

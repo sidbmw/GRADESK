@@ -22,12 +22,12 @@ def run_program(course, type):
             if row[1] == x:
                 return row[0]
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('system/EOM@127.0.0.1/xe')
     cur = con.cursor(scrollable=True)
     # sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [
-        [sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='white', justification='center')],
+        [sg.Text('  Set up assignment', size=(17, 1), font=("Helvetica", 15), text_color='black', justification='center')],
         [sg.Radio('Test             ', 'RADIO1', default=True, text_color='blue'), sg.Radio('Assignment   ', 'RADIO1', text_color='red')],
         [sg.Radio('Presentation ', 'RADIO1', text_color='green'), sg.Radio('Quiz           ', 'RADIO1', text_color='Yellow')],
         [sg.Text('Name of assignment      '), sg.InputText('', size=(10, 1))],
