@@ -1,11 +1,13 @@
+# author: Mike Dong, Early October
+# version: 2.3
+
 import PySimpleGUI as sg
 import cx_Oracle
 from input_checker import check_string
 from input_checker import check_expectation
-from input_checker import check_mark
 
 
-def run_program(course, type):
+def run_program(course, assessment_type):  # the function that runs everything
     global nameOfMark
     global numberOfMark
     global color
@@ -22,7 +24,7 @@ def run_program(course, type):
             if row[1] == x:
                 return row[0]
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
     # sg.ChangeLookAndFeel('DarkBlue')
 
@@ -54,7 +56,7 @@ def run_program(course, type):
                 student_id = [n[0] for n in fetched_data]
                 task = [n[1] for n in fetched_data]
 
-                if type == 'multiple':
+                if assessment_type == 'multiple':
                     for x in range(len(student_id)):
                         if get_first_student(course) == int(student_id[x]):
                             if values[4] == task[x]:

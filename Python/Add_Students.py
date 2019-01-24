@@ -1,24 +1,17 @@
-# !/usr/bin/env python
+# author: Siddharth Natamai, Earl December
+# version: 1.4
+
 import cx_Oracle
 import PySimpleGUI as sg
 
 
-def run_program(course):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
-    # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+def run_program(course):  # the function that runs everything
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
-
-    # sg.ChangeLookAndFeel('DarkBlue')
-
-    # cur.execute("SELECT  CLASS FROM EOM_CLASS")
-    # fetch_course_code = cur.fetchall()
-    # fetched_course_codes = [n[0] for n in fetch_course_code]
-    # print(fetched_course_codes)
-
-    number_Of_Students = int(sg.PopupGetText("Number of Students"))
+    number_of_students = int(sg.PopupGetText("Number of Students"))
     scrollable_column = [[sg.Input(), sg.Input()]]
 
-    for x in range(int(number_Of_Students) - 1):
+    for x in range(int(number_of_students) - 1):
         scrollable_column = scrollable_column + [[sg.Input(), sg.Input(), sg.Button(button_text=" X ")]]
 
     layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Stretch()],
@@ -41,7 +34,7 @@ def run_program(course):
         if event is None or event == 'Exit':
             break
 
-        for x in range(1, (int(number_Of_Students) + 1)):
+        for x in range(1, (int(number_of_students) + 1)):
             v_pos = x * 2 + 1
             student_first_name = values[v_pos]
             student_last_name = values[v_pos + 1]

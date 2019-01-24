@@ -1,14 +1,15 @@
+# author: Siddharth Natamai, edited and altered: Mike Dong, Late October
+# version: 2.2
+
 import cx_Oracle
 import PySimpleGUI as sg
 from Add_Students import run_program as add_student
 from input_checker import check_string
 
 
-def run_program():
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
-    # con = cx_Oracle.connect('system/earluser@127.0.0.1/xe')
+def run_program():  # the function that runs everything
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
-    # sg.ChangeLookAndFeel('DarkBlue')
 
     layout = [[sg.Text('Add New Classes', size=(30, 2), justification='center', font=("Helvetica", 25))],
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],

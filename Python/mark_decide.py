@@ -12,7 +12,7 @@ def run_program(course, student_number):
             if x == (row[0]):
                 return str(row[2] + " " + row[3])
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
 
     # sg.ChangeLookAndFeel('DarkBlue')

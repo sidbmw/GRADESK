@@ -1,3 +1,6 @@
+# author: Mike Dong, Early January
+# version: 2.2
+
 import PySimpleGUI as sg
 import cx_Oracle
 from input_checker import check_string
@@ -5,8 +8,8 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def run_program(student_id, mark):
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+def run_program(student_id, mark):  # the function that runs everything
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
     old_comments = cur.execute("select COMMENTS from EOM_MARKS where STUDENT_ID=:v_id and TASK=:v_mark",
                                v_id=student_id, v_mark=mark)
@@ -63,8 +66,8 @@ def run_program(student_id, mark):
 # ----------------------------------------------------------------------------------------------------------------------
 
 
-def edit_mark(student_id, mark_name):
-    def reopen():
+def edit_mark(student_id, mark_name):  # the function that runs everything
+    def reopen():  # function closes the window and opens it again, refreshing and updating the gui
         window.Close()
         edit_mark(student_id, mark_name)
 

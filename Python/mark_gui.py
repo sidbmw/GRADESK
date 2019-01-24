@@ -1,3 +1,6 @@
+# author: Mike Dong, Late October
+# version: 5.2
+
 import PySimpleGUI as sg
 import marking_first
 import cx_Oracle
@@ -6,7 +9,7 @@ from input_checker import check_expectation
 from input_checker import check_mark
 
 
-def run_program(course):
+def run_program(course):  # the function that runs everything
     marking_first.run_program(course, 'other stuff')
 
     student_numbers = []
@@ -32,14 +35,12 @@ def run_program(course):
 
         return v_row
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
 
     for x in range(int(marking_first.numberOfMark)):
         mark[0].append("")
         mark[1].append("")
-
-    sg.ChangeLookAndFeel('DarkBlue')
 
     if not marking_first.quit_option:
 

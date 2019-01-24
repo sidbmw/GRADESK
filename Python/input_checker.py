@@ -1,3 +1,7 @@
+# author: Mike Dong, Late December
+# version: 3.1
+
+
 def check_string(user_input, v_type, v_max):
     if v_type == 'str':
         if len(str(user_input)) <= v_max and str(type(user_input)) == '<class \'' + v_type + '\'>':
@@ -45,4 +49,6 @@ def check_mark(user_input):
                 return True
             else:
                 return False
-    return False
+        return True
+    else:
+        return False

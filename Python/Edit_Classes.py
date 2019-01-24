@@ -1,4 +1,6 @@
-# !/usr/bin/env python
+# author: Mike Dong, Late November
+# version: 3.0
+
 import cx_Oracle
 import PySimpleGUI as sg
 from Edit_Students import run_program as edit
@@ -8,11 +10,10 @@ old_class = ''
 old_period_number = 0
 
 
-def run_program(x, y, z):
+def run_program(name, period, year):  # the function that runs everything
     student_numbers = []
 
-    def get_rows(course_code):  # both fills the array with student ids and gets the amount of students
-
+    def get_rows(course_code):
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
         for row in cur:
@@ -22,23 +23,23 @@ def run_program(x, y, z):
 
         return v_row
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
     # sg.ChangeLookAndFeel('DarkBlue')
 
     global old_class
     global old_period_number
 
-    old_class = str(x + '/' + z)
-    old_period_number = int(y)
+    old_class = str(name + '/' + year)
+    old_period_number = int(period)
 
-    layout = [[sg.Text('Edit Classes - ' + x, size=(30, 2), justification='center', font=("Helvetica", 25))],
+    layout = [[sg.Text('Edit Classes - ' + name, size=(30, 2), justification='center', font=("Helvetica", 25))],
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
-              [sg.Input(x, size=(20, 2), pad=((215, 150), 10))],
+              [sg.Input(name, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('   Period Number', size=(50, 1), justification='center', font=("Helvetica", 15))],
-              [sg.Input(y, size=(20, 2), pad=((215, 150), 10))],
+              [sg.Input(period, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
-              [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10), default_value=int(z))],
+              [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10), default_value=int(year))],
               [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10),)],
               [sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10),)]
               ]

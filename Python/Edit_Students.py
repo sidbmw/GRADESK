@@ -1,12 +1,13 @@
+# author: Mike Dong, late November
+# version: 1.3
+
 import cx_Oracle
 import PySimpleGUI as sg
 from Add_Students import run_program as add
 
 
-def run_program(course):
-    # sg.ChangeLookAndFeel('DarkBlue')
-
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
+def run_program(course):  # the function that runs everything
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
     cur = con.cursor(scrollable=True)
 
     student_numbers = []
@@ -59,7 +60,7 @@ def run_program(course):
 
     window = sg.Window('Edit students', default_element_size=(40, 2)).Layout(layout)
 
-    def reopen():
+    def reopen():  # function closes the window and opens it again, refreshing and updating the gui
         window.Close()
         run_program(course)
 
