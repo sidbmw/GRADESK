@@ -6,10 +6,13 @@ import PySimpleGUI as sg
 from Edit_Students import run_program as edit
 from input_checker import check_string as check_string
 
+old_class = ''  # variable, holds the current name of the class
+old_period_number = 0  # variable, holds the current period number of the class
+
 
 def run_program(name, period, year):  # the function that runs everything
-    old_class = ''  # variable, holds the current name of the class
-    old_period_number = 0  # variable, holds the current period number of the class
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
+    cur = con.cursor(scrollable=True)  # object, used to execute SQL commands in python
 
     student_numbers = []  # list, the student_numbers of the students in the given class
 
@@ -22,29 +25,27 @@ def run_program(name, period, year):  # the function that runs everything
                 student_numbers.append(row[0])
         return v_row
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
-    cur = con.cursor(scrollable=True)  # object, used to execute SQL commands in python
-
     global old_class
     global old_period_number
 
     old_class = str(name + '/' + year)
     old_period_number = int(period)
 
-    layout = [[sg.Text('Edit Classes - ' + name, size=(30, 2), justification='center', font=("Helvetica", 25))],  # where the gui is put together, each [] means that its a line's content
+    layout = [[sg.Text('Edit Classes - ' + name, size=(30, 2), justification='center', font=("Helvetica", 25))],
+              # where the gui is put together, each [] means that its a line's content
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
               [sg.Input(name, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('   Period Number', size=(50, 1), justification='center', font=("Helvetica", 15))],
               [sg.Input(period, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('Year', size=(50, 1), justification='center', font=("Helvetica", 15))],
               [sg.DropDown((2016, 2017, 2018, 2019), size=(18, 2), pad=((214, 150), 10), default_value=int(year))],
-              [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10),)],
-              [sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10),)]
+              [sg.Button('Edit Course', key='edit_courses_button', size=(20, 2), pad=((205, 150), 10), )],
+              [sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10), )]
               ]
 
     window = sg.Window('Edit Courses', default_element_size=(40, 2)).Layout(layout)  # used to open up a window and display everything
 
-    while True:   # runs as long as the window is open, similar to an action listener
+    while True:  # runs as long as the window is open, similar to an action listener
         event, values = window.Read()  # the pysimplegui equivalent of an action listener
         if event is None or event == 'Exit':
             break
@@ -60,7 +61,7 @@ def run_program(name, period, year):  # the function that runs everything
                 cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course", v_class=values[0] + '/' + values[2],
                             old_course=old_class)
 
-                for x in range(int(get_number(old_class))-1):  # runs once for every student in the old_class to change their class to the new class
+                for x in range(int(get_number(old_class)) - 1):  # runs once for every student in the old_class to change their class to the new class
                     cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
                                 new_class=values[0] + '/' + values[2],
                                 other_stuff=student_numbers[x])

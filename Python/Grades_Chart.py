@@ -1,3 +1,6 @@
+# author: Siddharth Natamai, December break
+# version: 52.3
+
 import cx_Oracle
 import PySimpleGUI as sg
 import os
