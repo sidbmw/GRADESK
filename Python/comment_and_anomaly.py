@@ -10,7 +10,7 @@ from input_checker import check_mark
 
 def run_program(student_id, mark):  # the function that runs everything
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
-    cur = con.cursor(scrollable=True)
+    cur = con.cursor(scrollable=True)  # object, used to execute SQL commands in python
     old_comments = cur.execute("select COMMENTS from EOM_MARKS where STUDENT_ID=:v_id and TASK=:v_mark",
                                v_id=student_id, v_mark=mark)
     old_comments = cur.fetchone()
@@ -18,22 +18,21 @@ def run_program(student_id, mark):  # the function that runs everything
     if list(str(old_comments))[0] == '<':
         old_comments = ''
 
-    layout = [[sg.Text('Comments', font=("Helvetica", 11), text_color='black', justification='left')],
+    layout = [[sg.Text('Comments', font=("Helvetica", 11), text_color='black', justification='left')],  # where the gui is put together, each [] means that its a line's content
               [sg.InputText(old_comments, size=(22, 0))],
               [sg.Text('      Mark as anomaly'), sg.Checkbox('')],
               [sg.Button('Delete this assignment', button_color=('black', 'orange'), key='_delete_')],
               [sg.Button('Edit', button_color=('black', 'orange'), key='_edit_'), sg.Text('            '),
                sg.Button('Save', button_color=('black', 'orange'), key='_save_')]]
 
-    window = sg.Window('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
+    window = sg.Window('Class selection ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)  # used to open up a window and display everything
 
-    while True:
-
+    while True:   # runs as long as the window is open, similar to an action listener
         event, values = window.Read()
         if event is None:
             window.Close()
 
-        if event == '_delete_':
+        if event == '_delete_':  # checks if it was the add classes button that was pressed
             cur.execute("UPDATE EOM_MARKS SET DELETED_FLAG=:v_delete WHERE STUDENT_ID=:v_id AND TASK=:v_mark",
                         v_delete='Y', v_id=student_id, v_mark=mark)
             print('1')
@@ -41,11 +40,11 @@ def run_program(student_id, mark):  # the function that runs everything
             sg.Popup('All marks associated with ' + mark + " has been deleted")
             break
 
-        if event == '_edit_':
+        if event == '_edit_':  # checks if it was the add classes button that was pressed
             window.Close()
             edit_mark(student_id, mark)
 
-        if event == '_save_':
+        if event == '_save_':  # checks if it was the add classes button that was pressed
             comments = values[0]
             if check_string(comments, 'str', 250):
                 if values[1]:  # anomaly
@@ -71,8 +70,8 @@ def edit_mark(student_id, mark_name):  # the function that runs everything
         window.Close()
         edit_mark(student_id, mark_name)
 
-    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')
-    cur = con.cursor(scrollable=True)
+    con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
+    cur = con.cursor(scrollable=True)  # checks if changes were made
     number_of_marks = 0
     student_name = ''
     column = []  # part of the layout
@@ -100,20 +99,20 @@ def edit_mark(student_id, mark_name):  # the function that runs everything
              sg.InputText(mark[1][z], size=(10, 1))], )
         column.append([sg.Text('_' * 100, size=(23, 1))], )
 
-    layout = [[sg.Text('Editing ' + mark_name + ' for ' + student_name, size=(25, 1),
+    layout = [[sg.Text('Editing ' + mark_name + ' for ' + student_name, size=(25, 1),  # where the gui is put together, each [] means that its a line's content
                        font=("Helvetica", 15), justification='center')],
               [sg.Column(column, scrollable=True, size=(225, 300), vertical_scroll_only=True)],
               [sg.Button('Finish Marking', key='key_finish')]]
 
-    window = sg.Window('Mark ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)
+    window = sg.Window('Mark ', auto_size_text=True, default_element_size=(40, 1)).Layout(layout)  # used to open up a window and display everything
 
-    while True:
-        event, values = window.Read()
+    while True:   # runs as long as the window is open, similar to an action listener
+        event, values = window.Read()  # the pysimplegui equivalent of an action listener
 
         if event is None:
             window.Close()
 
-        if event == 'key_finish':
+        if event == 'key_finish':  # checks if it was the add classes button that was pressed
             edited = 0
             do = False
             saved = False
@@ -137,7 +136,6 @@ def edit_mark(student_id, mark_name):  # the function that runs everything
                 reopen()
 
             if do:
-                print('do is True')
                 for y in range(int(number_of_marks)):
                     print(mark[0][y], mark[1][y], student_id, mark_name)
                     sql_expectation = mark[0][y]

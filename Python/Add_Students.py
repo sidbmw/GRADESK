@@ -7,14 +7,14 @@ import PySimpleGUI as sg
 
 def run_program(course):  # the function that runs everything
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
-    cur = con.cursor(scrollable=True)
+    cur = con.cursor(scrollable=True)  # object, used to execute SQL commands in python
     number_of_students = int(sg.PopupGetText("Number of Students"))
-    scrollable_column = [[sg.Input(), sg.Input()]]
+    scrollable_column = [[sg.Input(), sg.Input()]]  # list, holds various gui elements
 
-    for x in range(int(number_of_students) - 1):
+    for x in range(int(number_of_students) - 1):  # runs once for every student
         scrollable_column = scrollable_column + [[sg.Input(), sg.Input(), sg.Button(button_text=" X ")]]
 
-    layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Stretch()],
+    layout = [[sg.Stretch(), sg.Text('Add Students', font=("Helvetica", 25)), sg.Stretch()],  # where the gui is put together, each [] means that its a line's content
               [sg.Stretch(), sg.Text('Course code needs to be fetched into here')],
               [sg.Text("                              First Name"),
                sg.Text("                                                      Last Name")],
@@ -26,15 +26,15 @@ def run_program(course):  # the function that runs everything
                sg.Text("Save occurs only once 'Add Student' button is pressed"), sg.Stretch()]
               ]
 
-    window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)
+    window = sg.Window('Add New Courses', default_element_size=(40, 2)).Layout(layout)  # used to open up a window and display everything
 
-    while True:
-        print('running')
-        event, values = window.Read()
+    while True:   # runs as long as the window is open, similar to an action listener
+        event, values = window.Read()  # the pysimplegui equivalent of an action listener
+
         if event is None or event == 'Exit':
             break
 
-        for x in range(1, (int(number_of_students) + 1)):
+        for x in range(1, (int(number_of_students) + 1)):  # runs once for every students
             v_pos = x * 2 + 1
             student_first_name = values[v_pos]
             student_last_name = values[v_pos + 1]

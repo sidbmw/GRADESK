@@ -1,5 +1,5 @@
 # author: Mike Dong, Early October
-# version: 6.2
+# version: 6.1
 
 import PySimpleGUI as sg
 import cx_Oracle

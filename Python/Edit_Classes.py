@@ -20,12 +20,10 @@ def run_program(name, period, year):  # the function that runs everything
             if row[1] == course_code:
                 v_row += 1
                 student_numbers.append(row[0])
-
         return v_row
 
     con = cx_Oracle.connect('EOM/EOM@127.0.0.1/xe')  # connects to the database
-    cur = con.cursor(scrollable=True)
-    # sg.ChangeLookAndFeel('DarkBlue')
+    cur = con.cursor(scrollable=True)  # object, used to execute SQL commands in python
 
     global old_class
     global old_period_number
@@ -33,7 +31,7 @@ def run_program(name, period, year):  # the function that runs everything
     old_class = str(name + '/' + year)
     old_period_number = int(period)
 
-    layout = [[sg.Text('Edit Classes - ' + name, size=(30, 2), justification='center', font=("Helvetica", 25))],
+    layout = [[sg.Text('Edit Classes - ' + name, size=(30, 2), justification='center', font=("Helvetica", 25))],  # where the gui is put together, each [] means that its a line's content
               [sg.Text('  Course Code', size=(50, 1), justification='center', font=("Helvetica", 15))],
               [sg.Input(name, size=(20, 2), pad=((215, 150), 10))],
               [sg.Text('   Period Number', size=(50, 1), justification='center', font=("Helvetica", 15))],
@@ -44,14 +42,14 @@ def run_program(name, period, year):  # the function that runs everything
               [sg.Button('Go to Edit Students', key='edit_student_key', size=(20, 2), pad=((205, 150), 10),)]
               ]
 
-    window = sg.Window('Edit Courses', default_element_size=(40, 2)).Layout(layout)
+    window = sg.Window('Edit Courses', default_element_size=(40, 2)).Layout(layout)  # used to open up a window and display everything
 
-    while True:
-        event, values = window.Read()
+    while True:   # runs as long as the window is open, similar to an action listener
+        event, values = window.Read()  # the pysimplegui equivalent of an action listener
         if event is None or event == 'Exit':
             break
 
-        if event == 'edit_courses_button':
+        if event == 'edit_courses_button':  # checks if it was the add classes button that was pressed
 
             if values[0] != '' and values[1] != '' and values[2] != '':
                 if check_string(values[0], 'str', 8) and check_string(values[1], 'int', 4) \
