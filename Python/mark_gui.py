@@ -28,8 +28,8 @@ def run_program(course):  # the function that runs everything, requires course t
     def get_number(x):  # function, get the amount of students and fill the student_numbers array
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
-        for row in cur:
-            if row[1] == x:
+        for row in cur:  # goes through the students table
+            if row[1] == x:  # check if this student is in the given class
                 v_row += 1
                 student_numbers.append(row[0])
 
@@ -70,7 +70,7 @@ def run_program(course):  # the function that runs everything, requires course t
                 event, values = window.Read()  # the pysimplegui equivalent of an action listener
                 saved = False  # variable, stores boolean on whether the marking has been completed
                 run_sql = False  # variable, decides whether the program runs the SQL script
-                if event == 'key_next_stud':  # checks if it was the add classes button that was pressed
+                if event == 'key_next_stud':  # checks if it was the next student button that was pressed
                     for y in range(int(marking_first.numberOfMark)):  # runs once for everything set of expectation or mark so they can be added into the database
                         tracker = int(y * 2)
                         if values[tracker + 0] is not None and check_expectation(values[tracker + 0]):  # check if the expectation is valid

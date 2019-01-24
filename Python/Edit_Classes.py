@@ -6,18 +6,18 @@ import PySimpleGUI as sg
 from Edit_Students import run_program as edit
 from input_checker import check_string as check_string
 
-old_class = ''
-old_period_number = 0
-
 
 def run_program(name, period, year):  # the function that runs everything
-    student_numbers = []
+    old_class = ''  # variable, holds the current name of the class
+    old_period_number = 0  # variable, holds the current period number of the class
 
-    def get_rows(course_code):
+    student_numbers = []  # list, the student_numbers of the students in the given class
+
+    def get_number(course_code):  # function, get the amount of students and fill the student_numbers array
         cur.execute("select * from EOM_STUDENTS")
         v_row = 0
-        for row in cur:
-            if row[1] == course_code:
+        for row in cur:  # goes through the students table
+            if row[1] == course_code:  # check if this student is in the given class
                 v_row += 1
                 student_numbers.append(row[0])
         return v_row
@@ -49,28 +49,29 @@ def run_program(name, period, year):  # the function that runs everything
         if event is None or event == 'Exit':
             break
 
-        if event == 'edit_courses_button':  # checks if it was the add classes button that was pressed
+        if event == 'edit_courses_button':  # checks if it was the edit classes button that was pressed
 
-            if values[0] != '' and values[1] != '' and values[2] != '':
-                if check_string(values[0], 'str', 8) and check_string(values[1], 'int', 4) \
-                        and check_string(values[2], 'int', 2025):
+            if check_string(values[0], 'str', 8) and check_string(values[1], 'int', 4) \
+                    and check_string(values[2], 'int', 2025):  # check if the inputs are valid
 
-                    cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :old_course", v_period_num=values[1],
-                                old_course=old_class)
+                cur.execute("UPDATE EOM_CLASS SET PERIOD_NUM = :v_period_num WHERE CLASS = :old_course", v_period_num=values[1],
+                            old_course=old_class)
 
-                    cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course", v_class=values[0] + '/' + values[2],
-                                old_course=old_class)
+                cur.execute("UPDATE EOM_CLASS SET CLASS = :v_class WHERE CLASS = :old_course", v_class=values[0] + '/' + values[2],
+                            old_course=old_class)
 
-                    for x in range(int(get_rows(old_class))-1):
-                        cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
-                                    new_class=values[0] + '/' + values[2],
-                                    other_stuff=student_numbers[x])
+                for x in range(int(get_number(old_class))-1):  # runs once for every student in the old_class to change their class to the new class
+                    cur.execute("UPDATE EOM_STUDENTS SET CLASS = :new_class WHERE STUDENT_ID = :other_stuff",
+                                new_class=values[0] + '/' + values[2],
+                                other_stuff=student_numbers[x])
 
-                    con.commit()
+                con.commit()
 
-                    break
+                break
+            else:
+                sg.Popup('Invalid input')
 
-        if event == 'edit_student_key':
+        if event == 'edit_student_key':  # checks if it was the edit students button that was pressed
             edit(old_class)
 
     window.Close()
