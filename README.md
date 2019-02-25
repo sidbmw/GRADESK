@@ -2,4 +2,5 @@ GRADESK is a extension and improvement over the standardized Mark Manager (MaMa)
 
 
 The documentation contains a manual as well as other information which is linked below:
+
 https://github.com/sidbmw/ICS4U/blob/sidbmw/GRADESK%20Documentation.pdf
