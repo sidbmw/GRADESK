@@ -127,6 +127,7 @@ alphabetical order, ‘Previous student’ brings you to the previous student in
 order.
 
 ![image](https://user-images.githubusercontent.com/16989022/71627154-ea207e00-2bbe-11ea-850a-4da24f33943a.png)
+
 Pressing ‘Print report will open up automatically generated HTML file in your
 default browser showing all of the student's marks (figure 4.1). This file can be printed
 by hitting “Ctrl + P” and can also be saved.
