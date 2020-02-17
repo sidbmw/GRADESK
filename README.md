@@ -45,7 +45,7 @@ sqldeveloper, Github Desktop and a browser. <br />
 * Git (GitHub Desktop) <br />
 
 # The vision...
-![20181111_174710](https://user-images.githubusercontent.com/16989022/71632870-dbe25a00-2bde-11ea-8c6c-373110134cd3.jpg)
+![20181111_174710](https://user-images.githubusercontent.com/46163555/71789369-b9927700-2ff8-11ea-9cea-dae039c9387f.jpg)
 
 # User Guide
 
