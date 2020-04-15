@@ -210,7 +210,8 @@ Figure 6.1
 ![image](https://user-images.githubusercontent.com/16989022/71627173-01f80200-2bbf-11ea-9dbd-990594d1b25d.png)
 
 
-Solving bug LOL...
+
 # Donation Button 
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/sidbmw/1)
+<br>(Added in to solve: https://github.com/sidbmw/GRADESK/issues/7#issue-600553600 LOL)
