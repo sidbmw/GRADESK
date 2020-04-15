@@ -209,3 +209,8 @@ Figure 6.1
 # Diagram of code flow
 ![image](https://user-images.githubusercontent.com/16989022/71627173-01f80200-2bbf-11ea-9dbd-990594d1b25d.png)
 
+
+Solving bug LOL...
+# Donation Button 
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/sidbmw/1)
